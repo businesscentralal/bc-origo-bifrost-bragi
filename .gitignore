@@ -19,3 +19,20 @@ rad.json
 .snapshots/
 cache_*
 ~$*
+
+# Project extras (from bc-cloudevents)
+.claude/settings.json
+*.coverage/coverage.json
+app/.gateway-full-output.txt
+app/output/
+packages/
+.vscode/**
+!.vscode/settings.json
+app/.vscode/**
+!app/.vscode/settings.json
+test/.vscode/**
+!test/.vscode/settings.json
+tools/migration/**/out/
+
+# unit-test result files written by tools/Run-BifrostTests.ps1
+TestResults/

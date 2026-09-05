@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spjalla við Bifröst</title>
+    <style>
+        body { font-family: Segoe UI, Arial, sans-serif; max-width: 860px; margin: 0 auto; padding: 24px; color: #333; line-height: 1.6; }
+        h1 { border-bottom: 2px solid #0078d4; padding-bottom: 8px; }
+        h2 { color: #0078d4; margin-top: 32px; }
+        h3 { margin-top: 24px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 12px; }
+        th, td { border: 1px solid #ddd; padding: 8px 12px; text-align: left; }
+        th { background: #f4f4f4; }
+        a { color: #0078d4; }
+        nav a { text-decoration: none; font-weight: 600; }
+        code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-size: 0.95em; }
+    </style>
+</head>
+<body>
+
+<nav style="margin-bottom: 16px; display: flex; gap: 12px; align-items: center;">
+    <a href="index.html">Heim</a>
+    |
+    <span>Tungumál:</span>
+    <a href="../en-US/BifrostChat.html">English</a>
+    |
+    <span>Tengdar síður:</span>
+    <a href="BifrostLangModelList.html">Bifröst mállíkön</a>
+    |
+    <a href="BifrostLangModelCard.html">Mállíkansspjald</a>
+</nav>
+
+<h1>Spjalla við Bifröst</h1>
+
+<p>
+    <strong>Spjalla við Bifröst</strong> er gervigreindaraðstoð sem birtist sem upplýsingareitur hægra
+    megin á þeim síðum sem þú vinnur á hvort eð er. Þú spyrð á venjulegu máli og aðstoðin svarar með
+    rauntímagögnum úr Business Central, því hún getur kallað á Bifröst skilaboðategundir sem verkfæri
+    á meðan hún vinnur.
+</p>
+<p>
+    Upplýsingareiturinn veit alltaf hvaða færslu þú ert að skoða. Ef þú opnar hann á sölupöntun hefur
+    aðstoðin þá pöntun þegar í samhengi sínu og þú getur spurt um <em>þessa</em> pöntun án þess að slá
+    inn skjalanúmerið. Sama spjall er aðgengilegt á heilsíðu með aðgerðinni <strong>Fókus</strong>
+    þegar upplýsingareiturinn verður of þröngur.
+</p>
+
+<h2>Hvar upplýsingareiturinn birtist</h2>
+
+<p>Spjallreitnum er bætt við eftirfarandi staðalsíður:</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Svið</th>
+            <th>Síður</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Viðskiptamenn og lánardrottnar</strong></td>
+            <td>Spjald viðskiptamanns, listi viðskiptamanna, spjald lánardrottins, listi lánardrottna.</td>
+        </tr>
+        <tr>
+            <td><strong>Vörur</strong></td>
+            <td>Vöruspjald, vörulisti.</td>
+        </tr>
+        <tr>
+            <td><strong>Sölupappírar</strong></td>
+            <td>Sölutilboð, sölupöntun, sölureikningur, sölukreditnóta, söluskilapöntun og listasíður þeirra.</td>
+        </tr>
+        <tr>
+            <td><strong>Innkaupapappírar</strong></td>
+            <td>Innkaupatilboð, innkaupapöntun, innkaupareikningur, innkaupakreditnóta, innkaupaskilapöntun og listasíður þeirra.</td>
+        </tr>
+        <tr>
+            <td><strong>Færslur</strong></td>
+            <td>Fjárhagsfærslur, viðskiptamannafærslur, sundurliðaðar viðskiptamannafærslur, lánardrottnafærslur, vöruskiptafærslur, verðmætafærslur, VSK-færslur og bankareikningsfærslur.</td>
+        </tr>
+        <tr>
+            <td><strong>Skjöl á innleið</strong></td>
+            <td>Skjal á innleið, skjöl á innleið.</td>
+        </tr>
+        <tr>
+            <td><strong>Uppsetning Bifröst</strong></td>
+            <td>Ritill notandauppsetningar, þar sem þú getur prófað spjallið strax eftir að mállíkan hefur verið tengt notanda.</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    Upplýsingareiturinn er falinn þegar núverandi notandi hefur ekki heimild til að spjalla eða þegar
+    ekkert mállíkan er tiltækt. Sjá <a href="#forkrofur">Áður en hægt er að spjalla</a> hér að neðan.
+</p>
+
+<h2>Aðgerðir</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Aðgerð</th>
+            <th>Lýsing</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Fókus</strong></td>
+            <td>Opnar samtalið á heilsíðunni <strong>Spjalla við Bifröst</strong>. Núverandi samtal, færslusamhengið og hæfni mállíkansins fylgja með, og allt sem þú bætir við á heilsíðunni skilar sér til baka þegar þú lokar henni.</td>
+        </tr>
+        <tr>
+            <td><strong>Notandauppsetning</strong></td>
+            <td>Opnar <strong>ritil notandauppsetningar</strong> Bifröst fyrir innskráðan notanda, þar sem tenging við mállíkan og persónuleg kerfisleiðbeining eru viðhaldin.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Færslusamhengi</h2>
+
+<p>
+    Í hvert sinn sem þú færir þig á aðra færslu sendir síðan töflunúmerið, SystemId færslunnar og
+    lýsingartexta til spjallsins. Lýsingartextinn birtist fyrir ofan spjallsvæðið svo þú sjáir hvaða
+    færslu aðstoðin er að vinna með.
+</p>
+<ul>
+    <li>Spyrðu <em>„taktu saman opnar færslur þessa viðskiptamanns“</em> og aðstoðin leysir „þessi viðskiptamaður“ úr samhenginu.</li>
+    <li>Þegar þú færð þig á aðra færslu er verkfæralotan hreinsuð svo aðstoðin blandi ekki saman gögnum frá fyrri færslu.</li>
+    <li>Sumar síður bæta við samhengishæfni – aukaleiðbeiningum sem eiga aðeins við á þeirri síðu – ofan á hæfnina úr mállíkaninu þínu.</li>
+</ul>
+
+<h2 id="forkrofur">Áður en hægt er að spjalla</h2>
+
+<p>Tvennt þarf að vera uppfyllt til að upplýsingareiturinn birtist:</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Forkrafa</th>
+            <th>Hvernig hún er uppfyllt</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Spjallheimild</strong></td>
+            <td>Notandinn þarf að hafa heimildasettið <code>BIFROST Chat ori</code> (heiti <em>Spjallhlið</em>). Það fylgir vísvitandi hvorki Bifröst lesheimildum né fullum Bifröst heimildum – kerfisstjóri þarf að úthluta því til hvers notanda sem má nota gervigreindarspjallið.</td>
+        </tr>
+        <tr>
+            <td><strong>Mállíkan</strong></td>
+            <td>Að minnsta kosti eitt mállíkan á síðunni <a href="BifrostLangModelList.html">Bifröst mállíkön</a> þarf að vera uppsett og nothæft, annað hvort merkt <strong>Sjálfgefið</strong> eða tengt notandanum í notandauppsetningu.</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    Ef annað hvort vantar birtist upplýsingareiturinn einfaldlega ekki á síðunni – engin villuskilaboð
+    koma. Byrjaðu úrræðaleitina á heimildasettinu og athugaðu því næst mállíkanið.
+</p>
+
+<h2>Uppsetning mállíkans</h2>
+
+<ol>
+    <li>Opnaðu <strong>Bifröst uppsetningu</strong> og veldu aðgerðina <strong>Bifröst mállíkön</strong>.</li>
+    <li>Búðu til mállíkan og gefðu því <strong>Kóða</strong> og <strong>Lýsingu</strong>.</li>
+    <li>Veldu <strong>Spjallveitanda</strong>. <em>Copilot</em> leiðir samtalið um Copilot-umgjörð Business Central; <em>Enginn</em> slekkur á spjalli fyrir það mállíkan.</li>
+    <li>Fylltu út líkanstillingarnar – <strong>Líkan</strong>, <strong>Grunnslóð</strong>, <strong>Hámarksfjöldi tókena</strong>, <strong>Tímamörk (sekúndur)</strong> – eða notaðu sjálfgefin gildi veitandans.</li>
+    <li>Skrifaðu <strong>Hæfni</strong> á Markdown-sniði, eða notaðu <strong>Flytja inn sjálfgefið</strong> til að sækja staðlaðan hæfnitexta veitandans. Hæfnin segir aðstoðinni í hverju hún er sterk og hvernig hún á að svara.</li>
+    <li>Merktu eitt mállíkan sem <strong>Sjálfgefið</strong>. Aðeins eitt mállíkan getur verið sjálfgefið og það er notað fyrir alla sem hafa enga persónulega tengingu.</li>
+</ol>
+
+<p>
+    Ef valinn veitandi krefst API-lykils biður spjallið um hann í fyrsta skipti sem það er notað og
+    geymir hann á öruggan hátt í einangraðri geymslu. Kerfisstjórar með tilskildar heimildir geta þess
+    í stað vistað þjónustulykil fyrir allt fyrirtækið svo einstakir notendur séu aldrei beðnir um lykil.
+</p>
+
+<h2>Tenging mállíkans við notanda</h2>
+
+<p>
+    Notandauppsetning Bifröst geymir reitinn <strong>Kóði mállíkans</strong> fyrir hvern notanda. Honum
+    er breytt á síðunni <strong>Ritill notandauppsetningar</strong>, sem er aðgengileg með aðgerðinni
+    <strong>Notandauppsetning</strong> í spjallreitnum eða úr Bifröst uppsetningu.
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Gildi</th>
+            <th>Áhrif</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Útfyllt</strong></td>
+            <td>Spjallið notar það mállíkan – veitanda þess, líkanstillingar og hæfni – aðeins fyrir þennan notanda.</td>
+        </tr>
+        <tr>
+            <td><strong>Tómt</strong></td>
+            <td>Spjallið fellur aftur á mállíkanið sem merkt er <strong>Sjálfgefið</strong>. Ef ekkert sjálfgefið mállíkan er til birtist spjallið ekki.</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    Þannig getur eitt fyrirtæki keyrt fleiri en eina aðstoð samhliða: sölulíkan með söluleiðbeiningum,
+    fjármálalíkan með bókunarleiðbeiningum og svo framvegis. Persónuleg kerfisleiðbeining notandans í
+    notandauppsetningu bætist ofan á hæfni mállíkansins.
+</p>
+
+<h2>Hvað aðstoðin getur gert</h2>
+
+<p>
+    Bifrost Bragi inniheldur innbyggðan MCP verkfæraþjón. Hann birtir Bifröst skilaboðategundir sem
+    verkfæri fyrir mállíkanið, svo aðstoðin geti flett gögnum upp og framkvæmt aðgerðir í stað þess að
+    giska. Allt keyrir í þinni eigin lotu og undir þínum eigin Business Central heimildum – aðstoðin
+    getur aldrei lesið eða skrifað neitt sem þú gætir ekki lesið eða skrifað sjálf/ur.
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Verkfæraflokkur</th>
+            <th>Til hvers aðstoðin notar hann</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Uppgötvun</strong></td>
+            <td><code>list_message_types</code>, <code>get_message_type_help</code>, <code>search_tables</code>, <code>get_fields</code>, <code>who_am_i</code> – að finna hvaða aðgerðir, töflur og reitir eru til og hver er innskráður.</td>
+        </tr>
+        <tr>
+            <td><strong>Lestur gagna</strong></td>
+            <td><code>get_records</code>, <code>get_record_ids</code>, <code>get_record_count</code>, <code>get_totals</code>, <code>find_entries</code> – að lesa færslur, telja þær, leggja saman upphæðir og fara úr skjali yfir í tengdar færslur.</td>
+        </tr>
+        <tr>
+            <td><strong>Breyting gagna</strong></td>
+            <td><code>set_records</code>, <code>get_next_line_no</code> – að stofna og uppfæra færslur, til dæmis að bæta línu við sölupöntun. Aðstoðin les áður en hún skrifar og biður þig um staðfestingu fyrst.</td>
+        </tr>
+        <tr>
+            <td><strong>Skrár</strong></td>
+            <td><code>get_blob</code>, <code>set_blob</code>, <code>list_blobs</code>, <code>delete_blobs</code>, <code>download_blob</code> – að meðhöndla viðhengi, PDF-skjöl og annað tvíundarefni og vista skrá á tækið þitt.</td>
+        </tr>
+        <tr>
+            <td><strong>Minni</strong></td>
+            <td><code>get_user_memory</code>, <code>set_user_memory</code> – að muna óskir þínar milli samtala. Fyrirtækjaminni er lesið í upphafi hverrar lotu.</td>
+        </tr>
+        <tr>
+            <td><strong>Flakk</strong></td>
+            <td><code>get_page_url</code> – að búa til smellanlegan tengil á síðu eða færsluspjald svo þú komist beint þangað.</td>
+        </tr>
+        <tr>
+            <td><strong>Annað</strong></td>
+            <td><code>invoke_message_type</code> – að kalla á hvaða virka Bifröst skilaboðategund sem er, þar með taldar skilaboðategundir úr öðrum Bifröst viðbótum sem settar eru upp í umhverfinu.</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    Þegar verkfæri er í gangi sýnir spjallið hvaða verkfæri er kallað. Niðurstöður verkfæra eru sendar
+    aftur til líkansins, sem getur þá kallað á annað verkfæri áður en það svarar – ein spurning getur
+    því orðið að nokkrum uppflettingum.
+</p>
+
+<h2>Algeng verkefni</h2>
+
+<ul>
+    <li><strong>Spyrja um núverandi færslu:</strong> opnaðu skjalið, sláðu inn spurninguna og láttu aðstoðina leysa samhengið.</li>
+    <li><strong>Vinna í stærri glugga:</strong> veldu <strong>Fókus</strong>, haltu samtalinu áfram og lokaðu síðunni til að snúa aftur í upplýsingareitinn með samtalið óskert.</li>
+    <li><strong>Skipta um aðstoð:</strong> veldu <strong>Notandauppsetning</strong>, settu annan <strong>Kóða mállíkans</strong> og opnaðu síðuna aftur.</li>
+    <li><strong>Fá tengil:</strong> biddu um tengil á færslu og aðstoðin skilar djúptengli sem þú getur smellt á eða deilt.</li>
+    <li><strong>Gefa aðstoðinni fastar leiðbeiningar:</strong> settu þær í hæfni mállíkansins (fyrir hóp notenda) eða í persónulegu kerfisleiðbeininguna í notandauppsetningu (fyrir sjálfa/n þig).</li>
+</ul>
+
+<h2>Ábendingar</h2>
+<ul>
+    <li>Samtalið er ekki geymt í gagnagrunninum. Þegar síðunni er lokað lýkur samtalinu, svo afritaðu það sem þú vilt halda.</li>
+    <li>Notaðu minni fyrir staðreyndir sem eiga að lifa milli samtala – biddu aðstoðina að muna þær.</li>
+    <li>Aðstoðin svarar á því tungumáli sem er skráð á notandann, svo íslenskur notandi fær íslensk svör úr sama mállíkani.</li>
+    <li>Ef svörin virðast röng eða of almenn skaltu fyrst skoða <strong>Hæfni</strong> mállíkansins – sá texti mótar hegðun aðstoðarinnar.</li>
+    <li>Biddu aðstoðina að útskýra hvað hún gerði. Hún getur talið upp verkfærin sem hún kallaði á, sem er fljótlegasta leiðin til að sjá hvers vegna svarið er eins og það er.</li>
+</ul>
+
+<h2>Sjá einnig</h2>
+<ul>
+    <li><a href="BifrostLangModelList.html">Bifröst mállíkön</a> – Listi yfir öll skilgreind mállíkön</li>
+    <li><a href="BifrostLangModelCard.html">Mállíkansspjald</a> – Veitandi, líkanstillingar og hæfni</li>
+    <li><a href="index.html">Hjálp fyrir Bifrost Bragi</a> – Yfirlit yfir viðbótina</li>
+</ul>
+
+<hr>
+<p style="font-size: 0.85em; color: #888;">&copy; Origo – Bifrost Bragi viðbót</p>
+
+</body>
+</html>

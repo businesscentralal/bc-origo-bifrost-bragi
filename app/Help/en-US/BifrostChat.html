@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bifrost Chat</title>
+    <style>
+        body { font-family: Segoe UI, Arial, sans-serif; max-width: 860px; margin: 0 auto; padding: 24px; color: #333; line-height: 1.6; }
+        h1 { border-bottom: 2px solid #0078d4; padding-bottom: 8px; }
+        h2 { color: #0078d4; margin-top: 32px; }
+        h3 { margin-top: 24px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 12px; }
+        th, td { border: 1px solid #ddd; padding: 8px 12px; text-align: left; }
+        th { background: #f4f4f4; }
+        a { color: #0078d4; }
+        nav a { text-decoration: none; font-weight: 600; }
+        code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-size: 0.95em; }
+    </style>
+</head>
+<body>
+
+<nav style="margin-bottom: 16px; display: flex; gap: 12px; align-items: center;">
+    <a href="index.html">Home</a>
+    |
+    <span>Language:</span>
+    <a href="../is-IS/BifrostChat.html">Íslenska</a>
+    |
+    <span>Related:</span>
+    <a href="BifrostLangModelList.html">Bifrost Language Models</a>
+    |
+    <a href="BifrostLangModelCard.html">Bifrost Language Model Card</a>
+</nav>
+
+<h1>Bifrost Chat</h1>
+
+<p>
+    <strong>Bifrost Chat</strong> is an AI assistant that appears as a FactBox on the right-hand side of
+    the pages you already work on. You ask questions in plain language and the assistant answers using
+    live Business Central data, because it can call Bifrost message types as tools while it works.
+</p>
+<p>
+    The FactBox always knows which record you are looking at. If you open it on a sales order, the
+    assistant already has that order in its context and you can ask about <em>this</em> order without
+    typing the document number. The same chat is available on a full page through the
+    <strong>Focus</strong> action when the FactBox becomes too narrow.
+</p>
+
+<h2>Where the FactBox Appears</h2>
+
+<p>The Bifrost Chat FactBox is added to the following standard pages:</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Area</th>
+            <th>Pages</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Customers and vendors</strong></td>
+            <td>Customer Card, Customer List, Vendor Card, Vendor List.</td>
+        </tr>
+        <tr>
+            <td><strong>Items</strong></td>
+            <td>Item Card, Item List.</td>
+        </tr>
+        <tr>
+            <td><strong>Sales documents</strong></td>
+            <td>Sales Quote, Sales Order, Sales Invoice, Sales Credit Memo, Sales Return Order and their list pages.</td>
+        </tr>
+        <tr>
+            <td><strong>Purchase documents</strong></td>
+            <td>Purchase Quote, Purchase Order, Purchase Invoice, Purchase Credit Memo, Purchase Return Order and their list pages.</td>
+        </tr>
+        <tr>
+            <td><strong>Ledger entries</strong></td>
+            <td>General Ledger Entries, Customer Ledger Entries, Detailed Cust. Ledg. Entries, Vendor Ledger Entries, Item Ledger Entries, Value Entries, VAT Entries, Bank Account Ledger Entries.</td>
+        </tr>
+        <tr>
+            <td><strong>Incoming documents</strong></td>
+            <td>Incoming Document, Incoming Documents.</td>
+        </tr>
+        <tr>
+            <td><strong>Bifrost setup</strong></td>
+            <td>User Setup Editor, where you can try the chat right after assigning a language model.</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    The FactBox is hidden when the current user is not allowed to chat or when no language model is
+    available. See <a href="#prerequisites">Before You Can Chat</a> below.
+</p>
+
+<h2>Actions</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Action</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Focus</strong></td>
+            <td>Opens the conversation on the full-page <strong>Bifrost Chat</strong> view. The current conversation, the record context and the language model skill are carried over, and anything you add on the focused page is carried back when you close it.</td>
+        </tr>
+        <tr>
+            <td><strong>User Setup</strong></td>
+            <td>Opens the Bifrost <strong>User Setup Editor</strong> for the signed-in user, where the language model assignment and the personal system prompt are maintained.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Record Context</h2>
+
+<p>
+    Every time you move to another record, the hosting page hands the table number, the record's
+    SystemId and a caption to the chat. The caption is shown above the chat area so you can see which
+    record the assistant is working with.
+</p>
+<ul>
+    <li>Ask <em>"summarise this customer's open entries"</em> and the assistant resolves "this customer" from the context.</li>
+    <li>Moving to a different record clears the tool session so the assistant does not mix data from the previous record.</li>
+    <li>Some pages add a context skill – extra guidance that applies only on that page – on top of the skill from your language model.</li>
+</ul>
+
+<h2 id="prerequisites">Before You Can Chat</h2>
+
+<p>Two conditions must be met before the FactBox becomes visible:</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Requirement</th>
+            <th>How it is met</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Chat permission</strong></td>
+            <td>The user must hold the <code>BIFROST Chat ori</code> permission set (caption <em>Chat Gate</em>). It is deliberately not part of the Bifrost Read or Bifrost Full permission sets – an administrator has to assign it to each user who is allowed to use AI chat.</td>
+        </tr>
+        <tr>
+            <td><strong>A language model</strong></td>
+            <td>At least one record on <a href="BifrostLangModelList.html">Bifrost Language Models</a> must be configured and usable, either marked as <strong>Default</strong> or assigned to the user on User Setup.</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    If either is missing the FactBox simply does not appear on the page – there is no error message.
+    Start troubleshooting with the permission set, then with the language model.
+</p>
+
+<h2>Setting Up a Language Model</h2>
+
+<ol>
+    <li>Open <strong>Bifrost Setup</strong> and choose the <strong>Bifrost Language Models</strong> action.</li>
+    <li>Create a language model and give it a <strong>Code</strong> and a <strong>Description</strong>.</li>
+    <li>Select the <strong>Chat Provider</strong>. <em>Copilot</em> routes the conversation through the Business Central Copilot infrastructure; <em>None</em> disables chat for that model.</li>
+    <li>Fill in the model settings – <strong>Model</strong>, <strong>Base URL</strong>, <strong>Max Tokens</strong>, <strong>Timeout Seconds</strong> – or accept the provider defaults.</li>
+    <li>Write the <strong>Skill</strong> in Markdown, or use <strong>Import Defaults</strong> to download the provider's standard skill text. The skill tells the assistant what it is good at and how it should answer.</li>
+    <li>Mark one language model as <strong>Default</strong>. Only one model can be the default, and it is used by everyone who has no personal assignment.</li>
+</ol>
+
+<p>
+    If the chosen provider needs an API key, the chat asks for it the first time you use it and stores
+    it securely in isolated storage. Administrators with the required permission can store a
+    company-wide service key instead, so individual users are not prompted at all.
+</p>
+
+<h2>Per-User Language Model Assignment</h2>
+
+<p>
+    The Bifrost <strong>User Setup</strong> record for each user carries a
+    <strong>Language Model Code</strong> field. It is edited on the <strong>User Setup Editor</strong>
+    page, which is reachable from the <strong>User Setup</strong> action in the chat FactBox or from
+    Bifrost Setup.
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Value</th>
+            <th>Effect</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Filled in</strong></td>
+            <td>The chat uses that language model – its provider, its model settings and its skill – for this user only.</td>
+        </tr>
+        <tr>
+            <td><strong>Empty</strong></td>
+            <td>The chat falls back to the language model marked as <strong>Default</strong>. If no default exists, the chat is not shown.</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    This is how one company can run several assistants side by side: a sales model with sales
+    instructions, a finance model with posting instructions, and so on. The user's personal system
+    prompt on User Setup is added on top of the language model skill.
+</p>
+
+<h2>What the Assistant Can Do</h2>
+
+<p>
+    Bifrost Bragi contains a built-in MCP tool server. It exposes Bifrost message types to the language
+    model as tools, so the assistant can look data up and act on it instead of guessing. Everything runs
+    in your own session, under your own Business Central permissions – the assistant can never read or
+    write anything you could not read or write yourself.
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Tool group</th>
+            <th>What the assistant uses it for</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Discovery</strong></td>
+            <td><code>list_message_types</code>, <code>get_message_type_help</code>, <code>search_tables</code>, <code>get_fields</code>, <code>who_am_i</code> – finding out which operations, tables and fields exist and who is signed in.</td>
+        </tr>
+        <tr>
+            <td><strong>Reading data</strong></td>
+            <td><code>get_records</code>, <code>get_record_ids</code>, <code>get_record_count</code>, <code>get_totals</code>, <code>find_entries</code> – reading records, counting them, adding up amounts and navigating from a document to its ledger entries.</td>
+        </tr>
+        <tr>
+            <td><strong>Changing data</strong></td>
+            <td><code>set_records</code>, <code>get_next_line_no</code> – creating and updating records, for example adding a line to a sales order. The assistant reads before it writes and asks you to confirm first.</td>
+        </tr>
+        <tr>
+            <td><strong>Files</strong></td>
+            <td><code>get_blob</code>, <code>set_blob</code>, <code>list_blobs</code>, <code>delete_blobs</code>, <code>download_blob</code> – handling attachments, PDF documents and other binary content, and saving a file to your device.</td>
+        </tr>
+        <tr>
+            <td><strong>Memory</strong></td>
+            <td><code>get_user_memory</code>, <code>set_user_memory</code> – remembering your preferences between conversations. Company memory is read at the start of every session.</td>
+        </tr>
+        <tr>
+            <td><strong>Navigation</strong></td>
+            <td><code>get_page_url</code> – producing a clickable link to a page or record card so you can jump straight to it.</td>
+        </tr>
+        <tr>
+            <td><strong>Anything else</strong></td>
+            <td><code>invoke_message_type</code> – calling any enabled Bifrost message type, including message types added by other Bifröst apps installed in the environment.</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    When a tool is running, the chat shows which tool it is calling. Tool results are fed back to the
+    model, which may then call another tool before it answers – so a single question can turn into
+    several lookups.
+</p>
+
+<h2>Common Tasks</h2>
+
+<ul>
+    <li><strong>Ask about the current record:</strong> open a document, type your question and let the assistant resolve the context.</li>
+    <li><strong>Work in a larger window:</strong> choose <strong>Focus</strong>, continue the conversation and close the page to return to the FactBox with the conversation intact.</li>
+    <li><strong>Change assistant:</strong> choose <strong>User Setup</strong>, set another <strong>Language Model Code</strong> and reopen the page.</li>
+    <li><strong>Get a link:</strong> ask for a link to a record and the assistant returns a deep link you can click or share.</li>
+    <li><strong>Give the assistant standing instructions:</strong> put them in the language model skill (for a group of users) or in the personal system prompt on User Setup (for yourself).</li>
+</ul>
+
+<h2>Tips</h2>
+<ul>
+    <li>The conversation is not stored in the database. Closing the page ends the conversation, so copy out anything you want to keep.</li>
+    <li>Use memory for facts that should survive between conversations – ask the assistant to remember them.</li>
+    <li>The assistant answers in the language resolved for your user, so an Icelandic user gets Icelandic answers from the same language model.</li>
+    <li>If answers look wrong or too generic, review the <strong>Skill</strong> on the language model first – that text is what shapes the assistant's behaviour.</li>
+    <li>Ask the assistant to explain what it did. It can list the tools it called, which is the fastest way to see why an answer looks the way it does.</li>
+</ul>
+
+<h2>See Also</h2>
+<ul>
+    <li><a href="BifrostLangModelList.html">Bifrost Language Models</a> – List of all defined language models</li>
+    <li><a href="BifrostLangModelCard.html">Bifrost Language Model Card</a> – Provider, model settings and skill</li>
+    <li><a href="index.html">Bifrost Bragi Help</a> – Overview of the extension</li>
+</ul>
+
+<hr>
+<p style="font-size: 0.85em; color: #888;">&copy; Origo – Bifrost Bragi</p>
+
+</body>
+</html>

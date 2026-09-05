@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bifrost Bragi – Help</title>
+    <style>
+        body { font-family: Segoe UI, Arial, sans-serif; max-width: 860px; margin: 0 auto; padding: 24px; color: #333; line-height: 1.6; }
+        h1 { border-bottom: 2px solid #0078d4; padding-bottom: 8px; }
+        h2 { color: #0078d4; margin-top: 32px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 12px; }
+        th, td { border: 1px solid #ddd; padding: 8px 12px; text-align: left; }
+        th { background: #f4f4f4; }
+        a { color: #0078d4; }
+        nav a { text-decoration: none; font-weight: 600; }
+        code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-size: 0.95em; }
+    </style>
+</head>
+<body>
+
+<nav style="margin-bottom: 16px; display: flex; gap: 12px; align-items: center;">
+    <span>Language:</span>
+    <a href="../is-IS/index.html">Íslenska</a>
+</nav>
+
+<h1>Bifrost Bragi – Help</h1>
+
+<p>
+    <strong>Bifrost Bragi</strong> is a Business Central extension by Origo that adds AI chat to
+    Business Central. It builds on Bifrost Foundation and contributes the Bifrost Chat control add-in,
+    language models, a Copilot chat provider, an in-process MCP tool server and the
+    <code>LLM.Prompt.Complete</code> message type.
+</p>
+<p>
+    The chat appears as a FactBox on customer, vendor, item, sales, purchase, ledger entry and incoming
+    document pages, and it knows which record you are looking at. Through the MCP tool server the
+    assistant reads and updates Business Central data with your own permissions, so it can answer with
+    live figures instead of general advice.
+</p>
+
+<h2>Pages</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Page</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><a href="BifrostChat.html">Bifrost Chat</a></td>
+            <td>The chat FactBox and the focused full-page chat: how to open it, how record context works, what permission is required, and which tools the assistant can call.</td>
+        </tr>
+        <tr>
+            <td><a href="BifrostLangModelList.html">Bifrost Language Models</a></td>
+            <td>List of all defined language models, opened from the Bifrost Language Models action on Bifrost Setup.</td>
+        </tr>
+        <tr>
+            <td><a href="BifrostLangModelCard.html">Bifrost Language Model Card</a></td>
+            <td>Card page for a single language model – chat provider, model settings and the Markdown skill injected into the conversation.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Getting Started</h2>
+<ol>
+    <li>Assign the <code>BIFROST Chat ori</code> permission set to every user who is allowed to use the chat.</li>
+    <li>Open <strong>Bifrost Setup</strong>, choose <strong>Bifrost Language Models</strong> and create a language model with a chat provider and a skill.</li>
+    <li>Mark one language model as <strong>Default</strong>, or assign a language model per user on the Bifrost User Setup Editor.</li>
+    <li>Open a customer, item or sales document and ask the assistant a question in the <strong>Bifrost Chat</strong> FactBox.</li>
+</ol>
+
+<hr>
+<p style="font-size: 0.85em; color: #888;">&copy; Origo – Bifrost Bragi</p>
+
+</body>
+</html>
