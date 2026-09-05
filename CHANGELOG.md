@@ -21,7 +21,7 @@ First release. The chat module was moved out of **Bifrost Foundation** 28.0.0.0 
   - `User Setup Bragi ori` - adds field `Bifrost Language Model Code` to table `User Setup ori`.
   - `User Setup Editor Bragi ori` - adds the language model field and the Bifrost Chat FactBox to page `User Setup Editor ori`.
   - `Setup Bragi ori` - adds the **Bifrost Language Models** action (and its promoted actionref) to page `Setup ori`.
-- **Test app**: 5 test codeunits with 114 tests (`Bifrost Chat Mgt Tests`, `Bifrost Language Model Tests`, `Bifrost Chat Transfer Tests`, `Bifrost Chat Utils Tests`, `MCP Tool Server Tests`), the mock provider `Mock Bifrost Chat Provider` with its enum extension, and `Bragi Mock Get Msg Co` + `Bragi Mock Message Type` - a Bragi-owned replacement for the Foundation test app's `Bifrost.Mock.Get` type, so the Bragi tests do not depend on Foundation's test app.
+- **Test app**: 5 test codeunits with 116 tests (`Bifrost Chat Mgt Tests`, `Bifrost Language Model Tests`, `Bifrost Chat Transfer Tests`, `Bifrost Chat Utils Tests`, `MCP Tool Server Tests`), the mock provider `Mock Bifrost Chat Provider` with its enum extension, and `Bragi Mock Get Msg Co` + `Bragi Mock Message Type` - a Bragi-owned replacement for the Foundation test app's `Bifrost.Mock.Get` type, so the Bragi tests do not depend on Foundation's test app.
 - Icelandic translation `app/Translations/Bifrost Bragi.is-IS.xlf` (199 units, all translated), HTML help in `app/Help/en-US` and `app/Help/is-IS` (`BifrostChat.html`, `BifrostLangModelCard.html`, `BifrostLangModelList.html`, `index.html`).
 
 ### Changed

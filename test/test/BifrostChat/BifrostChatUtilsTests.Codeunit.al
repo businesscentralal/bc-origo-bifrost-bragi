@@ -237,6 +237,45 @@ codeunit 96005 "Bifrost Chat Utils Tests"
 
     // -- Helpers --
 
+    [Test]
+    procedure GetIdentityJson_ReturnsUserIdentityWithoutEnvelope()
+    var
+        ChatUtils: Codeunit "Bifrost Chat Utils ori";
+        IdentityJson: JsonObject;
+        UserToken: JsonToken;
+        Dummy: JsonToken;
+    begin
+        // [SCENARIO] GetIdentityJson runs Help.WhoAmI.Get and returns the identity payload
+        // without the response envelope status and without the personal system prompt.
+        IdentityJson := ChatUtils.GetIdentityJson();
+
+        Assert.IsTrue(IdentityJson.Get('user', UserToken), 'Identity should contain a user object.');
+        Assert.IsTrue(IdentityJson.Get('companyInfo', Dummy), 'Identity should contain companyInfo.');
+        Assert.IsFalse(IdentityJson.Get('status', Dummy), 'Identity should not carry the response envelope status.');
+        Assert.IsFalse(IdentityJson.Get('systemPrompt', Dummy), 'Identity should not carry the personal system prompt.');
+    end;
+
+    [Test]
+    procedure GetIdentityJson_UserObjectCarriesCurrentUser()
+    var
+        ChatUtils: Codeunit "Bifrost Chat Utils ori";
+        IdentityJson: JsonObject;
+        UserToken: JsonToken;
+        SecurityIdToken: JsonToken;
+    begin
+        // [SCENARIO] The identity payload identifies the calling user.
+        IdentityJson := ChatUtils.GetIdentityJson();
+        IdentityJson.Get('user', UserToken);
+
+        if UserToken.IsObject() then begin
+            Assert.IsTrue(UserToken.AsObject().Get('userSecurityId', SecurityIdToken), 'User object should carry userSecurityId.');
+            Assert.AreEqual(
+                Format(UserSecurityId(), 0, 4),
+                SecurityIdToken.AsValue().AsText(),
+                'userSecurityId should be the calling user.');
+        end;
+    end;
+
     local procedure GetMessageContent(Messages: JsonArray; Index: Integer): Text
     var
         Token: JsonToken;
