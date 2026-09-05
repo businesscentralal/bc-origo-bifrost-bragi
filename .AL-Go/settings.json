@@ -18,7 +18,7 @@
       "release_status": "latestBuild",
       "version": "latest",
       "projects": "*",
-      "authTokenSecret": "GH_CLOUDEVENTS_TOKEN_DEPS"
+      "authTokenSecret": "ghTokenWorkflow"
     }
   ]
 }
