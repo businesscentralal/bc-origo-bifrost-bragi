@@ -1,4 +1,4 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 
 using Origo.Bifrost;
 
@@ -6,7 +6,7 @@ using Origo.Bifrost;
 /// Adds the per-user language model assignment to the Bifrost Foundation user setup table.
 /// The assigned language model supplies the skill content injected into the Bifrost Chat.
 /// </summary>
-tableextension 10035401 "User Setup Bragi ori" extends "User Setup ori"
+tableextension 10035401 "User Setup LangModel ori" extends "User Setup ori"
 {
     fields
     {

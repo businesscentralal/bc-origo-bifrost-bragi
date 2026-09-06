@@ -1,4 +1,4 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 
 using Origo.Bifrost;
 
@@ -6,7 +6,7 @@ using Origo.Bifrost;
 /// Registers the Copilot request log type on the Bifrost Foundation request log type enum,
 /// together with the masker that redacts Copilot secrets before the request is stored.
 /// </summary>
-enumextension 10035400 "Bragi Request Log Type ori" extends "Request Log Type ori"
+enumextension 10035400 "LangModel Req Log Type ori" extends "Request Log Type ori"
 {
     /// <summary>
     /// Requests sent to the Microsoft Copilot / Azure OpenAI endpoint.

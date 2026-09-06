@@ -1,4 +1,4 @@
-namespace Origo.Bifrost.Bragi.Test;
+namespace Origo.Bifrost.LanguageModels.Test;
 using Microsoft.Finance.GeneralLedger.Setup;
 using Microsoft.Finance.VAT.Setup;
 
@@ -6,7 +6,7 @@ using Microsoft.Inventory.Item;
 using Microsoft.Sales.Customer;
 using Microsoft.Sales.Document;
 using Origo.Bifrost;
-using Origo.Bifrost.Bragi;
+using Origo.Bifrost.LanguageModels;
 using System.TestLibraries.Utilities;
 using System.Text;
 using System.Utilities;
@@ -618,7 +618,7 @@ codeunit 96006 "MCP Tool Server Tests"
     procedure ListMessageTypes_ExcludesDisabledTypes()
     var
         ToolServer: Codeunit "MCP Tool Server ori";
-        MockCU: Codeunit "Bragi Mock Get Msg Co";
+        MockCU: Codeunit "LangModel Mock Get Msg Co";
         Args: JsonObject;
         ResultText: Text;
         IsError: Boolean;
@@ -626,7 +626,7 @@ codeunit 96006 "MCP Tool Server Tests"
     begin
         Initialize();
         // [SCENARIO] list_message_types excludes types where IsEnabled() returns false.
-        MockTypeName := 'Bragi.Mock.Get';
+        MockTypeName := 'LangModel.Mock.Get';
 
         // Verify mock type appears when enabled (default) — use search to get full results
         MockCU.ResetEnabled();

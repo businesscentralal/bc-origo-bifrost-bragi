@@ -1,10 +1,10 @@
-# Bifrost Bragi
+# Bifrost Language Models
 
-**Publisher:** Origo &nbsp;|&nbsp; **Version:** 28.0.0.0 &nbsp;|&nbsp; **Object ID range:** 10035335-10035484 &nbsp;|&nbsp; **Namespace:** `Origo.Bifrost.Bragi` &nbsp;|&nbsp; **Depends on:** Bifrost Foundation 28.0.0.0
+**Publisher:** Origo &nbsp;|&nbsp; **Version:** 28.0.0.0 &nbsp;|&nbsp; **Object ID range:** 10035335-10035484 &nbsp;|&nbsp; **Namespace:** `Origo.Bifrost.LanguageModels` &nbsp;|&nbsp; **Depends on:** Bifrost Foundation 28.0.0.0
 
-Bifrost Bragi is the chat module of the Bifröst platform. It adds a conversational assistant to Business Central: the Bifrost Chat control add-in and FactBox, language models that hold the provider configuration and the skill text, seven chat providers (Copilot, OpenAI, Azure OpenAI, Custom LLM, Anthropic, xAI and Google/Gemini), an MCP tool server that lets the assistant read and act on Business Central data under the signed-in user's own permissions, and the `LLM.Prompt.Complete` message type.
+Bifrost Language Models is the chat module of the Bifröst platform. It adds a conversational assistant to Business Central: the Bifrost Chat control add-in and FactBox, language models that hold the provider configuration and the skill text, seven chat providers (Copilot, OpenAI, Azure OpenAI, Custom LLM, Anthropic, xAI and Google/Gemini), an MCP tool server that lets the assistant read and act on Business Central data under the signed-in user's own permissions, and the `LLM.Prompt.Complete` message type.
 
-Bragi was extracted from *Bifrost Foundation* in version 28.0.0.0 and replaces the standalone *Origo Cloud Events Chat* app. It installs beside Foundation and extends it - see [CHANGELOG.md](CHANGELOG.md).
+Bifrost Language Models was extracted from *Bifrost Foundation* in version 28.0.0.0 and replaces the standalone *Origo Cloud Events Chat* app. It installs beside Foundation and extends it - see [CHANGELOG.md](CHANGELOG.md).
 
 ## Documentation
 
@@ -19,7 +19,7 @@ All Bifröst documentation lives at [bifrost.origo.is](https://businesscentralal
 
 | Folder | Content |
 | --- | --- |
-| `app/` | The AppSource app (`Bifrost Bragi`) |
+| `app/` | The AppSource app (`Bifrost Language Models`) |
 | `app/src/BifrostChat/` | Chat management, control add-in, FactBox, focus page, page extensions |
 | `app/src/BifrostChat/LanguageModel/` | `Bifrost Language Model ori` table, Card/List pages, provider enum and interface |
 | `app/src/BifrostChat/Copilot/` | Copilot provider, chat proxy, AOAI function, request log masker, install and upgrade |
@@ -28,9 +28,9 @@ All Bifröst documentation lives at [bifrost.origo.is](https://businesscentralal
 | `app/src/Extensions/` | Extensions of Bifrost Foundation objects (enum, table, page) |
 | `app/src/Providers/Shared/` | `LangModel Prov. Base ori`, `LangModel API Client ori`, `LangModel Chat Proxy ori`, `Chat Svc Gate ori`, `Chat Http Notif. Action ori`, `LLM Req Log Masker ori`, take-over codeunit |
 | `app/src/Providers/OpenAI/`, `AzureOpenAI/`, `CustomLLM/`, `Anthropic/`, `xAI/`, `Gemini/` | The six external chat provider codeunits, one folder per provider |
-| `app/src/Permission Set/` | `BIFROST Bragi ori`, `BIFROST Bragi Rd ori`, `BIFROST Chat ori`, `BIFROST ChatSvc ori` |
-| `app/Translations/` | Icelandic translation (`Bifrost Bragi.is-IS.xlf`) |
-| `test/` | Test app (`Bifrost Bragi - Tests`, object range 96000-96199) |
+| `app/src/Permission Set/` | `BIFROST LLM ori`, `BIFROST LLM Rd ori`, `BIFROST Chat ori`, `BIFROST ChatSvc ori` |
+| `app/Translations/` | Icelandic translation (`Bifrost Language Models.is-IS.xlf`) |
+| `test/` | Test app (`Bifrost Language Models - Tests`, object range 96000-96199) |
 | `test/reports/` | Internal test reports - not published |
 | `.AL-Go/`, `.github/` | AL-Go for GitHub / COSMO Alpaca pipeline configuration |
 

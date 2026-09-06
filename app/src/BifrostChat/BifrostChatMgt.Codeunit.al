@@ -1,4 +1,4 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 using Microsoft.Utilities;
 
 using Origo.Bifrost;
@@ -131,7 +131,7 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
         BifrostLanguageModel: Record "Bifrost Language Model ori";
         BifrostUserSetup: Record "User Setup ori";
         TempArgument: Record "Bifrost Chat Argument ori" temporary;
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
         Provider: Interface "Bifrost LangModel Provider ori";
         ConfigObject: JsonObject;
         ConfigText: Text;
@@ -144,7 +144,7 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
         if ConfigObject.ReadFrom(ConfigText) then begin
             BifrostSetup.GetRecordOnce();
             SetJsonProperty(ConfigObject, 'debug', BifrostSetup."Request Debug Mode");
-            SetJsonProperty(ConfigObject, 'hasServiceKey', BragiSecrets.HasServiceKey(BifrostLanguageModel.Code));
+            SetJsonProperty(ConfigObject, 'hasServiceKey', LangModelSecrets.HasServiceKey(BifrostLanguageModel.Code));
             SetJsonProperty(ConfigObject, 'canManageServiceKey', GetProviderBool(Provider, TempArgument, TempArgument."Procedure Type"::HasServiceKeyPermission));
             SetJsonProperty(ConfigObject, 'requiresApiKey', GetProviderBool(Provider, TempArgument, TempArgument."Procedure Type"::RequiresApiKey));
             SetJsonProperty(ConfigObject, 'apiKeyLabel', GetProviderText(Provider, TempArgument, TempArgument."Procedure Type"::GetApiKeyLabel));
@@ -178,15 +178,15 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
     procedure SaveApiKey(ApiKey: Text)
     var
         BifrostLanguageModel: Record "Bifrost Language Model ori";
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
     begin
         GetLangModelProviderWithModel(BifrostLanguageModel);
         if BifrostLanguageModel.Code = '' then
             exit;
         if ApiKey = '' then
-            BragiSecrets.ClearUserKey(BifrostLanguageModel.Code)
+            LangModelSecrets.ClearUserKey(BifrostLanguageModel.Code)
         else
-            BragiSecrets.SetUserKey(BifrostLanguageModel.Code, ApiKey);
+            LangModelSecrets.SetUserKey(BifrostLanguageModel.Code, ApiKey);
     end;
 
     /// <summary>
@@ -198,15 +198,15 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
     procedure SaveServiceApiKey(ApiKey: Text)
     var
         BifrostLanguageModel: Record "Bifrost Language Model ori";
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
     begin
         GetLangModelProviderWithModel(BifrostLanguageModel);
         if BifrostLanguageModel.Code = '' then
             exit;
         if ApiKey = '' then
-            BragiSecrets.ClearServiceKey(BifrostLanguageModel.Code)
+            LangModelSecrets.ClearServiceKey(BifrostLanguageModel.Code)
         else
-            BragiSecrets.SetServiceKey(BifrostLanguageModel.Code, ApiKey);
+            LangModelSecrets.SetServiceKey(BifrostLanguageModel.Code, ApiKey);
     end;
 
     /// <summary>
@@ -270,10 +270,10 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
     procedure ClearCredentials()
     var
         BifrostLanguageModel: Record "Bifrost Language Model ori";
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
     begin
         GetLangModelProviderWithModel(BifrostLanguageModel);
-        BragiSecrets.ClearUserKey(BifrostLanguageModel.Code);
+        LangModelSecrets.ClearUserKey(BifrostLanguageModel.Code);
     end;
 
     [NonDebuggable]
@@ -281,7 +281,7 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
     var
         BifrostSetup: Record "Setup ori";
         BifrostUserSetup: Record "User Setup ori";
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
         ApiKeyValue: SecretText;
     begin
         TempArgument.Init();
@@ -302,7 +302,7 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
         if BifrostSetup.Get() then
             TempArgument."Debug Mode" := BifrostSetup."Request Debug Mode";
 
-        if BragiSecrets.TryGetApiKey(BifrostLanguageModel.Code, ApiKeyValue) then
+        if LangModelSecrets.TryGetApiKey(BifrostLanguageModel.Code, ApiKeyValue) then
             TempArgument.SetApiKey(ApiKeyValue);
     end;
 

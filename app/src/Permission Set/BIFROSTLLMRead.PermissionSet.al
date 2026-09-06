@@ -1,14 +1,17 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 using Origo.Bifrost;
 
 /// <summary>
-/// Read-only access to Bifrost Bragi. Language models can be inspected but not changed.
+/// Read-only access to Bifrost Language Models. Language models can be inspected but not changed.
 /// Assign "BIFROST Chat ori" on top of this set to let a user open a chat.
+/// The set deliberately does not grant the "App Secrets ori" page: that is the administrator's
+/// surface over Foundation's secret store and is already covered by "BIFROST Read ori" and
+/// "BIFROST Full ori", which also grant the underlying "App Secret ori" table data.
 /// </summary>
-permissionset 10035405 "BIFROST Bragi Rd ori"
+permissionset 10035405 "BIFROST LLM Rd ori"
 {
     Assignable = true;
-    Caption = 'Bifrost Bragi Read', MaxLength = 30, Comment = 'is-IS=Bifröst Bragi lestur';
+    Caption = 'Bifrost Language Models Read', MaxLength = 30, Comment = 'is-IS=Bifröst mállíkön lestur';
 
     Permissions =
         table "Bifrost Language Model ori" = X,
@@ -16,16 +19,19 @@ permissionset 10035405 "BIFROST Bragi Rd ori"
         table "Chat Gate ori" = X,
         tabledata "Chat Gate ori" = R,
         table "Bifrost Chat Argument ori" = X,
+        // RIMD, not R: "Bifrost Chat Argument ori" is TableType = Temporary — the in-memory DTO of
+        // the provider interface. Every provider writes its output fields back into the record the
+        // caller passed in, so read-only users need the same insert/modify rights on it as anyone
+        // else. No row ever reaches the database.
         tabledata "Bifrost Chat Argument ori" = RIMD,
         page "Bifrost Chat FactBox ori" = X,
         page "Bifrost Chat Model List ori" = X,
         page "Bifrost LangModel Card ori" = X,
         page "Bifrost LangModel List ori" = X,
-        page "App Secrets ori" = X,
-        page "Bragi Setup ori" = X,
+        page "LangModel Setup ori" = X,
         page "Chat Focus ori" = X,
         codeunit "Bifrost Chat Mgt ori" = X,
-        codeunit "Bragi Secrets ori" = X,
+        codeunit "LangModel Secrets ori" = X,
         codeunit "Secret Store ori" = X,
         codeunit "Bifrost Chat Transfer ori" = X,
         codeunit "Bifrost Chat Utils ori" = X,

@@ -1,15 +1,18 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 using Origo.Bifrost;
 
 using System.AI;
 
 /// <summary>
-/// Registers the Copilot capability on install and creates a default Copilot language model.
-/// The capability is registered again from the upgrade codeunit; the default language model is
-/// created only on demand, from the "Init Copilot Defaults" action on the Bifrost Language Model
-/// List page, so that installing Bragi never writes setup data on its own.
-/// Also takes over per-company data from the published Origo Cloud Events Chat app, which the
-/// chat providers (OpenAI, Azure OpenAI, Custom LLM, Anthropic, xAI, Google/Gemini) replace.
+/// Install codeunit of Bifrost Language Models.
+/// Per database it registers the Copilot capability with Microsoft's Copilot framework; the same
+/// registration runs again from "Copilot Upgrade ori".
+/// Per company it takes over the data of the published Origo Cloud Events Chat app, which the chat
+/// providers (OpenAI, Azure OpenAI, Custom LLM, Anthropic, xAI, Google/Gemini) replace, and registers
+/// the API key secrets of every existing language model with the Foundation secret store.
+/// It never creates a language model: InitDefaultLanguageModel is called only on demand, from the
+/// "Init Copilot Defaults" action on the Bifrost Language Model List page, so that installing the
+/// app writes no setup data on its own.
 /// </summary>
 codeunit 10035390 "Copilot Install ori"
 {
@@ -36,9 +39,9 @@ codeunit 10035390 "Copilot Install ori"
     /// </summary>
     internal procedure RegisterSecrets()
     var
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
     begin
-        BragiSecrets.RegisterAll();
+        LangModelSecrets.RegisterAll();
     end;
 
     internal procedure RegisterCapability()

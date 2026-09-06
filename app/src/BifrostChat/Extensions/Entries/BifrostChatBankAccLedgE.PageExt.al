@@ -1,4 +1,4 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 using Microsoft.Bank.Ledger;
 
 using Origo.Bifrost;

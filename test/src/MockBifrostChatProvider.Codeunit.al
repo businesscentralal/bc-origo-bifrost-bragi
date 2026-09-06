@@ -1,8 +1,8 @@
-namespace Origo.Bifrost.Bragi.Test;
+namespace Origo.Bifrost.LanguageModels.Test;
 using Microsoft.Utilities;
 using Origo.Bifrost;
 
-using Origo.Bifrost.Bragi;
+using Origo.Bifrost.LanguageModels;
 
 /// <summary>
 /// Configurable mock implementation of the "Bifrost LangModel Provider ori" interface for unit testing

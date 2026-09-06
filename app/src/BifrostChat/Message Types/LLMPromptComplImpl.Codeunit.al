@@ -1,4 +1,4 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 using Microsoft.EServices.EDocument;
 
 using Microsoft.Foundation.Attachment;
@@ -155,7 +155,7 @@ codeunit 10035396 "LLM Prompt Compl Impl ori" implements "Msg Interface ori"
     [NonDebuggable]
     local procedure BuildChatArgument(var BifrostLanguageModel: Record "Bifrost Language Model ori"; var TempChatArg: Record "Bifrost Chat Argument ori" temporary)
     var
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
         ApiKeyValue: SecretText;
     begin
         TempChatArg.Init();
@@ -164,7 +164,7 @@ codeunit 10035396 "LLM Prompt Compl Impl ori" implements "Msg Interface ori"
         TempChatArg.Model := BifrostLanguageModel.Model;
         TempChatArg."Timeout Ms" := BifrostLanguageModel."Timeout Seconds" * 1000;
         TempChatArg."Max Tokens" := BifrostLanguageModel."Max Tokens";
-        if BragiSecrets.TryGetApiKey(BifrostLanguageModel.Code, ApiKeyValue) then
+        if LangModelSecrets.TryGetApiKey(BifrostLanguageModel.Code, ApiKeyValue) then
             TempChatArg.SetApiKey(ApiKeyValue);
     end;
 

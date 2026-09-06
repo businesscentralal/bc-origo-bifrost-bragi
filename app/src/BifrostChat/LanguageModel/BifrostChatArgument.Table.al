@@ -1,4 +1,4 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 using Microsoft.Utilities;
 
 using Origo.Bifrost;
@@ -11,7 +11,7 @@ using Origo.Bifrost;
 /// </summary>
 table 10035337 "Bifrost Chat Argument ori"
 {
-    Caption = 'Bifrost Chat Argument', Comment = 'is-IS=Bifröst spjallvi\u00f0fang';
+    Caption = 'Bifrost Chat Argument', Comment = 'is-IS=Bifröst spjallviðfang';
     DataClassification = SystemMetadata;
     TableType = Temporary;
 

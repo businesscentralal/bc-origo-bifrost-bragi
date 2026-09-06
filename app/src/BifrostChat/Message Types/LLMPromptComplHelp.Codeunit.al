@@ -1,4 +1,4 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 using Origo.Bifrost;
 
 /// <summary>
@@ -175,7 +175,7 @@ codeunit 10035397 "LLM Prompt Compl Help ori"
         HelpBuilder.AppendLine('');
         HelpBuilder.AppendLine('## Access');
         HelpBuilder.AppendLine('The caller needs the `BIFROST Chat ori` permission set (write permission on the Chat Gate).');
-        HelpBuilder.AppendLine('`BIFROST Bragi ori` alone is not enough — the chat gate is assigned explicitly.');
+        HelpBuilder.AppendLine('`BIFROST LLM ori` alone is not enough — the chat gate is assigned explicitly.');
         HelpBuilder.AppendLine('');
         HelpBuilder.AppendLine('## Errors');
         HelpBuilder.AppendLine('All errors are returned as `status: Error` with an `error` message; never as an HTTP failure.');

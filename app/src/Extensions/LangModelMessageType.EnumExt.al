@@ -1,12 +1,12 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 
 using Origo.Bifrost;
 
 /// <summary>
-/// Registers the Bifrost Bragi message types on the Bifrost Foundation message type enum.
-/// Bragi contributes the one-shot language model completion type.
+/// Registers the Bifrost Language Models message types on the Bifrost Foundation message type enum.
+/// Bifrost Language Models contributes the one-shot language model completion type.
 /// </summary>
-enumextension 10035399 "Bragi Message Type ori" extends "Message Type ori"
+enumextension 10035399 "LangModel Message Type ori" extends "Message Type ori"
 {
     /// <summary>
     /// One-shot LLM completion. Sends system + user prompt to the configured provider

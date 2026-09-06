@@ -1,4 +1,4 @@
-# Bifrost Bragi — Agent Context
+# Bifrost Language Models — Agent Context
 
 This file gives AI agents the big-picture context needed to work in this repository correctly and safely.
 
@@ -6,13 +6,13 @@ This file gives AI agents the big-picture context needed to work in this reposit
 
 ## What This Extension Does
 
-**Bifrost Bragi** is the chat module of the Bifröst platform for Microsoft Dynamics 365 Business Central. It puts a conversational assistant inside Business Central and gives that assistant a way to read and act on company data.
+**Bifrost Language Models** is the chat module of the Bifröst platform for Microsoft Dynamics 365 Business Central. It puts a conversational assistant inside Business Central and gives that assistant a way to read and act on company data.
 
 Four capabilities:
 
 1. **Bifrost Chat** — a JavaScript control add-in rendered in a FactBox on 36 standard pages and on a focused full-page view. It carries the current record as conversation context.
 2. **Language models** — a setup table that holds provider configuration (endpoint, model, token budget, API key handling) and a Markdown *skill* text that is injected into every conversation. One model can be the default; a model can also be assigned per user.
-3. **Providers** — an interface + enum pair. Bragi ships the Microsoft Copilot / Azure OpenAI provider; other extensions add their own by extending the enum.
+3. **Providers** — an interface + enum pair. Bifrost Language Models ships the Microsoft Copilot / Azure OpenAI provider; other extensions add their own by extending the enum.
 4. **MCP tool server** — exposes Business Central operations (search, read, write, files, memory, navigation, `invoke_message_type`) as Model Context Protocol tools, executed under the signed-in user's own permissions.
 
 Plus one message type, `LLM.Prompt.Complete`, for one-shot completions in playbooks and scheduled tasks — no tools, no conversation state.
@@ -29,26 +29,26 @@ Plus one message type, `LLM.Prompt.Complete`, for one-shot completions in playbo
 
 ## Relationship to Bifrost Foundation
 
-Bragi **depends on** Bifrost Foundation and installs beside it. Foundation owns the message loop, the setup, the user setup and the request log; Bragi extends them:
+Bifrost Language Models **depends on** Bifrost Foundation and installs beside it. Foundation owns the message loop, the setup, the user setup and the request log; Bifrost Language Models extends them:
 
-| Foundation object | Bragi extension | Why |
+| Foundation object | Bifrost Language Models extension | Why |
 | --- | --- | --- |
-| enum `Message Type ori` | `Bragi Message Type ori` | registers `LLM.Prompt.Complete` |
-| enum `Request Log Type ori` | `Bragi Request Log Type ori` | registers `Copilot` + its secret masker |
-| table `User Setup ori` | `User Setup Bragi ori` | field `Bifrost Language Model Code` |
-| page `User Setup Editor ori` | `User Setup Editor Bragi ori` | the field + the chat FactBox |
-| page `Setup ori` | `Setup Bragi ori` | the **Bifrost Language Models** action |
+| enum `Message Type ori` | `LangModel Message Type ori` | registers `LLM.Prompt.Complete` |
+| enum `Request Log Type ori` | `LangModel Req Log Type ori` | registers `Copilot` + its secret masker |
+| table `User Setup ori` | `User Setup LangModel ori` | field `Bifrost Language Model Code` |
+| page `User Setup Editor ori` | `User Setup Editor LangMdl ori` | the field + the chat FactBox |
+| page `Setup ori` | `Setup LangModel ori` | the **Bifrost Language Models** action |
 
-**Never** ask for a change in Foundation that Bragi can make through an extension object.
+**Never** ask for a change in Foundation that Bifrost Language Models can make through an extension object.
 
-Foundation's `Help WhoAmI Get Impl ori` is `Access = Internal`. Bragi cannot call it. `Bifrost Chat Utils ori.GetIdentityJson()` runs the public `Help.WhoAmI.Get` message type through Foundation's `Msg Interface ori` instead, and strips the response `status` and the personal `systemPrompt`.
+Foundation's `Help WhoAmI Get Impl ori` is `Access = Internal`. Bifrost Language Models cannot call it. `Bifrost Chat Utils ori.GetIdentityJson()` runs the public `Help.WhoAmI.Get` message type through Foundation's `Msg Interface ori` instead, and strips the response `status` and the personal `systemPrompt`.
 
 ---
 
 ## Repository Structure
 
 ```
-app/                          AppSource app "Bifrost Bragi" (Origo, range 10035335-10035484)
+app/                          AppSource app "Bifrost Language Models" (Origo, range 10035335-10035484)
   src/
     BifrostChat/              Chat management, transfer, FactBox, focus page, model list
       ControlAddIn/           "Bifrost Chat ori" add-in + scripts/ + styles/
@@ -59,12 +59,12 @@ app/                          AppSource app "Bifrost Bragi" (Origo, range 100353
       Server/                 MCP tool server, tool executor, chat utils
     Extensions/               Extensions of Bifrost Foundation objects (enum, table, page)
     ChatGate.Table.al         "Chat Gate ori" — the permission gate table
-    Permission Set/           BIFROST Bragi / BIFROST Bragi Rd / BIFROST Chat
+    Permission Set/           BIFROST Bifrost Language Models / BIFROST Bifrost Language Models Rd / BIFROST Chat
   Translations/               Generated .g.xlf + the maintained is-IS.xlf
   assets/                     Logo250x250.png
 
-test/                         Test app "Bifrost Bragi - Tests" (range 96000-96199)
-  src/                        Mock provider + enum extensions, Bragi mock message type
+test/                         Test app "Bifrost Language Models - Tests" (range 96000-96199)
+  src/                        Mock provider + enum extensions, Bifrost Language Models mock message type
   test/BifrostChat/           5 test codeunits, 114 tests
   reports/                    Internal test reports (not published)
 ```
@@ -82,7 +82,7 @@ live in `businesscentralal/bifrost` and are published at https://businesscentral
 
 ### The permission gate
 
-`Chat Gate ori` is an empty table whose only purpose is `WritePermission()`. `Bifrost Chat Mgt ori.HasChatPermission()` reads it. Only `BIFROST Chat ori` grants write access — deliberately not `BIFROST Bragi ori`, so a chat licence is an explicit administrative act. The FactBox hides itself when the gate is closed or no language model resolves.
+`Chat Gate ori` is an empty table whose only purpose is `WritePermission()`. `Bifrost Chat Mgt ori.HasChatPermission()` reads it. Only `BIFROST Chat ori` grants write access — deliberately not `BIFROST LLM ori`, so a chat licence is an explicit administrative act. The FactBox hides itself when the gate is closed or no language model resolves.
 
 ### Skill injection
 

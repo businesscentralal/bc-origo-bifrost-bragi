@@ -1,10 +1,10 @@
-# Extension: Bifrost Bragi
+# Extension: Bifrost Language Models
 
 ## Prefix
-(none - objects use raw names with the mandatory `ori` suffix inside the `Origo.Bifrost.Bragi` namespace)
+(none - objects use raw names with the mandatory `ori` suffix inside the `Origo.Bifrost.LanguageModels` namespace)
 
 ## Namespace
-Origo.Bifrost.Bragi (tests: Origo.Bifrost.Bragi.Test)
+Origo.Bifrost.LanguageModels (tests: Origo.Bifrost.LanguageModels.Test)
 
 Every file that touches a Bifrost Foundation object also declares `using Origo.Bifrost;`.
 
@@ -18,7 +18,7 @@ Tests: 96000-96199
 ## Source Control
 Platform: GitHub
 Organization: businesscentralal
-Repository: bc-origo-bifrost-bragi
+Repository: bc-origo-bifrost-language-models
 Default branch: main
 
 ## Dependencies
@@ -26,53 +26,53 @@ Default branch: main
 
 ## Naming Rules
 - Every object carries the `ori` suffix (AppSource mandatory affix) and is at most 30 characters.
-- Permission set object names are at most 20 characters (`BIFROST Bragi ori`, `BIFROST Bragi Rd ori`, `BIFROST Chat ori`).
+- Permission set object names are at most 20 characters (`BIFROST LLM ori`, `BIFROST LLM Rd ori`, `BIFROST Chat ori`).
 - The brand name "Bifrost" lives in the namespace, the app name and user-facing captions - never as an object-name prefix. Exception: the chat feature is a product name, "Bifrost Chat" (objects `Bifrost Chat ... ori`, folder `app/src/BifrostChat`, Icelandic "Spjalla við Bifröst").
 - The chat "role" concept is the **Language Model**: table `Bifrost Language Model ori`, sub-objects `Bifrost LangModel ... ori` (Card, List, Prov., Provider, None, Test Ctx - `LangModel` keeps them within 30 characters), User Setup field `Bifrost Language Model Code`, Icelandic "mállíkan". The JSON request key `roleCode` stays (API contract).
 - "MCP Tool Server" keeps its protocol name (Model Context Protocol).
 - Icelandic captions use "Bifröst".
 
-## What Bragi extends in Bifrost Foundation
-Foundation owns the extension points; Bragi supplies the values. Never ask for a change in Foundation
-that Bragi can make itself through an extension object.
+## What Bifrost Language Models extends in Bifrost Foundation
+Foundation owns the extension points; Bifrost Language Models supplies the values. Never ask for a change in Foundation
+that Bifrost Language Models can make itself through an extension object.
 
-| Foundation object | Bragi extension |
+| Foundation object | Bifrost Language Models extension |
 | --- | --- |
-| enum `Message Type ori` | `Bragi Message Type ori` - value `LLM.Prompt.Complete` |
-| enum `Request Log Type ori` | `Bragi Request Log Type ori` - values `Copilot` and `LLM` + maskers |
-| table `User Setup ori` | `User Setup Bragi ori` - field `Bifrost Language Model Code` |
-| page `User Setup Editor ori` | `User Setup Editor Bragi ori` - field + Bifrost Chat FactBox |
-| page `Setup ori` | `Setup Bragi ori` - **one** action `BragiSetup` (opens `Bragi Setup ori`) + actionref in `Category_Apps` |
-| codeunit `Secret Store ori` | `Bragi Secrets ori` - registers and resolves the language model API keys |
+| enum `Message Type ori` | `LangModel Message Type ori` - value `LLM.Prompt.Complete` |
+| enum `Request Log Type ori` | `LangModel Req Log Type ori` - values `Copilot` and `LLM` + maskers |
+| table `User Setup ori` | `User Setup LangModel ori` - field `Bifrost Language Model Code` |
+| page `User Setup Editor ori` | `User Setup Editor LangMdl ori` - field + Bifrost Chat FactBox |
+| page `Setup ori` | `Setup LangModel ori` - **one** action `LangModelSetup` (opens `LangModel Setup ori`) + actionref in `Category_Apps` |
+| codeunit `Secret Store ori` | `LangModel Secrets ori` - registers and resolves the language model API keys |
 
-Foundation's `Help WhoAmI Get Impl ori` is `Access = Internal` and cannot be called from Bragi.
+Foundation's `Help WhoAmI Get Impl ori` is `Access = Internal` and cannot be called from Bifrost Language Models.
 Use `Bifrost Chat Utils ori.GetIdentityJson()`, which runs the public `Help.WhoAmI.Get` message type
 through `Msg Interface ori` instead.
 
 ## Chat Providers
-Six external providers (Copilot is native to Bragi) live under `app/src/Providers/<Provider>/`, registered
+Six external providers (Copilot is native to Bifrost Language Models) live under `app/src/Providers/<Provider>/`, registered
 as values on the base enum `Bifrost LangModel Prov. ori` (2-7): `OpenAI LangModel Prov. ori`,
 `Azure OAI LangModel Prov. ori`, `Custom LLM LangModel Prov. ori`, `Anthropic LangModel Prov. ori`
 (+ `Anthropic LangModel Proxy ori` for its own Messages API), `xAI LangModel Prov. ori`,
 `Gemini LangModel Prov. ori`. They were migrated from the standalone *Origo Cloud Events Chat* app
-(businesscentralal/origo-bc-cloudevents-chat), which Bragi replaces - see CHANGELOG 28.0.0.0 for the full
+(businesscentralal/origo-bc-cloudevents-chat), which Bifrost Language Models replaces - see CHANGELOG 28.0.0.0 for the full
 rename table and the `Chat Providers Install ori` data take-over.
 Shared infrastructure lives in `app/src/Providers/Shared/`: `LangModel Prov. Base ori`,
 `LangModel API Client ori`, `LangModel Chat Proxy ori`, table `Chat Svc Gate ori` (shared-key permission
 gate, permission set `BIFROST ChatSvc ori`), `Chat Http Notif. Action ori`, `LLM Req Log Masker ori`.
-Object ids 10035406-10035420 are used by the providers; 10035421 (`Bragi Setup ori`) and 10035422
-(`Bragi Secrets ori`) by the setup/secret block. **The free range is 10035423-10035484** (an earlier note
+Object ids 10035406-10035420 are used by the providers; 10035421 (`LangModel Setup ori`) and 10035422
+(`LangModel Secrets ori`) by the setup/secret block. **The free range is 10035423-10035484** (an earlier note
 in this file claimed 10035422 was the next free id - that was wrong, 10035421 was free too and is now used).
 Test ids used: 96000-96014; free test ids: 96015-96199.
 
 ## Setup Page and Secrets (Bifrost Foundation platform rules)
 
-- **Setup**: `Setup Bragi ori` (pageextension 10035403) contains **only** `addlast(Apps)` with the
-  `BragiSetup` action and `addlast(Category_Apps)` with its actionref - no fields, no other groups, no
-  trigger. Everything else lives on `Bragi Setup ori` (page 10035421, help slug `bragi-setup`), which
+- **Setup**: `Setup LangModel ori` (pageextension 10035403) contains **only** `addlast(Apps)` with the
+  `LangModelSetup` action and `addlast(Category_Apps)` with its actionref - no fields, no other groups, no
+  trigger. Everything else lives on `LangModel Setup ori` (page 10035421, help slug `bragi-setup`), which
   shows the language models, the MCP tool count and the missing API keys, opens **Bifrost App Secrets**
-  filtered to Bragi, and carries the HttpClient notification in `OnOpenPage`.
-- **Secrets**: Bragi never touches IsolatedStorage. `Bragi Secrets ori` (codeunit 10035422) wraps
+  filtered to Bifrost Language Models, and carries the HttpClient notification in `OnOpenPage`.
+- **Secrets**: Bifrost Language Models never touches IsolatedStorage. `LangModel Secrets ori` (codeunit 10035422) wraps
   Foundation's `Secret Store ori`. Codes per language model:
 
   | Secret code | Scope | Purpose |
@@ -85,7 +85,7 @@ Test ids used: 96000-96014; free test ids: 96015-96199.
 - Both codes are registered on insert and rename of a language model, and from
   `Copilot Install ori.OnInstallAppPerCompany` / `Copilot Upgrade ori.OnUpgradePerCompany` for every
   existing model. `Register` is idempotent. `OnDelete` clears both values.
-- Reads go through `Bragi Secrets ori.TryGetApiKey` (personal key first, then shared, both with
+- Reads go through `LangModel Secrets ori.TryGetApiKey` (personal key first, then shared, both with
   `MarkUsed`). Values are `SecretText` all the way into the HTTP header - `SecretText.Unwrap()` is
   `OnPrem`-scoped and must never be used here. The chat control add-in's `apiKey` config property is a
   non-secret marker (`Bifrost Chat Argument ori.GetApiKeyIndicator()`); the JavaScript only tests it for
@@ -133,12 +133,12 @@ Key rules always in effect:
   target with `-LaunchConfiguration 'launch: bc28-w1'`.
 - Compile locally with alc.exe + CodeCop/UICop/AppSourceCop, zero errors and zero warnings.
   Symbols: `app/.alpackages` (Microsoft symbols + the current `Origo_Bifrost Foundation_28.0.0.0.app`),
-  `test/.alpackages` (Microsoft test libraries + Foundation + the freshly built Bragi app).
+  `test/.alpackages` (Microsoft test libraries + Foundation + the freshly built Bifrost Language Models app).
 - Publish and test without VS Code (pwsh 7, credential from the user-level env vars `BC28IS_USER` /
   `BC28IS_PASSWORD`, never from files) with the Foundation tooling:
   `bc-origo-bifrost-core/tools/Publish-BifrostApp.ps1 -AppFile <.app>` (ForceSync for the app,
   Synchronize for the test app) and `bc-origo-bifrost-core/tools/Run-BifrostTests.ps1
-  -TestAppJson test/app.json -ResultsFile TestResults/bragi_is.xml`.
+  -TestAppJson test/app.json -ResultsFile TestResults/langmodels_is.xml`.
 - The AL test runner drives a web client session on a shared container. When other agents publish to the
   same container at the same time the run can return an empty result file (`Codeunits: 1  Tests:` with no
   numbers). Cause: the Command Line Test Tool returns no tests on the first visit of a suite name that does not
@@ -146,14 +146,14 @@ Key rules always in effect:
   or reuse an existing name. Never switch to a fresh name to "retry" - that reproduces the empty run.
 
 ## Message Type Conventions
-- Bragi owns exactly one message type, `LLM.Prompt.Complete`, registered on Foundation's `Message Type ori`
-  enum by `Bragi Message Type ori`. It has an `LLM Prompt Compl Impl ori` codeunit (`ExecuteBifrostTask`),
+- Bifrost Language Models owns exactly one message type, `LLM.Prompt.Complete`, registered on Foundation's `Message Type ori`
+  enum by `LangModel Message Type ori`. It has an `LLM Prompt Compl Impl ori` codeunit (`ExecuteBifrostTask`),
   an `LLM Prompt Compl Help ori` help codeunit and a section in the message-type reference on
   bifrost.origo.is (`docs/bragi/message-types.md` in the `businesscentralal/bifrost` repository).
 - Errors must be returned as `status = Error` with a helpful message via `Argument.RespondWithError`;
   never let an unhandled exception reach the API.
 
 ## Testing Through the MCP Server
-- `get_message_type_help` and `invoke_message_type` on the `origo-bc-bc28-is` server hit Bragi through
+- `get_message_type_help` and `invoke_message_type` on the `origo-bc-bc28-is` server hit Bifrost Language Models through
   Foundation's route (`origo/bifrost/v1.0`). Keep calls serial - parallel bursts crash the server.
   Test data uses the `BIFT-<letter>` prefix in CRONUS IS.

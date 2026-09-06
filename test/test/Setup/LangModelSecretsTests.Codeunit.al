@@ -1,16 +1,16 @@
-namespace Origo.Bifrost.Bragi.Test;
+namespace Origo.Bifrost.LanguageModels.Test;
 
 using Origo.Bifrost;
-using Origo.Bifrost.Bragi;
+using Origo.Bifrost.LanguageModels;
 using System.TestLibraries.Utilities;
 
 /// <summary>
-/// Tests for "Bragi Secrets ori", Bragi's facade over the Bifrost Foundation secret store:
+/// Tests for "LangModel Secrets ori", this app's facade over the Bifrost Foundation secret store:
 /// secret code layout, registration of both codes with the right scope, the set/is-set/clear
 /// round trip of the shared and the personal key, the personal-before-shared read order,
 /// and the clean-up when a language model is deleted or renamed.
 /// </summary>
-codeunit 96009 "Bragi Secrets Tests"
+codeunit 96009 "LangModel Secrets Tests"
 {
     Subtype = Test;
     TestPermissions = Disabled;
@@ -41,7 +41,7 @@ codeunit 96009 "Bragi Secrets Tests"
     [Test]
     procedure GetSecretCodes_BuildBothCodesFromLanguageModelCode()
     var
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
     begin
         // [SCENARIO] The two secret codes of a language model follow the documented layout.
         Initialize();
@@ -49,14 +49,14 @@ codeunit 96009 "Bragi Secrets Tests"
         // [GIVEN] A language model code
         // [WHEN] The secret codes are built
         // [THEN] They carry the LANGMODEL- prefix and the documented suffixes
-        Assert.AreEqual('LANGMODEL-COPILOT-API-KEY', BragiSecrets.GetServiceKeyCode('COPILOT'), 'Unexpected shared key code.');
-        Assert.AreEqual('LANGMODEL-COPILOT-USER-API-KEY', BragiSecrets.GetUserKeyCode('COPILOT'), 'Unexpected personal key code.');
+        Assert.AreEqual('LANGMODEL-COPILOT-API-KEY', LangModelSecrets.GetServiceKeyCode('COPILOT'), 'Unexpected shared key code.');
+        Assert.AreEqual('LANGMODEL-COPILOT-USER-API-KEY', LangModelSecrets.GetUserKeyCode('COPILOT'), 'Unexpected personal key code.');
     end;
 
     [Test]
     procedure GetSecretCodes_LongestLanguageModelCode_FitsInCode50()
     var
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
         LongCode: Code[20];
     begin
         // [SCENARIO] A language model code of the maximum length never has to be truncated.
@@ -66,21 +66,21 @@ codeunit 96009 "Bragi Secrets Tests"
         LongCode := 'ABCDEFGHIJKLMNOPQRST';
 
         // [WHEN/THEN] Both secret codes stay within Code[50] and keep the full model code
-        Assert.AreEqual('LANGMODEL-' + LongCode + '-API-KEY', BragiSecrets.GetServiceKeyCode(LongCode), 'Shared key code must not be truncated.');
-        Assert.AreEqual('LANGMODEL-' + LongCode + '-USER-API-KEY', BragiSecrets.GetUserKeyCode(LongCode), 'Personal key code must not be truncated.');
+        Assert.AreEqual('LANGMODEL-' + LongCode + '-API-KEY', LangModelSecrets.GetServiceKeyCode(LongCode), 'Shared key code must not be truncated.');
+        Assert.AreEqual('LANGMODEL-' + LongCode + '-USER-API-KEY', LangModelSecrets.GetUserKeyCode(LongCode), 'Personal key code must not be truncated.');
     end;
 
     [Test]
     procedure GetSecretCodes_BlankLanguageModelCode_ReturnsBlank()
     var
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
     begin
         // [SCENARIO] A blank language model code produces no secret code.
         Initialize();
 
         // [WHEN/THEN]
-        Assert.AreEqual('', BragiSecrets.GetServiceKeyCode(''), 'A blank model code must produce no shared key code.');
-        Assert.AreEqual('', BragiSecrets.GetUserKeyCode(''), 'A blank model code must produce no personal key code.');
+        Assert.AreEqual('', LangModelSecrets.GetServiceKeyCode(''), 'A blank model code must produce no shared key code.');
+        Assert.AreEqual('', LangModelSecrets.GetUserKeyCode(''), 'A blank model code must produce no personal key code.');
     end;
 
     [Test]
@@ -89,7 +89,7 @@ codeunit 96009 "Bragi Secrets Tests"
         LangModel: Record "Bifrost Language Model ori";
         ServiceSecret: Record "App Secret ori";
         UserSecret: Record "App Secret ori";
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
     begin
         // [SCENARIO] Inserting a language model registers both API key secrets.
         Initialize();
@@ -99,12 +99,12 @@ codeunit 96009 "Bragi Secrets Tests"
 
         // [WHEN] The registry is read back
         // [THEN] The shared key is registered with company scope
-        Assert.IsTrue(ServiceSecret.Get(BragiSecrets.GetAppId(), BragiSecrets.GetServiceKeyCode(LangModel.Code)), 'The shared key must be registered on insert.');
+        Assert.IsTrue(ServiceSecret.Get(LangModelSecrets.GetAppId(), LangModelSecrets.GetServiceKeyCode(LangModel.Code)), 'The shared key must be registered on insert.');
         Assert.AreEqual(ServiceSecret.Scope::Company.AsInteger(), ServiceSecret.Scope.AsInteger(), 'The shared key must have company scope.');
         Assert.AreNotEqual('', ServiceSecret.Description, 'The shared key must have a description.');
 
         // [THEN] The personal key is registered with company and user scope
-        Assert.IsTrue(UserSecret.Get(BragiSecrets.GetAppId(), BragiSecrets.GetUserKeyCode(LangModel.Code)), 'The personal key must be registered on insert.');
+        Assert.IsTrue(UserSecret.Get(LangModelSecrets.GetAppId(), LangModelSecrets.GetUserKeyCode(LangModel.Code)), 'The personal key must be registered on insert.');
         Assert.AreEqual(UserSecret.Scope::"Company And User".AsInteger(), UserSecret.Scope.AsInteger(), 'The personal key must have company and user scope.');
         Assert.AreNotEqual('', UserSecret.Description, 'The personal key must have a description.');
     end;
@@ -114,7 +114,7 @@ codeunit 96009 "Bragi Secrets Tests"
     var
         LangModel: Record "Bifrost Language Model ori";
         AppSecret: Record "App Secret ori";
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
         CountBefore: Integer;
     begin
         // [SCENARIO] Register can be called again from install or upgrade without creating duplicates.
@@ -122,12 +122,12 @@ codeunit 96009 "Bragi Secrets Tests"
 
         // [GIVEN] A registered language model
         CreateLanguageModel(LangModel);
-        AppSecret.SetRange("App Id", BragiSecrets.GetAppId());
+        AppSecret.SetRange("App Id", LangModelSecrets.GetAppId());
         CountBefore := AppSecret.Count();
 
         // [WHEN] Register is called again
-        BragiSecrets.Register(LangModel.Code);
-        BragiSecrets.RegisterAll();
+        LangModelSecrets.Register(LangModel.Code);
+        LangModelSecrets.RegisterAll();
 
         // [THEN] No extra registry rows appear
         Assert.AreEqual(CountBefore, AppSecret.Count(), 'Register must be idempotent.');
@@ -137,7 +137,7 @@ codeunit 96009 "Bragi Secrets Tests"
     procedure ServiceKey_SetIsSetClear_RoundTrips()
     var
         LangModel: Record "Bifrost Language Model ori";
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
         ApiKey: SecretText;
     begin
         // [SCENARIO] The shared API key can be stored, detected and removed.
@@ -145,29 +145,29 @@ codeunit 96009 "Bragi Secrets Tests"
 
         // [GIVEN] A language model with no shared key
         CreateLanguageModel(LangModel);
-        Assert.IsFalse(BragiSecrets.HasServiceKey(LangModel.Code), 'A new language model must have no shared key.');
+        Assert.IsFalse(LangModelSecrets.HasServiceKey(LangModel.Code), 'A new language model must have no shared key.');
 
         // [WHEN] A shared key is stored
-        BragiSecrets.SetServiceKey(LangModel.Code, AsSecret('sk-shared-' + Format(Any.IntegerInRange(1000, 9999))));
+        LangModelSecrets.SetServiceKey(LangModel.Code, AsSecret('sk-shared-' + Format(Any.IntegerInRange(1000, 9999))));
 
         // [THEN] It is reported as set and can be read back
-        Assert.IsTrue(BragiSecrets.HasServiceKey(LangModel.Code), 'The shared key must be reported as set.');
-        Assert.IsTrue(BragiSecrets.TryGetApiKey(LangModel.Code, ApiKey), 'The shared key must be readable.');
+        Assert.IsTrue(LangModelSecrets.HasServiceKey(LangModel.Code), 'The shared key must be reported as set.');
+        Assert.IsTrue(LangModelSecrets.TryGetApiKey(LangModel.Code, ApiKey), 'The shared key must be readable.');
         Assert.IsFalse(ApiKey.IsEmpty(), 'The shared key value must not be empty.');
 
         // [WHEN] The shared key is cleared
-        BragiSecrets.ClearServiceKey(LangModel.Code);
+        LangModelSecrets.ClearServiceKey(LangModel.Code);
 
         // [THEN] It is gone
-        Assert.IsFalse(BragiSecrets.HasServiceKey(LangModel.Code), 'The shared key must be gone after Clear.');
-        Assert.IsFalse(BragiSecrets.TryGetApiKey(LangModel.Code, ApiKey), 'No key must be readable after Clear.');
+        Assert.IsFalse(LangModelSecrets.HasServiceKey(LangModel.Code), 'The shared key must be gone after Clear.');
+        Assert.IsFalse(LangModelSecrets.TryGetApiKey(LangModel.Code, ApiKey), 'No key must be readable after Clear.');
     end;
 
     [Test]
     procedure UserKey_SetIsSetClear_RoundTrips()
     var
         LangModel: Record "Bifrost Language Model ori";
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
         ApiKey: SecretText;
     begin
         // [SCENARIO] The personal API key can be stored, detected and removed.
@@ -175,44 +175,44 @@ codeunit 96009 "Bragi Secrets Tests"
 
         // [GIVEN] A language model with no personal key
         CreateLanguageModel(LangModel);
-        Assert.IsFalse(BragiSecrets.HasUserKey(LangModel.Code), 'A new language model must have no personal key.');
+        Assert.IsFalse(LangModelSecrets.HasUserKey(LangModel.Code), 'A new language model must have no personal key.');
 
         // [WHEN] A personal key is stored
-        BragiSecrets.SetUserKey(LangModel.Code, AsSecret('sk-personal-' + Format(Any.IntegerInRange(1000, 9999))));
+        LangModelSecrets.SetUserKey(LangModel.Code, AsSecret('sk-personal-' + Format(Any.IntegerInRange(1000, 9999))));
 
         // [THEN] It is reported as set and can be read back
-        Assert.IsTrue(BragiSecrets.HasUserKey(LangModel.Code), 'The personal key must be reported as set.');
-        Assert.IsTrue(BragiSecrets.TryGetApiKey(LangModel.Code, ApiKey), 'The personal key must be readable.');
+        Assert.IsTrue(LangModelSecrets.HasUserKey(LangModel.Code), 'The personal key must be reported as set.');
+        Assert.IsTrue(LangModelSecrets.TryGetApiKey(LangModel.Code, ApiKey), 'The personal key must be readable.');
         Assert.IsFalse(ApiKey.IsEmpty(), 'The personal key value must not be empty.');
 
         // [WHEN] The personal key is cleared
-        BragiSecrets.ClearUserKey(LangModel.Code);
+        LangModelSecrets.ClearUserKey(LangModel.Code);
 
         // [THEN] It is gone
-        Assert.IsFalse(BragiSecrets.HasUserKey(LangModel.Code), 'The personal key must be gone after Clear.');
-        Assert.IsFalse(BragiSecrets.TryGetApiKey(LangModel.Code, ApiKey), 'No key must be readable after Clear.');
+        Assert.IsFalse(LangModelSecrets.HasUserKey(LangModel.Code), 'The personal key must be gone after Clear.');
+        Assert.IsFalse(LangModelSecrets.TryGetApiKey(LangModel.Code, ApiKey), 'No key must be readable after Clear.');
     end;
 
     [Test]
     procedure ServiceAndUserKey_AreStoredIndependently()
     var
         LangModel: Record "Bifrost Language Model ori";
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
     begin
         // [SCENARIO] Clearing the personal key leaves the shared key in place.
         Initialize();
 
         // [GIVEN] A language model with both keys stored
         CreateLanguageModel(LangModel);
-        BragiSecrets.SetServiceKey(LangModel.Code, AsSecret('sk-shared'));
-        BragiSecrets.SetUserKey(LangModel.Code, AsSecret('sk-personal'));
+        LangModelSecrets.SetServiceKey(LangModel.Code, AsSecret('sk-shared'));
+        LangModelSecrets.SetUserKey(LangModel.Code, AsSecret('sk-personal'));
 
         // [WHEN] Only the personal key is cleared
-        BragiSecrets.ClearUserKey(LangModel.Code);
+        LangModelSecrets.ClearUserKey(LangModel.Code);
 
         // [THEN] The shared key survives
-        Assert.IsFalse(BragiSecrets.HasUserKey(LangModel.Code), 'The personal key must be gone.');
-        Assert.IsTrue(BragiSecrets.HasServiceKey(LangModel.Code), 'The shared key must survive clearing the personal key.');
+        Assert.IsFalse(LangModelSecrets.HasUserKey(LangModel.Code), 'The personal key must be gone.');
+        Assert.IsTrue(LangModelSecrets.HasServiceKey(LangModel.Code), 'The shared key must survive clearing the personal key.');
     end;
 
     [Test]
@@ -221,7 +221,7 @@ codeunit 96009 "Bragi Secrets Tests"
         LangModel: Record "Bifrost Language Model ori";
         ServiceSecret: Record "App Secret ori";
         UserSecret: Record "App Secret ori";
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
         ApiKey: SecretText;
     begin
         // [SCENARIO] When both keys exist, the personal key is the one a chat request uses.
@@ -229,15 +229,15 @@ codeunit 96009 "Bragi Secrets Tests"
 
         // [GIVEN] A language model with a shared and a personal key
         CreateLanguageModel(LangModel);
-        BragiSecrets.SetServiceKey(LangModel.Code, AsSecret('sk-shared'));
-        BragiSecrets.SetUserKey(LangModel.Code, AsSecret('sk-personal'));
+        LangModelSecrets.SetServiceKey(LangModel.Code, AsSecret('sk-shared'));
+        LangModelSecrets.SetUserKey(LangModel.Code, AsSecret('sk-personal'));
 
         // [WHEN] The API key for a request is resolved
-        Assert.IsTrue(BragiSecrets.TryGetApiKey(LangModel.Code, ApiKey), 'A key must be found.');
+        Assert.IsTrue(LangModelSecrets.TryGetApiKey(LangModel.Code, ApiKey), 'A key must be found.');
 
         // [THEN] Only the personal key was read
-        UserSecret.Get(BragiSecrets.GetAppId(), BragiSecrets.GetUserKeyCode(LangModel.Code));
-        ServiceSecret.Get(BragiSecrets.GetAppId(), BragiSecrets.GetServiceKeyCode(LangModel.Code));
+        UserSecret.Get(LangModelSecrets.GetAppId(), LangModelSecrets.GetUserKeyCode(LangModel.Code));
+        ServiceSecret.Get(LangModelSecrets.GetAppId(), LangModelSecrets.GetServiceKeyCode(LangModel.Code));
         Assert.AreNotEqual(0DT, UserSecret."Last Used On", 'The personal key must be the key that was read.');
         Assert.AreEqual(0DT, ServiceSecret."Last Used On", 'The shared key must not be read while a personal key exists.');
     end;
@@ -247,7 +247,7 @@ codeunit 96009 "Bragi Secrets Tests"
     var
         LangModel: Record "Bifrost Language Model ori";
         ServiceSecret: Record "App Secret ori";
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
         ApiKey: SecretText;
     begin
         // [SCENARIO] Without a personal key, a chat request uses the shared key.
@@ -255,13 +255,13 @@ codeunit 96009 "Bragi Secrets Tests"
 
         // [GIVEN] A language model with only a shared key
         CreateLanguageModel(LangModel);
-        BragiSecrets.SetServiceKey(LangModel.Code, AsSecret('sk-shared'));
+        LangModelSecrets.SetServiceKey(LangModel.Code, AsSecret('sk-shared'));
 
         // [WHEN] The API key for a request is resolved
-        Assert.IsTrue(BragiSecrets.TryGetApiKey(LangModel.Code, ApiKey), 'The shared key must be used as the fallback.');
+        Assert.IsTrue(LangModelSecrets.TryGetApiKey(LangModel.Code, ApiKey), 'The shared key must be used as the fallback.');
 
         // [THEN] The shared key was read
-        ServiceSecret.Get(BragiSecrets.GetAppId(), BragiSecrets.GetServiceKeyCode(LangModel.Code));
+        ServiceSecret.Get(LangModelSecrets.GetAppId(), LangModelSecrets.GetServiceKeyCode(LangModel.Code));
         Assert.AreNotEqual(0DT, ServiceSecret."Last Used On", 'The shared key must be the key that was read.');
     end;
 
@@ -269,7 +269,7 @@ codeunit 96009 "Bragi Secrets Tests"
     procedure TryGetApiKey_NoKeyStored_ReturnsFalse()
     var
         LangModel: Record "Bifrost Language Model ori";
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
         ApiKey: SecretText;
     begin
         // [SCENARIO] A language model without any key reports no key.
@@ -279,33 +279,33 @@ codeunit 96009 "Bragi Secrets Tests"
         CreateLanguageModel(LangModel);
 
         // [WHEN/THEN]
-        Assert.IsFalse(BragiSecrets.TryGetApiKey(LangModel.Code, ApiKey), 'No key must be found.');
+        Assert.IsFalse(LangModelSecrets.TryGetApiKey(LangModel.Code, ApiKey), 'No key must be found.');
         Assert.IsTrue(ApiKey.IsEmpty(), 'The returned value must stay empty.');
     end;
 
     [Test]
     procedure TryGetApiKey_BlankLanguageModelCode_ReturnsFalse()
     var
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
         ApiKey: SecretText;
     begin
         // [SCENARIO] Reading a key for a blank language model code fails safely.
         Initialize();
 
         // [WHEN/THEN]
-        Assert.IsFalse(BragiSecrets.TryGetApiKey('', ApiKey), 'A blank model code must not resolve a key.');
+        Assert.IsFalse(LangModelSecrets.TryGetApiKey('', ApiKey), 'A blank model code must not resolve a key.');
     end;
 
     [Test]
     procedure SetServiceKey_BlankLanguageModelCode_Errors()
     var
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
     begin
         // [SCENARIO] Storing a key without a language model is rejected with a helpful message.
         Initialize();
 
         // [WHEN] A key is stored for a blank language model code
-        asserterror BragiSecrets.SetServiceKey('', AsSecret('sk-shared'));
+        asserterror LangModelSecrets.SetServiceKey('', AsSecret('sk-shared'));
 
         // [THEN] The call fails
         Assert.ExpectedError('A language model code must be specified');
@@ -315,7 +315,7 @@ codeunit 96009 "Bragi Secrets Tests"
     procedure Delete_LanguageModel_ClearsBothSecrets()
     var
         LangModel: Record "Bifrost Language Model ori";
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
         ModelCode: Code[20];
     begin
         // [SCENARIO] Deleting a language model removes both of its stored API keys.
@@ -324,24 +324,24 @@ codeunit 96009 "Bragi Secrets Tests"
         // [GIVEN] A language model with a shared and a personal key
         CreateLanguageModel(LangModel);
         ModelCode := LangModel.Code;
-        BragiSecrets.SetServiceKey(ModelCode, AsSecret('sk-shared'));
-        BragiSecrets.SetUserKey(ModelCode, AsSecret('sk-personal'));
-        Assert.IsTrue(BragiSecrets.HasServiceKey(ModelCode), 'The shared key must be stored before the delete.');
-        Assert.IsTrue(BragiSecrets.HasUserKey(ModelCode), 'The personal key must be stored before the delete.');
+        LangModelSecrets.SetServiceKey(ModelCode, AsSecret('sk-shared'));
+        LangModelSecrets.SetUserKey(ModelCode, AsSecret('sk-personal'));
+        Assert.IsTrue(LangModelSecrets.HasServiceKey(ModelCode), 'The shared key must be stored before the delete.');
+        Assert.IsTrue(LangModelSecrets.HasUserKey(ModelCode), 'The personal key must be stored before the delete.');
 
         // [WHEN] The language model is deleted
         LangModel.Delete(true);
 
         // [THEN] Both stored values are gone
-        Assert.IsFalse(BragiSecrets.HasServiceKey(ModelCode), 'The shared key must be cleared on delete.');
-        Assert.IsFalse(BragiSecrets.HasUserKey(ModelCode), 'The personal key must be cleared on delete.');
+        Assert.IsFalse(LangModelSecrets.HasServiceKey(ModelCode), 'The shared key must be cleared on delete.');
+        Assert.IsFalse(LangModelSecrets.HasUserKey(ModelCode), 'The personal key must be cleared on delete.');
     end;
 
     [Test]
     procedure Rename_LanguageModel_MovesSecretsToTheNewCode()
     var
         LangModel: Record "Bifrost Language Model ori";
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
         OldCode: Code[20];
         NewCode: Code[20];
     begin
@@ -351,22 +351,22 @@ codeunit 96009 "Bragi Secrets Tests"
         // [GIVEN] A language model with a shared key
         CreateLanguageModel(LangModel);
         OldCode := LangModel.Code;
-        BragiSecrets.SetServiceKey(OldCode, AsSecret('sk-shared'));
+        LangModelSecrets.SetServiceKey(OldCode, AsSecret('sk-shared'));
 
         // [WHEN] The language model is renamed
         NewCode := UnusedLanguageModelCode();
         LangModel.Rename(NewCode);
 
         // [THEN] The key is stored under the new code and gone from the old one
-        Assert.IsTrue(BragiSecrets.HasServiceKey(NewCode), 'The shared key must be available under the new code.');
-        Assert.IsFalse(BragiSecrets.HasServiceKey(OldCode), 'The shared key must be gone from the old code.');
+        Assert.IsTrue(LangModelSecrets.HasServiceKey(NewCode), 'The shared key must be available under the new code.');
+        Assert.IsFalse(LangModelSecrets.HasServiceKey(OldCode), 'The shared key must be gone from the old code.');
     end;
 
     local procedure CreateLanguageModel(var LangModel: Record "Bifrost Language Model ori")
     begin
         LangModel.Init();
         LangModel.Code := UnusedLanguageModelCode();
-        LangModel.Description := 'Bragi secret store test';
+        LangModel.Description := 'Bifrost Language Models secret store test';
         LangModel.Insert(true);
     end;
 
@@ -374,7 +374,7 @@ codeunit 96009 "Bragi Secrets Tests"
     var
         LangModel: Record "Bifrost Language Model ori";
         AppSecret: Record "App Secret ori";
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
     begin
         // A code is only free when no language model uses it AND the secret store holds no
         // registry row for it. Registrations outlive the model - Clear keeps the row so the
@@ -383,7 +383,7 @@ codeunit 96009 "Bragi Secrets Tests"
         repeat
             TestCodeSequence += 1;
             NewCode := CopyStr(TestCodePrefixTok + Format(TestCodeSequence) + '-' + Format(Any.IntegerInRange(100000, 999999)), 1, MaxStrLen(NewCode));
-        until (not LangModel.Get(NewCode)) and (not AppSecret.Get(BragiSecrets.GetAppId(), BragiSecrets.GetServiceKeyCode(NewCode)));
+        until (not LangModel.Get(NewCode)) and (not AppSecret.Get(LangModelSecrets.GetAppId(), LangModelSecrets.GetServiceKeyCode(NewCode)));
     end;
 
     local procedure AsSecret(Value: Text) Secret: SecretText

@@ -1,4 +1,4 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 using Microsoft.Utilities;
 
 /// <summary>
@@ -265,10 +265,10 @@ page 10035343 "Bifrost LangModel Card ori"
 
                 trigger OnAction()
                 var
-                    BragiSecrets: Codeunit "Bragi Secrets ori";
+                    LangModelSecrets: Codeunit "LangModel Secrets ori";
                 begin
                     CurrPage.SaveRecord();
-                    if BragiSecrets.SetUserKeyFromDialog(Rec.Code) then
+                    if LangModelSecrets.SetUserKeyFromDialog(Rec.Code) then
                         UpdateAuthFlags();
                 end;
             }
@@ -283,11 +283,11 @@ page 10035343 "Bifrost LangModel Card ori"
 
                 trigger OnAction()
                 var
-                    BragiSecrets: Codeunit "Bragi Secrets ori";
+                    LangModelSecrets: Codeunit "LangModel Secrets ori";
                 begin
                     if not Confirm(ClearPersonalKeyQst, false, Rec.Code) then
                         exit;
-                    BragiSecrets.ClearUserKey(Rec.Code);
+                    LangModelSecrets.ClearUserKey(Rec.Code);
                     UpdateAuthFlags();
                 end;
             }
@@ -302,10 +302,10 @@ page 10035343 "Bifrost LangModel Card ori"
 
                 trigger OnAction()
                 var
-                    BragiSecrets: Codeunit "Bragi Secrets ori";
+                    LangModelSecrets: Codeunit "LangModel Secrets ori";
                 begin
                     CurrPage.SaveRecord();
-                    if BragiSecrets.SetServiceKeyFromDialog(Rec.Code) then
+                    if LangModelSecrets.SetServiceKeyFromDialog(Rec.Code) then
                         UpdateAuthFlags();
                 end;
             }
@@ -320,11 +320,11 @@ page 10035343 "Bifrost LangModel Card ori"
 
                 trigger OnAction()
                 var
-                    BragiSecrets: Codeunit "Bragi Secrets ori";
+                    LangModelSecrets: Codeunit "LangModel Secrets ori";
                 begin
                     if not Confirm(ClearServiceKeyQst, false, Rec.Code) then
                         exit;
-                    BragiSecrets.ClearServiceKey(Rec.Code);
+                    LangModelSecrets.ClearServiceKey(Rec.Code);
                     UpdateAuthFlags();
                 end;
             }
@@ -418,7 +418,7 @@ page 10035343 "Bifrost LangModel Card ori"
     local procedure UpdateAuthFlags()
     var
         TempArgument: Record "Bifrost Chat Argument ori" temporary;
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
         Provider: Interface "Bifrost LangModel Provider ori";
     begin
         Provider := Rec."Chat Provider";
@@ -431,8 +431,8 @@ page 10035343 "Bifrost LangModel Card ori"
             exit;
         end;
         HasServiceKeyPerm := GetProviderBool(Provider, TempArgument, TempArgument."Procedure Type"::HasServiceKeyPermission);
-        HasServiceKey := BragiSecrets.HasServiceKey(Rec.Code);
-        HasPersonalKey := BragiSecrets.HasUserKey(Rec.Code);
+        HasServiceKey := LangModelSecrets.HasServiceKey(Rec.Code);
+        HasPersonalKey := LangModelSecrets.HasUserKey(Rec.Code);
         KeyMissingVisible := not HasServiceKey and not HasPersonalKey;
         if KeyMissingVisible then
             KeyMissingHint := KeyMissingHintTxt
@@ -443,7 +443,7 @@ page 10035343 "Bifrost LangModel Card ori"
     [NonDebuggable]
     local procedure BuildPageArgument(var TempArgument: Record "Bifrost Chat Argument ori" temporary)
     var
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
         ApiKeyValue: SecretText;
     begin
         TempArgument.Init();
@@ -454,7 +454,7 @@ page 10035343 "Bifrost LangModel Card ori"
         TempArgument."Max Tokens" := Rec."Max Tokens";
         TempArgument."Chat Path" := Rec."Chat Path";
         TempArgument."Models Path" := Rec."Models Path";
-        if BragiSecrets.TryGetApiKey(Rec.Code, ApiKeyValue) then
+        if LangModelSecrets.TryGetApiKey(Rec.Code, ApiKeyValue) then
             TempArgument.SetApiKey(ApiKeyValue);
     end;
 

@@ -1,18 +1,18 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 
 using Origo.Bifrost;
 using System.Apps;
 using System.Environment.Configuration;
 
 /// <summary>
-/// Setup page of Bifrost Bragi, opened from the Apps group on the Bifrost Setup page.
+/// Setup page of Bifrost Language Models, opened from the Apps group on the Bifrost Setup page.
 /// It shows the state of the language models, of the MCP tool server and of the API keys
-/// Bragi keeps in the Bifrost Foundation secret store, and it warns when HttpClient requests
+/// Bifrost Language Models keeps in the Bifrost Foundation secret store, and it warns when HttpClient requests
 /// are blocked for the extension.
 /// </summary>
-page 10035421 "Bragi Setup ori"
+page 10035421 "LangModel Setup ori"
 {
-    Caption = 'Bifrost Bragi Setup', Comment = 'is-IS=Uppsetning Bifröst Braga';
+    Caption = 'Bifrost Language Models Setup', Comment = 'is-IS=Uppsetning Bifröst mállíkana';
     ContextSensitiveHelpPage = 'bragi-setup';
     PageType = Card;
     ApplicationArea = All;
@@ -61,7 +61,7 @@ page 10035421 "Bragi Setup ori"
             group(Secrets)
             {
                 Caption = 'API Keys', Comment = 'is-IS=API-lyklar';
-                InstructionalText = 'Bragi keeps every provider API key in the Bifrost secret store. Each language model has a shared key for the whole company and a personal key per user.', Comment = 'is-IS=Bragi geymir alla API-lykla veitenda í leyndarmálageymslu Bifröst. Hvert mállíkan hefur sameiginlegan lykil fyrir allt fyrirtækið og persónulegan lykil fyrir hvern notanda.';
+                InstructionalText = 'Bifrost Language Models keeps every provider API key in the Bifrost secret store. Each language model has a shared key for the whole company and a personal key per user.', Comment = 'is-IS=Bifröst mállíkön geyma alla API-lykla veitenda í leyndarmálageymslu Bifröst. Hvert mállíkan hefur sameiginlegan lykil fyrir allt fyrirtækið og persónulegan lykil fyrir hvern notanda.';
 
                 field(ModelsWithoutKey; ModelsWithoutKeyCount)
                 {
@@ -104,16 +104,16 @@ page 10035421 "Bragi Setup ori"
             {
                 ApplicationArea = All;
                 Caption = 'API Keys', Comment = 'is-IS=API-lyklar';
-                ToolTip = 'Show the API keys Bifrost Bragi has registered in the Bifrost secret store and whether a value has been entered.', Comment = 'is-IS=Sýna API-lyklana sem Bifröst Bragi hefur skráð í leyndarmálageymslu Bifröst og hvort gildi hafi verið skráð.';
+                ToolTip = 'Show the API keys Bifrost Language Models has registered in the Bifrost secret store and whether a value has been entered.', Comment = 'is-IS=Sýna API-lyklana sem Bifröst mállíkön hafa skráð í leyndarmálageymslu Bifröst og hvort gildi hafi verið skráð.';
                 Image = EncryptionKeys;
 
                 trigger OnAction()
                 var
-                    BragiSecrets: Codeunit "Bragi Secrets ori";
+                    LangModelSecrets: Codeunit "LangModel Secrets ori";
                     AppSecretsPage: Page "App Secrets ori";
                 begin
-                    BragiSecrets.RegisterAll();
-                    AppSecretsPage.SetAppFilter(BragiSecrets.GetAppId());
+                    LangModelSecrets.RegisterAll();
+                    AppSecretsPage.SetAppFilter(LangModelSecrets.GetAppId());
                     AppSecretsPage.Run();
                 end;
             }
@@ -142,14 +142,14 @@ page 10035421 "Bragi Setup ori"
         FavorableStyleTok: Label 'Favorable', Locked = true;
         KeyMissingHintTxt: Label 'API keys cannot be moved from another extension. Open a language model and use Set Personal API Key or Set Shared API Key to enter each key once.', Comment = 'is-IS=Ekki er hægt að flytja API-lykla frá annarri viðbót. Opnaðu mállíkan og notaðu Skrá persónulegan API-lykil eða Skrá sameiginlegan API-lykil til að slá hvern lykil inn einu sinni.';
         NoDefaultLanguageModelTxt: Label '(none)', Comment = 'is-IS=(ekkert)';
-        HttpClientDisabledMsg: Label 'HTTP client requests are not enabled for the Bifrost Bragi extension. The external chat providers (OpenAI, Azure OpenAI, Custom LLM, Anthropic, xAI, Google/Gemini) will not work until an administrator enables Allow HttpClient Requests in Extension Settings.', Comment = 'is-IS=HTTP-biðlarabeiðnir eru ekki virkar fyrir Bifröst Bragi viðbótina. Ytri spjallveitendur (OpenAI, Azure OpenAI, Custom LLM, Anthropic, xAI, Google/Gemini) virka ekki fyrr en kerfisstjóri virkjar Leyfa HttpClient-beiðnir í stillingum viðbótar.';
+        HttpClientDisabledMsg: Label 'HTTP client requests are not enabled for the Bifrost Language Models extension. The external chat providers (OpenAI, Azure OpenAI, Custom LLM, Anthropic, xAI, Google/Gemini) will not work until an administrator enables Allow HttpClient Requests in Extension Settings.', Comment = 'is-IS=HTTP-biðlarabeiðnir eru ekki virkar fyrir viðbótina Bifröst mállíkön. Ytri spjallveitendur (OpenAI, Azure OpenAI, Custom LLM, Anthropic, xAI, Google/Gemini) virka ekki fyrr en kerfisstjóri virkjar Leyfa HttpClient-beiðnir í stillingum viðbótar.';
         EnableHttpClientLbl: Label 'Open Extension Settings', Comment = 'is-IS=Opna stillingar viðbótar';
 
     trigger OnOpenPage()
     var
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
     begin
-        BragiSecrets.RegisterAll();
+        LangModelSecrets.RegisterAll();
         RefreshStatus();
         ShowHttpClientNotification();
     end;
@@ -157,7 +157,7 @@ page 10035421 "Bragi Setup ori"
     local procedure RefreshStatus()
     var
         LangModel: Record "Bifrost Language Model ori";
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
         MCPServer: Codeunit "MCP Tool Server ori";
     begin
         LangModel.SetLoadFields(Code, Default);
@@ -170,7 +170,7 @@ page 10035421 "Bragi Setup ori"
         LangModel.SetRange(Default);
 
         ToolCount := MCPServer.GetToolCount();
-        ModelsWithoutKeyCount := BragiSecrets.CountModelsWithoutKey();
+        ModelsWithoutKeyCount := LangModelSecrets.CountModelsWithoutKey();
 
         KeyHintVisible := ModelsWithoutKeyCount > 0;
         if KeyHintVisible then begin
@@ -188,11 +188,11 @@ page 10035421 "Bragi Setup ori"
     local procedure ShowHttpClientNotification()
     var
         NavAppSetting: Record "NAV App Setting";
-        BragiSecrets: Codeunit "Bragi Secrets ori";
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
         HttpNotification: Notification;
     begin
         NavAppSetting.SetLoadFields("Allow HttpClient Requests");
-        if NavAppSetting.Get(BragiSecrets.GetAppId()) then
+        if NavAppSetting.Get(LangModelSecrets.GetAppId()) then
             if NavAppSetting."Allow HttpClient Requests" then
                 exit;
 

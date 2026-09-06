@@ -1,4 +1,4 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 
 using Origo.Bifrost;
 
@@ -6,7 +6,7 @@ using Origo.Bifrost;
 /// Adds the language model assignment and the Bifrost Chat FactBox to the
 /// Bifrost Foundation user setup editor.
 /// </summary>
-pageextension 10035402 "User Setup Editor Bragi ori" extends "User Setup Editor ori"
+pageextension 10035402 "User Setup Editor LangMdl ori" extends "User Setup Editor ori"
 {
     layout
     {

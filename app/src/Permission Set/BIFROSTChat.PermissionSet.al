@@ -1,4 +1,4 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 using Origo.Bifrost;
 
 /// <summary>
@@ -16,7 +16,7 @@ permissionset 10035398 "BIFROST Chat ori"
 
     Permissions =
         tabledata "Chat Gate ori" = RIMD,
-        codeunit "Bragi Secrets ori" = X,
+        codeunit "LangModel Secrets ori" = X,
         codeunit "Secret Store ori" = X,
         codeunit "LangModel Prov. Base ori" = X,
         codeunit "LangModel API Client ori" = X,

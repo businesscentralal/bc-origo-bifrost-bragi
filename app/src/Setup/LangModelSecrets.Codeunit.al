@@ -1,16 +1,16 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 
 using Origo.Bifrost;
 
 /// <summary>
-/// Bragi's facade over the Bifrost Foundation secret store (codeunit "Secret Store ori").
-/// Every API key of a language model is stored by Foundation under Bragi's app id with the
+/// This app's facade over the Bifrost Foundation secret store (codeunit "Secret Store ori").
+/// Every API key of a language model is stored by Foundation under this app's id with the
 /// secret codes LANGMODEL-&lt;Code&gt;-API-KEY (shared, company scope) and
 /// LANGMODEL-&lt;Code&gt;-USER-API-KEY (personal, company and user scope).
-/// Bragi never writes to IsolatedStorage itself and never keeps a key in a table,
+/// Bifrost Language Models never writes to IsolatedStorage itself and never keeps a key in a table,
 /// in telemetry or in an error message.
 /// </summary>
-codeunit 10035422 "Bragi Secrets ori"
+codeunit 10035422 "LangModel Secrets ori"
 {
     Access = Public;
 
@@ -24,7 +24,7 @@ codeunit 10035422 "Bragi Secrets ori"
         LanguageModelCodeMissingErr: Label 'A language model code must be specified before an API key can be stored.', Comment = 'is-IS=Tilgreina verður kóða mállíkans áður en hægt er að geyma API-lykil.';
 
     /// <summary>
-    /// Returns the application id of Bifrost Bragi, used as the owner of every secret.
+    /// Returns the application id of Bifrost Language Models, used as the owner of every secret.
     /// </summary>
     /// <returns>Guid. The current module id.</returns>
     procedure GetAppId(): Guid

@@ -1,5 +1,5 @@
-namespace Origo.Bifrost.Bragi.Test;
-using Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels.Test;
+using Origo.Bifrost.LanguageModels;
 
 using System.TestLibraries.Utilities;
 

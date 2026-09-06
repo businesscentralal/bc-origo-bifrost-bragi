@@ -1,7 +1,7 @@
-# Bifrost Bragi — Chat Providers Migration Test Report
+# Bifrost Language Models — Chat Providers Migration Test Report
 
 **Date:** 2026-09-06
-**Scope:** Migration of the six external chat providers (OpenAI, Azure OpenAI, Custom LLM, Anthropic, xAI, Google/Gemini) from the standalone *Origo Cloud Events Chat* app into Bifrost Bragi.
+**Scope:** Migration of the six external chat providers (OpenAI, Azure OpenAI, Custom LLM, Anthropic, xAI, Google/Gemini) from the standalone *Origo Cloud Events Chat* app into Bifrost Language Models.
 **Branch:** `feature/bragi-chat-providers` (from `feature/bragi-chat-module`)
 
 ## Build
@@ -10,20 +10,20 @@
 - `alc.exe` with CodeCop + UICop on `test/`: **0 errors, 0 warnings.**
 - Residual brand scan (`Cloud Event`, `\bCE\b`, `CE-`, `MCP Chat`) over all new/edited files: no residuals except the intentional references to the legacy app being replaced (data take-over codeunit and its doc comments).
 - Object name length check (≤30 chars for app objects, ≤20 for permission sets): all pass.
-- Translation: `Bifrost Bragi.is-IS.xlf` realigned against the freshly compiled `.g.xlf` — 253/253 units translated (54 new units added, seeded from the `Comment = 'is-IS=...'` already embedded in every new AL label), 0 `needs-translation` remaining.
+- Translation: `Bifrost Language Models.is-IS.xlf` realigned against the freshly compiled `.g.xlf` — 253/253 units translated (54 new units added, seeded from the `Comment = 'is-IS=...'` already embedded in every new AL label), 0 `needs-translation` remaining.
 
 ## Deploy
 
 | Step | bc28-is (f068155f0c39dev) | bc28-w1 (f089d7daffb9dev) |
 |---|---|---|
-| Publish `Origo_Bifrost Bragi_28.0.0.0.app` (ForceSync) | OK 200 | OK 200 |
-| Publish `Origo_Bifrost Bragi - Tests_28.0.0.0.app` (Synchronize) | OK 200 | OK 200 |
+| Publish `Origo_Bifrost Language Models_28.0.0.0.app` (ForceSync) | OK 200 | OK 200 |
+| Publish `Origo_Bifrost Language Models - Tests_28.0.0.0.app` (Synchronize) | OK 200 | OK 200 |
 
 ## Unit tests
 
 Both containers: **150 tests, 150 passed, 0 failed** (`Run-BifrostTests.ps1`, 2026-09-06 00:30, results in `TestResults/bragi_is.xml` and `TestResults/bragi_w1.xml`). The first run of the day was 149 tests with 1 failure; see "Resolved failure" below.
 
-New test codeunits (34 tests): `LangModel Prov Base Tests` (17), `LangModel API Client Tests` (5), `LangModel Providers Tests` (7), `Chat Svc Gate Tests` (5). All 116 pre-existing Bragi tests still pass unchanged.
+New test codeunits (34 tests): `LangModel Prov Base Tests` (17), `LangModel API Client Tests` (5), `LangModel Providers Tests` (7), `Chat Svc Gate Tests` (5). All 116 pre-existing Bifrost Language Models tests still pass unchanged.
 
 ### Resolved failure (both containers, same cause)
 
@@ -54,9 +54,9 @@ The legacy *Origo Cloud Events Chat* app's only persistent table, `CE Chat Servi
 
 ## Not migrated (deliberate)
 
-- **Setup Wizard** (`CE Chat Setup Wizard ori` page + `CE Chat Wizard Reg. ori`): superseded by Bragi's existing Bifrost Language Model Card/List and User Setup Editor, which configure providers per language model rather than through a single global wizard tied to one shared key.
+- **Setup Wizard** (`CE Chat Setup Wizard ori` page + `CE Chat Wizard Reg. ori`): superseded by the existing Bifrost Language Model Card/List and User Setup Editor, which configure providers per language model rather than through a single global wizard tied to one shared key.
 - **`CE Chat Tool Runner ori`**: dead code in the legacy app — grepping the legacy source confirmed no provider, page, or message type ever called it; its only references were its own file, a permission grant, and an xlf comment.
-- **`CE Chat Full`/`CE Chat Read` permission set extensions** (bundling chat objects into the Full/Read Access sets): Bragi's own `BIFROST Chat ori` doc comment already states the design choice to keep chat "deliberately not bundled into any other set" — carrying these extensions over would have silently reversed that decision.
+- **`CE Chat Full`/`CE Chat Read` permission set extensions** (bundling chat objects into the Full/Read Access sets): the app's own `BIFROST Chat ori` doc comment already states the design choice to keep chat "deliberately not bundled into any other set" — carrying these extensions over would have silently reversed that decision.
 
 ## Follow-ups
 

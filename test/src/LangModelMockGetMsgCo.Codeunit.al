@@ -1,4 +1,4 @@
-namespace Origo.Bifrost.Bragi.Test;
+namespace Origo.Bifrost.LanguageModels.Test;
 
 using Origo.Bifrost;
 
@@ -6,7 +6,7 @@ using Origo.Bifrost;
 /// Mock message type implementation used by the MCP tool server tests to verify that
 /// list_message_types honours the IsEnabled() flag of a message type.
 /// </summary>
-codeunit 96007 "Bragi Mock Get Msg Co" implements "Msg Interface ori"
+codeunit 96007 "LangModel Mock Get Msg Co" implements "Msg Interface ori"
 {
     SingleInstance = true;
 
