@@ -202,7 +202,7 @@ codeunit 96001 "Mock Bifrost Chat Provider" implements "Bifrost LangModel Provid
         LastModel := Argument.Model;
         LastChatPath := Argument."Chat Path";
         LastModelsPath := Argument."Models Path";
-        LastApiKey := Argument.GetApiKey();
+        LastApiKey := Argument.GetApiKeyIndicator();
         LastTimeoutMs := Argument."Timeout Ms";
         LastMaxTokens := Argument."Max Tokens";
         LastDebugMode := Argument."Debug Mode";

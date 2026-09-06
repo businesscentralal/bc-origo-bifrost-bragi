@@ -26,7 +26,7 @@ codeunit 96010 "LangModel Prov Base Tests"
         // [GIVEN] An argument with an API key and a Base URL
         TempArg.Init();
         TempArg."Base URL" := 'https://mock.test.local';
-        TempArg.SetApiKey('test-key');
+        TempArg.SetApiKey(AsSecret('test-key'));
 
         // [WHEN/THEN]
         Assert.IsTrue(ProviderBase.IsConfigured(TempArg, ''), 'Should be configured with key and URL');
@@ -54,7 +54,7 @@ codeunit 96010 "LangModel Prov Base Tests"
     begin
         // [GIVEN] An argument with a key but no Base URL
         TempArg.Init();
-        TempArg.SetApiKey('some-key');
+        TempArg.SetApiKey(AsSecret('some-key'));
 
         // [WHEN/THEN] Falls back to the provider default URL
         Assert.IsTrue(ProviderBase.IsConfigured(TempArg, 'https://default.com'),
@@ -327,5 +327,10 @@ codeunit 96010 "LangModel Prov Base Tests"
         if JObject.Get(PropertyName, JToken) then
             if JToken.IsValue() then
                 exit(JToken.AsValue().AsText());
+    end;
+
+    local procedure AsSecret(Value: Text) Secret: SecretText
+    begin
+        Secret := Value;
     end;
 }

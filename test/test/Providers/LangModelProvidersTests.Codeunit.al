@@ -58,7 +58,7 @@ codeunit 96012 "LangModel Providers Tests"
 
         // Anthropic ships default base URL/model — IsConfigured should be true with only a key
         TempArg.Init();
-        TempArg.SetApiKey('sk-ant-test');
+        TempArg.SetApiKey(AsSecret('sk-ant-test'));
         TempArg."Procedure Type" := TempArg."Procedure Type"::IsConfigured;
         Provider.Execute(TempArg);
         Assert.IsTrue(TempArg."Result Boolean", 'Anthropic should be configured from key + default base URL.');
@@ -147,5 +147,10 @@ codeunit 96012 "LangModel Providers Tests"
         Provider.Execute(TempArg);
         Assert.IsFalse(TempArg."Result Boolean", 'TestConnection without a key should fail.');
         Assert.AreNotEqual('', TempArg.GetErrorMessage(), 'TestConnection without a key should set an error message.');
+    end;
+
+    local procedure AsSecret(Value: Text) Secret: SecretText
+    begin
+        Secret := Value;
     end;
 }
