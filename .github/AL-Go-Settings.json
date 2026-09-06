@@ -7,6 +7,7 @@
   "keyVaultName": "kv-kjarni-hsm-prod",
   "keyVaultCodesignCertificateName": "CodeSigning-2025",
   "doNotSignApps": true,
+  "shortLivedArtifactsRetentionDays": 30,
   "ConditionalSettings": [
     {
       "branches": [
