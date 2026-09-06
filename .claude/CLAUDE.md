@@ -39,7 +39,7 @@ that Bragi can make itself through an extension object.
 | Foundation object | Bragi extension |
 | --- | --- |
 | enum `Message Type ori` | `Bragi Message Type ori` - value `LLM.Prompt.Complete` |
-| enum `Request Log Type ori` | `Bragi Request Log Type ori` - value `Copilot` + masker |
+| enum `Request Log Type ori` | `Bragi Request Log Type ori` - values `Copilot` and `LLM` + maskers |
 | table `User Setup ori` | `User Setup Bragi ori` - field `Bifrost Language Model Code` |
 | page `User Setup Editor ori` | `User Setup Editor Bragi ori` - field + Bifrost Chat FactBox |
 | page `Setup ori` | `Setup Bragi ori` - action `BifrostLangModels` + actionref |
@@ -47,6 +47,19 @@ that Bragi can make itself through an extension object.
 Foundation's `Help WhoAmI Get Impl ori` is `Access = Internal` and cannot be called from Bragi.
 Use `Bifrost Chat Utils ori.GetIdentityJson()`, which runs the public `Help.WhoAmI.Get` message type
 through `Msg Interface ori` instead.
+
+## Chat Providers
+Six external providers (Copilot is native to Bragi) live under `app/src/Providers/<Provider>/`, registered
+as values on the base enum `Bifrost LangModel Prov. ori` (2-7): `OpenAI LangModel Prov. ori`,
+`Azure OAI LangModel Prov. ori`, `Custom LLM LangModel Prov. ori`, `Anthropic LangModel Prov. ori`
+(+ `Anthropic LangModel Proxy ori` for its own Messages API), `xAI LangModel Prov. ori`,
+`Gemini LangModel Prov. ori`. They were migrated from the standalone *Origo Cloud Events Chat* app
+(businesscentralal/origo-bc-cloudevents-chat), which Bragi replaces - see CHANGELOG 28.0.0.0 for the full
+rename table and the `Chat Providers Install ori` data take-over.
+Shared infrastructure lives in `app/src/Providers/Shared/`: `LangModel Prov. Base ori`,
+`LangModel API Client ori`, `LangModel Chat Proxy ori`, table `Chat Svc Gate ori` (shared-key permission
+gate, permission set `BIFROST ChatSvc ori`), `Chat Http Notif. Action ori`, `LLM Req Log Masker ori`.
+Object ids 10035406-10035421 are used; the next free id in Bragi's range is 10035422.
 
 ## Development Standards
 

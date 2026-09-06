@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+<?xml version='1.0' encoding='utf-8'?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
   <file datatype="xml" source-language="en-US" target-language="is-IS" original="Bifrost Bragi">
     <body>
       <group id="body">
@@ -12,79 +12,79 @@
         <trans-unit id="Table 3454536554 - Field 2517242498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Base URL</source>
           <target state="translated">Grunnslóð</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table Bifrost Chat Argument ori - Field Base URL - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3454536554 - Field 1989412485 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Chat Path</source>
           <target state="translated">Spjallslóð</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table Bifrost Chat Argument ori - Field Chat Path - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3454536554 - Field 3714772726 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Debug Mode</source>
           <target state="translated">Villuleitarhamur</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table Bifrost Chat Argument ori - Field Debug Mode - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3454536554 - Field 2719666954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Input Tokens</source>
           <target state="translated">Inntaksmerki</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table Bifrost Chat Argument ori - Field Input Tokens - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3454536554 - Field 3030464295 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Language Model SystemId</source>
           <target state="translated">Kerfiskenni mállíkans</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table Bifrost Chat Argument ori - Field Language Model SystemId - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3454536554 - Field 3898104680 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Max Tokens</source>
           <target state="translated">Hámarksfjöldi tókena</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table Bifrost Chat Argument ori - Field Max Tokens - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3454536554 - Field 1695122201 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Model</source>
           <target state="translated">Líkan</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table Bifrost Chat Argument ori - Field Model - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3454536554 - Field 2666083659 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Models Path</source>
           <target state="translated">Líkanaslóð</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table Bifrost Chat Argument ori - Field Models Path - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3454536554 - Field 1678292497 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Output Tokens</source>
           <target state="translated">Úttaksmerki</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table Bifrost Chat Argument ori - Field Output Tokens - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3454536554 - Field 2979542663 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Procedure Type</source>
           <target state="translated">Tegund aðgerðar</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table Bifrost Chat Argument ori - Field Procedure Type - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3454536554 - Field 2514534103 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Result Boolean</source>
           <target state="translated">Niðurstaða Boolean</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table Bifrost Chat Argument ori - Field Result Boolean - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3454536554 - Field 4271108617 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Result Integer</source>
           <target state="translated">Niðurstaða heiltölu</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table Bifrost Chat Argument ori - Field Result Integer - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3454536554 - Field 2238694431 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Timeout (ms)</source>
           <target state="translated">Tímamörk (ms)</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table Bifrost Chat Argument ori - Field Timeout Ms - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3650785778 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
@@ -194,6 +194,108 @@
           <target state="translated">Aðallykill</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Aðallykill</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Chat Gate ori - Field Primary Key - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2666554357 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Chat Service Gate</source>
+          <target state="translated">LLM þjónustuhlið</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=LLM þjónustuhlið</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Chat Svc Gate ori - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2666554357 - Field 1663593181 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Primary Key</source>
+          <target state="translated">Aðallykill</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Aðallykill</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Chat Svc Gate ori - Field Primary Key - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3867329394 - NamedType 1415688405" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Get key from Anthropic Console</source>
+          <target state="translated">Sækja lykil á Anthropic Console</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sækja lykil á Anthropic Console</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Anthropic LangModel Prov. ori - NamedType ApiKeyDocsLinkTextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3867329394 - NamedType 1651073791" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Enter your Anthropic API key.</source>
+          <target state="translated">Sláðu inn Anthropic API-lykilinn þinn.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sláðu inn Anthropic API-lykilinn þinn.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Anthropic LangModel Prov. ori - NamedType ApiKeyInstructionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3867329394 - NamedType 2386369997" size-unit="char" translate="yes" xml:space="preserve">
+          <source>API Key</source>
+          <target state="translated">API-lykill</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=API-lykill</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Anthropic LangModel Prov. ori - NamedType ApiKeyLabelLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3867329394 - NamedType 2496366635" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Shared keys are used by all users in this company who do not have a personal key.</source>
+          <target state="translated">Sameiginlegir lyklar eru notaðir af öllum notendum í þessu fyrirtæki sem hafa ekki persónulegan lykil.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sameiginlegir lyklar eru notaðir af öllum notendum í þessu fyrirtæki sem hafa ekki persónulegan lykil.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Anthropic LangModel Prov. ori - NamedType ServiceKeyDescLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3867329394 - Method 529142117 - NamedType 3284203181" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No API key configured. Enter a personal or shared API key.</source>
+          <target state="translated">Enginn API-lykill stilltur. Sláðu inn persónulegan eða sameiginlegan API-lykil.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Enginn API-lykill stilltur. Sláðu inn persónulegan eða sameiginlegan API-lykil.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Anthropic LangModel Prov. ori - Method DoTestConnection - NamedType NoKeyErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3867329394 - Method 529142117 - NamedType 3630480926" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No Base URL configured for this language model.</source>
+          <target state="translated">Engin grunnslóð stillt fyrir þetta mállíkan.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Engin grunnslóð stillt fyrir þetta mállíkan.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Anthropic LangModel Prov. ori - Method DoTestConnection - NamedType NoBaseUrlErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1219547729 - NamedType 623879819" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Anthropic API returned status %1. %2</source>
+          <target state="translated">Anthropic API skilaði stöðu %1. %2</target>
+          <note from="Developer" annotates="general" priority="2">%1 = status code, %2 = detail, is-IS=Anthropic API skilaði stöðu %1. %2</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Anthropic LangModel Proxy ori - NamedType ApiStatusErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1219547729 - NamedType 376675608" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Could not reach the Anthropic API. %1</source>
+          <target state="translated">Náði ekki sambandi við Anthropic API. %1</target>
+          <note from="Developer" annotates="general" priority="2">%1 = error detail, is-IS=Náði ekki sambandi við Anthropic API. %1</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Anthropic LangModel Proxy ori - NamedType CallFailedErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1219547729 - NamedType 232778209" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Received an invalid response from the Anthropic API.</source>
+          <target state="translated">Ógilt svar barst frá Anthropic API.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Ógilt svar barst frá Anthropic API.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Anthropic LangModel Proxy ori - NamedType InvalidResponseErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3284292384 - NamedType 1415688405" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Azure Portal</source>
+          <target state="translated">Azure Portal</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Azure Portal</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Azure OAI LangModel Prov. ori - NamedType ApiKeyDocsLinkTextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3284292384 - NamedType 1651073791" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Enter your Azure OpenAI deployment API key.</source>
+          <target state="translated">Sláðu inn Azure OpenAI API-lykilinn þinn.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sláðu inn Azure OpenAI API-lykilinn þinn.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Azure OAI LangModel Prov. ori - NamedType ApiKeyInstructionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3284292384 - NamedType 2386369997" size-unit="char" translate="yes" xml:space="preserve">
+          <source>API Key</source>
+          <target state="translated">API-lykill</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=API-lykill</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Azure OAI LangModel Prov. ori - NamedType ApiKeyLabelLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3284292384 - NamedType 2496366635" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Shared keys are used by all users in this company who do not have a personal key.</source>
+          <target state="translated">Sameiginlegir lyklar eru notaðir af öllum notendum í þessu fyrirtæki sem hafa ekki persónulegan lykil.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sameiginlegir lyklar eru notaðir af öllum notendum í þessu fyrirtæki sem hafa ekki persónulegan lykil.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Azure OAI LangModel Prov. ori - NamedType ServiceKeyDescLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3284292384 - Method 529142117 - NamedType 3284203181" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No API key configured. Enter a personal or shared API key.</source>
+          <target state="translated">Enginn API-lykill stilltur. Sláðu inn persónulegan eða sameiginlegan API-lykil.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Enginn API-lykill stilltur. Sláðu inn persónulegan eða sameiginlegan API-lykil.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Azure OAI LangModel Prov. ori - Method DoTestConnection - NamedType NoKeyErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3284292384 - Method 529142117 - NamedType 3630480926" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No Base URL configured for this language model. Set the Azure OpenAI endpoint URL.</source>
+          <target state="translated">Engin grunnslóð stillt fyrir þetta mállíkan. Stilltu Azure OpenAI endapunktsslóðina.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Engin grunnslóð stillt fyrir þetta mállíkan. Stilltu Azure OpenAI endapunktsslóðina.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Azure OAI LangModel Prov. ori - Method DoTestConnection - NamedType NoBaseUrlErr</note>
         </trans-unit>
         <trans-unit id="Codeunit 4240728454 - NamedType 3178682067" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bifrost Chat is disabled. Assign a Language Model with a provider in your Bifrost User Setup to enable chat.</source>
@@ -369,6 +471,102 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Copilot líkanið skilaði villu.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Copilot LangModel Prov. ori - Method GetErrorOrFallback - NamedType FallbackErr</note>
         </trans-unit>
+        <trans-unit id="Codeunit 2691301688 - NamedType 1651073791" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Enter the API key for your LLM endpoint.</source>
+          <target state="translated">Sláðu inn API-lykilinn fyrir LLM endapunktinn þinn.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sláðu inn API-lykilinn fyrir LLM endapunktinn þinn.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Custom LLM LangModel Prov. ori - NamedType ApiKeyInstructionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2691301688 - NamedType 2386369997" size-unit="char" translate="yes" xml:space="preserve">
+          <source>API Key</source>
+          <target state="translated">API-lykill</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=API-lykill</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Custom LLM LangModel Prov. ori - NamedType ApiKeyLabelLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2691301688 - NamedType 2496366635" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Shared keys are used by all users in this company who do not have a personal key.</source>
+          <target state="translated">Sameiginlegir lyklar eru notaðir af öllum notendum í þessu fyrirtæki sem hafa ekki persónulegan lykil.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sameiginlegir lyklar eru notaðir af öllum notendum í þessu fyrirtæki sem hafa ekki persónulegan lykil.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Custom LLM LangModel Prov. ori - NamedType ServiceKeyDescLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2691301688 - Method 529142117 - NamedType 3630480926" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No Base URL configured for this language model.</source>
+          <target state="translated">Engin grunnslóð stillt fyrir þetta mállíkan.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Engin grunnslóð stillt fyrir þetta mállíkan.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Custom LLM LangModel Prov. ori - Method DoTestConnection - NamedType NoBaseUrlErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3800143573 - NamedType 1415688405" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Get key from Google AI Studio</source>
+          <target state="translated">Sækja lykil á Google AI Studio</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sækja lykil á Google AI Studio</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Gemini LangModel Prov. ori - NamedType ApiKeyDocsLinkTextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3800143573 - NamedType 1651073791" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Enter your Google AI API key.</source>
+          <target state="translated">Sláðu inn Google AI API-lykilinn þinn.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sláðu inn Google AI API-lykilinn þinn.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Gemini LangModel Prov. ori - NamedType ApiKeyInstructionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3800143573 - NamedType 2386369997" size-unit="char" translate="yes" xml:space="preserve">
+          <source>API Key</source>
+          <target state="translated">API-lykill</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=API-lykill</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Gemini LangModel Prov. ori - NamedType ApiKeyLabelLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3800143573 - NamedType 623879819" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Google AI API returned status %1. %2</source>
+          <target state="translated">Google AI API skilaði stöðu %1. %2</target>
+          <note from="Developer" annotates="general" priority="2">%1 = status code, %2 = detail, is-IS=Google AI API skilaði stöðu %1. %2</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Gemini LangModel Prov. ori - NamedType ApiStatusErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3800143573 - NamedType 376675608" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Could not reach the Google AI API. %1</source>
+          <target state="translated">Náði ekki sambandi við Google AI API. %1</target>
+          <note from="Developer" annotates="general" priority="2">%1 = error detail, is-IS=Náði ekki sambandi við Google AI API. %1</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Gemini LangModel Prov. ori - NamedType CallFailedErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3800143573 - NamedType 2496366635" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Shared keys are used by all users in this company who do not have a personal key.</source>
+          <target state="translated">Sameiginlegir lyklar eru notaðir af öllum notendum í þessu fyrirtæki sem hafa ekki persónulegan lykil.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sameiginlegir lyklar eru notaðir af öllum notendum í þessu fyrirtæki sem hafa ekki persónulegan lykil.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Gemini LangModel Prov. ori - NamedType ServiceKeyDescLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3800143573 - Method 529142117 - NamedType 3284203181" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No API key configured. Enter a personal or shared API key.</source>
+          <target state="translated">Enginn API-lykill stilltur. Sláðu inn persónulegan eða sameiginlegan API-lykil.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Enginn API-lykill stilltur. Sláðu inn persónulegan eða sameiginlegan API-lykil.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Gemini LangModel Prov. ori - Method DoTestConnection - NamedType NoKeyErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 871460130 - NamedType 623879819" size-unit="char" translate="yes" xml:space="preserve">
+          <source>LLM API returned status %1. %2</source>
+          <target state="translated">LLM API skilaði stöðu %1. %2</target>
+          <note from="Developer" annotates="general" priority="2">%1 = status code, %2 = detail, is-IS=LLM API skilaði stöðu %1. %2</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit LangModel API Client ori - NamedType ApiStatusErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 871460130 - NamedType 376675608" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Could not reach the LLM API. %1</source>
+          <target state="translated">Náði ekki sambandi við LLM API. %1</target>
+          <note from="Developer" annotates="general" priority="2">%1 = error detail, is-IS=Náði ekki sambandi við LLM API. %1</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit LangModel API Client ori - NamedType CallFailedErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 871460130 - NamedType 232778209" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Received an invalid response from the LLM API.</source>
+          <target state="translated">Ógilt svar barst frá LLM API.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Ógilt svar barst frá LLM API.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit LangModel API Client ori - NamedType InvalidResponseErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2221206041 - NamedType 1304087324" size-unit="char" translate="yes" xml:space="preserve">
+          <source>HttpClient calls are blocked in this environment. An administrator must allow AL HttpClient requests.</source>
+          <target state="translated">HttpClient köll eru lokuð í þessu umhverfi. Stjórnandi þarf að leyfa AL HttpClient beiðnir.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=HttpClient köll eru lokuð í þessu umhverfi. Stjórnandi þarf að leyfa AL HttpClient beiðnir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit LangModel Prov. Base ori - NamedType HttpClientBlockedMsg</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2221206041 - NamedType 782499748" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No language model is configured with a chat provider. Set up a Bifrost Language Model with a Chat Provider.</source>
+          <target state="translated">Ekkert mállíkan er stillt með spjallveitanda. Settu upp Bifröst mállíkan með spjallveitanda.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Ekkert mállíkan er stillt með spjallveitanda. Settu upp Bifröst mállíkan með spjallveitanda.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit LangModel Prov. Base ori - NamedType ServiceGateDeniedErr</note>
+        </trans-unit>
         <trans-unit id="Codeunit 250906932 - NamedType 1213728415" size-unit="char" translate="yes" xml:space="preserve">
           <source>The "prompt" field is required.</source>
           <target state="translated">Reiturinn "prompt" er nauðsynlegur.</target>
@@ -416,6 +614,72 @@
           <target state="translated">Óþekkt verkfæri: %1</target>
           <note from="Developer" annotates="general" priority="2">%1 = tool name, is-IS=Óþekkt verkfæri: %1</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit MCP Tool Server ori - NamedType UnknownToolErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1571639434 - NamedType 1415688405" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Get key from OpenAI Platform</source>
+          <target state="translated">Sækja lykil á OpenAI Platform</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sækja lykil á OpenAI Platform</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit OpenAI LangModel Prov. ori - NamedType ApiKeyDocsLinkTextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1571639434 - NamedType 1651073791" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Enter your OpenAI API key.</source>
+          <target state="translated">Sláðu inn OpenAI API-lykilinn þinn.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sláðu inn OpenAI API-lykilinn þinn.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit OpenAI LangModel Prov. ori - NamedType ApiKeyInstructionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1571639434 - NamedType 2386369997" size-unit="char" translate="yes" xml:space="preserve">
+          <source>API Key</source>
+          <target state="translated">API-lykill</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=API-lykill</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit OpenAI LangModel Prov. ori - NamedType ApiKeyLabelLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1571639434 - NamedType 2496366635" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Shared keys are used by all users in this company who do not have a personal key.</source>
+          <target state="translated">Sameiginlegir lyklar eru notaðir af öllum notendum í þessu fyrirtæki sem hafa ekki persónulegan lykil.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sameiginlegir lyklar eru notaðir af öllum notendum í þessu fyrirtæki sem hafa ekki persónulegan lykil.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit OpenAI LangModel Prov. ori - NamedType ServiceKeyDescLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1571639434 - Method 529142117 - NamedType 3284203181" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No API key configured. Enter a personal or shared API key.</source>
+          <target state="translated">Enginn API-lykill stilltur. Sláðu inn persónulegan eða sameiginlegan API-lykil.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Enginn API-lykill stilltur. Sláðu inn persónulegan eða sameiginlegan API-lykil.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit OpenAI LangModel Prov. ori - Method DoTestConnection - NamedType NoKeyErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1571639434 - Method 529142117 - NamedType 3630480926" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No Base URL configured for this language model.</source>
+          <target state="translated">Engin grunnslóð stillt fyrir þetta mállíkan.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Engin grunnslóð stillt fyrir þetta mállíkan.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit OpenAI LangModel Prov. ori - Method DoTestConnection - NamedType NoBaseUrlErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3887337102 - NamedType 1415688405" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Get key from xAI Console</source>
+          <target state="translated">Sækja lykil á xAI Console</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sækja lykil á xAI Console</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit xAI LangModel Prov. ori - NamedType ApiKeyDocsLinkTextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3887337102 - NamedType 1651073791" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Enter your xAI API key.</source>
+          <target state="translated">Sláðu inn xAI API-lykilinn þinn.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sláðu inn xAI API-lykilinn þinn.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit xAI LangModel Prov. ori - NamedType ApiKeyInstructionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3887337102 - NamedType 2386369997" size-unit="char" translate="yes" xml:space="preserve">
+          <source>API Key</source>
+          <target state="translated">API-lykill</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=API-lykill</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit xAI LangModel Prov. ori - NamedType ApiKeyLabelLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3887337102 - NamedType 2496366635" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Shared keys are used by all users in this company who do not have a personal key.</source>
+          <target state="translated">Sameiginlegir lyklar eru notaðir af öllum notendum í þessu fyrirtæki sem hafa ekki persónulegan lykil.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sameiginlegir lyklar eru notaðir af öllum notendum í þessu fyrirtæki sem hafa ekki persónulegan lykil.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit xAI LangModel Prov. ori - NamedType ServiceKeyDescLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3887337102 - Method 529142117 - NamedType 3284203181" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No API key configured. Enter a personal or shared API key.</source>
+          <target state="translated">Enginn API-lykill stilltur. Sláðu inn persónulegan eða sameiginlegan API-lykil.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Enginn API-lykill stilltur. Sláðu inn persónulegan eða sameiginlegan API-lykil.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit xAI LangModel Prov. ori - Method DoTestConnection - NamedType NoKeyErr</note>
         </trans-unit>
         <trans-unit id="Page 3070616516 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bifrost Chat</source>
@@ -933,6 +1197,18 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Spjalla við Bifröst</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat VendorList ori - Action ori_BifrostChat - Property Caption</note>
         </trans-unit>
+        <trans-unit id="PageExtension 1044751384 - Method 2170221057 - NamedType 3548522468" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 1044751384">
+          <source>HTTP client requests are not enabled for the Bifrost Bragi extension. The external chat providers (OpenAI, Azure OpenAI, Custom LLM, Anthropic, xAI, Google/Gemini) will not work until an administrator enables Allow HttpClient Requests in Extension Settings.</source>
+          <target state="translated">HTTP-biðlarabeiðnir eru ekki virkar fyrir Bifröst Bragi viðbótina. Ytri spjallveitendur (OpenAI, Azure OpenAI, Custom LLM, Anthropic, xAI, Google/Gemini) virka ekki fyrr en kerfisstjóri virkjar Leyfa HttpClient-beiðnir í stillingum viðbótar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=HTTP-biðlarabeiðnir eru ekki virkar fyrir Bifröst Bragi viðbótina. Ytri spjallveitendur (OpenAI, Azure OpenAI, Custom LLM, Anthropic, xAI, Google/Gemini) virka ekki fyrr en kerfisstjóri virkjar Leyfa HttpClient-beiðnir í stillingum viðbótar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Setup Bragi ori - Method ShowHttpClientNotification - NamedType HttpClientDisabledMsg</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1044751384 - Method 2170221057 - NamedType 117150238" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 1044751384">
+          <source>Open Extension Settings</source>
+          <target state="translated">Opna stillingar viðbótar</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Opna stillingar viðbótar</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Setup Bragi ori - Method ShowHttpClientNotification - NamedType EnableHttpClientLbl</note>
+        </trans-unit>
         <trans-unit id="PageExtension 1044751384 - Action 1568669505 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1243421685">
           <source>Manage language models with skill content injected into the Bifrost Chat.</source>
           <target state="translated">Stjórna mállíkönum með hæfniefni sem er sett inn í Spjalla við Bifröst.</target>
@@ -966,194 +1242,206 @@
         <trans-unit id="Enum 309372455 - EnumValue 1371923692 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source> </source>
           <target state="translated">[NAB: REVIEW]</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue   - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 1688929688 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>BuildConfigJson</source>
           <target state="translated">BuildConfigJson</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue BuildConfigJson - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 888568311 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>CompletePrompt</source>
           <target state="translated">CompletePrompt</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue CompletePrompt - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 2653539875 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>ContinueWithToolResults</source>
           <target state="translated">ContinueWithToolResults</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue ContinueWithToolResults - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 1054543905 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>GetApiKeyDocsLinkText</source>
           <target state="translated">GetApiKeyDocsLinkText</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue GetApiKeyDocsLinkText - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 4031373371 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>GetApiKeyDocsUrl</source>
           <target state="translated">GetApiKeyDocsUrl</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue GetApiKeyDocsUrl - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 3951146963 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>GetApiKeyInstruction</source>
           <target state="translated">GetApiKeyInstruction</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue GetApiKeyInstruction - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 4078557033 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>GetApiKeyLabel</source>
           <target state="translated">GetApiKeyLabel</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue GetApiKeyLabel - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 3918098806 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>GetApiKeyPlaceholder</source>
           <target state="translated">GetApiKeyPlaceholder</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue GetApiKeyPlaceholder - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 2576330829 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>GetAvailableModels</source>
           <target state="translated">GetAvailableModels</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue GetAvailableModels - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 2852100330 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>GetContextWindowChars</source>
           <target state="translated">GetContextWindowChars</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue GetContextWindowChars - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 4009972805 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>GetDefaultBaseUrl</source>
           <target state="translated">GetDefaultBaseUrl</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue GetDefaultBaseUrl - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 678314147 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>GetDefaultMaxTokens</source>
           <target state="translated">GetDefaultMaxTokens</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue GetDefaultMaxTokens - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 1329031214 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>GetDefaultModel</source>
           <target state="translated">GetDefaultModel</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue GetDefaultModel - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 3731536507 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>GetDefaultSkillText</source>
           <target state="translated">GetDefaultSkillText</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue GetDefaultSkillText - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 102050257 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>GetDefaultSkillUrl</source>
           <target state="translated">GetDefaultSkillUrl</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue GetDefaultSkillUrl - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 1334031087 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>GetDefaultTimeoutSeconds</source>
           <target state="translated">GetDefaultTimeoutSeconds</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue GetDefaultTimeoutSeconds - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 2790583115 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>GetMaxToolCount</source>
           <target state="translated">GetMaxToolCount</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue GetMaxToolCount - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 3177965956 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>GetProviderName</source>
           <target state="translated">GetProviderName</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue GetProviderName - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 2758994150 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>GetServiceKeyDescription</source>
           <target state="translated">GetServiceKeyDescription</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue GetServiceKeyDescription - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 705744164 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>GetTokenUsage</source>
           <target state="translated">GetTokenUsage</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue GetTokenUsage - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 3430298240 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>HasExternalEndpoint</source>
           <target state="translated">HasExternalEndpoint</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue HasExternalEndpoint - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 2249538077 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>HasServiceKeyPermission</source>
           <target state="translated">HasServiceKeyPermission</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue HasServiceKeyPermission - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 3860026794 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>IsConfigured</source>
           <target state="translated">IsConfigured</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue IsConfigured - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 1287046011 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>RequiresApiKey</source>
           <target state="translated">RequiresApiKey</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue RequiresApiKey - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 1538870679 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>RequiresChatPath</source>
           <target state="translated">RequiresChatPath</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue RequiresChatPath - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 1919020977 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>RequiresModelsPath</source>
           <target state="translated">RequiresModelsPath</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue RequiresModelsPath - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 4082385531 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>SendChatMessage</source>
           <target state="translated">SendChatMessage</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue SendChatMessage - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 3405527869 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>SupportsModelSelection</source>
           <target state="translated">SupportsModelSelection</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue SupportsModelSelection - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 3275512608 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>SupportsSplitToolExecution</source>
           <target state="translated">SupportsSplitToolExecution</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue SupportsSplitToolExecution - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 4102627498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>SupportsToolCalling</source>
           <target state="translated">SupportsToolCalling</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue SupportsToolCalling - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 309372455 - EnumValue 4263468516 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>TestConnection</source>
           <target state="translated">TestConnection</target>
-          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost Chat Proc. Type ori - EnumValue TestConnection - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3617384391 - EnumValue 596215048 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Anthropic</source>
+          <target state="translated">Anthropic</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Anthropic</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost LangModel Prov. ori - EnumValue Anthropic - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3617384391 - EnumValue 1158040007 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Azure OpenAI</source>
+          <target state="translated">Azure OpenAI</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Azure OpenAI</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost LangModel Prov. ori - EnumValue Azure OpenAI - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 3617384391 - EnumValue 1408386902 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Copilot</source>
@@ -1161,17 +1449,47 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Copilot</note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost LangModel Prov. ori - EnumValue Copilot - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Enum 3617384391 - EnumValue 822657922 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Custom LLM</source>
+          <target state="translated">Sérsniðið LLM</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sérsniðið LLM</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost LangModel Prov. ori - EnumValue Custom LLM - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3617384391 - EnumValue 1341647219 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Google (Gemini)</source>
+          <target state="translated">Google (Gemini)</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Google (Gemini)</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost LangModel Prov. ori - EnumValue Google - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Enum 3617384391 - EnumValue 3371220206 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>None</source>
           <target state="translated">Enginn</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Enginn</note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost LangModel Prov. ori - EnumValue None - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Enum 3617384391 - EnumValue 762538288 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>OpenAI</source>
+          <target state="translated">OpenAI</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=OpenAI</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost LangModel Prov. ori - EnumValue OpenAI - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3617384391 - EnumValue 2904752244 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>xAI (Grok)</source>
+          <target state="translated">xAI (Grok)</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=xAI (Grok)</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Bifrost LangModel Prov. ori - EnumValue xAI - Property Caption</note>
+        </trans-unit>
         <trans-unit id="EnumExtension 471018698 - EnumValue 1408386902 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Enum 242122731">
           <source>Copilot</source>
           <target state="translated">Copilot</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Copilot</note>
           <note from="Xliff Generator" annotates="general" priority="3">EnumExtension Bragi Request Log Type ori - EnumValue Copilot - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="EnumExtension 471018698 - EnumValue 2581395271 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Enum 242122731">
+          <source>LLM</source>
+          <target state="translated">LLM</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=LLM</note>
+          <note from="Xliff Generator" annotates="general" priority="3">EnumExtension Bragi Request Log Type ori - EnumValue LLM - Property Caption</note>
         </trans-unit>
         <trans-unit id="EnumExtension 3502416962 - EnumValue 4229105511 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Enum 3058546390">
           <source>Bifrost Copilot</source>
@@ -1197,7 +1515,12 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Spjallhlið</note>
           <note from="Xliff Generator" annotates="general" priority="3">PermissionSet BIFROST Chat ori - Property Caption</note>
         </trans-unit>
-      </group>
+      <trans-unit id="PermissionSet 3469751485 - Property 2879900210" maxwidth="30" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Chat Service Gate</source>
+          <target state="translated">LLM þjónustuhlið</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=LLM þjónustuhlið</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet BIFROST ChatSvc ori - Property Caption</note>
+        </trans-unit></group>
     </body>
   </file>
 </xliff>

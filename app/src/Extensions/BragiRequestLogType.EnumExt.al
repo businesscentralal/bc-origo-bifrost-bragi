@@ -16,4 +16,14 @@ enumextension 10035400 "Bragi Request Log Type ori" extends "Request Log Type or
         Caption = 'Copilot', Comment = 'is-IS=Copilot';
         Implementation = "Request Log Masker ori" = "Copilot Req Log Masker ori";
     }
+
+    /// <summary>
+    /// Requests sent to an external LLM chat provider (OpenAI, Azure OpenAI, Custom LLM,
+    /// Anthropic, xAI, Google/Gemini).
+    /// </summary>
+    value(10035421; "LLM")
+    {
+        Caption = 'LLM', Comment = 'is-IS=LLM';
+        Implementation = "Request Log Masker ori" = "LLM Req Log Masker ori";
+    }
 }

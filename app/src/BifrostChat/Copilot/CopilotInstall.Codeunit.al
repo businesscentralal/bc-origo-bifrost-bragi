@@ -8,6 +8,8 @@ using System.AI;
 /// The capability is registered again from the upgrade codeunit; the default language model is
 /// created only on demand, from the "Init Copilot Defaults" action on the Bifrost Language Model
 /// List page, so that installing Bragi never writes setup data on its own.
+/// Also takes over per-company data from the published Origo Cloud Events Chat app, which the
+/// chat providers (OpenAI, Azure OpenAI, Custom LLM, Anthropic, xAI, Google/Gemini) replace.
 /// </summary>
 codeunit 10035390 "Copilot Install ori"
 {
@@ -17,6 +19,13 @@ codeunit 10035390 "Copilot Install ori"
     trigger OnInstallAppPerDatabase()
     begin
         RegisterCapability();
+    end;
+
+    trigger OnInstallAppPerCompany()
+    var
+        ChatProvidersInstall: Codeunit "Chat Providers Install ori";
+    begin
+        ChatProvidersInstall.TakeOverChatProviderData();
     end;
 
     internal procedure RegisterCapability()

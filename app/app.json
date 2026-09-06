@@ -4,7 +4,7 @@
   "publisher": "Origo",
   "version": "28.0.0.0",
   "brief": "Bifröst Bragi - chat and language models for Business Central",
-  "description": "Bifrost Bragi: Bifrost Chat, language models, Copilot provider, MCP tool server and the LLM.Prompt.Complete message type on top of Bifrost Foundation",
+  "description": "Bifrost Bragi: Bifrost Chat, language models, Copilot/OpenAI/Azure OpenAI/Custom LLM/Anthropic/xAI/Google (Gemini) chat providers, MCP tool server and the LLM.Prompt.Complete message type on top of Bifrost Foundation",
   "url": "https://www.origo.is/",
   "help": "https://origopublic.blob.core.windows.net/help/BifrostBragi/bc28/en-US/index.html",
   "privacyStatement": "https://www.origo.is/um-origo/stefnur/personuverndarstefna",
