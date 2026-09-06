@@ -1,38 +1,19 @@
 # Bifrost Bragi
 
-**Publisher:** Origo
-**Version:** 28.0.0.0
-**Object ID range:** 10035335-10035484
-**Namespace:** `Origo.Bifrost.Bragi`
-**Depends on:** Bifrost Foundation 28.0.0.0
+**Publisher:** Origo &nbsp;|&nbsp; **Version:** 28.0.0.0 &nbsp;|&nbsp; **Object ID range:** 10035335-10035484 &nbsp;|&nbsp; **Namespace:** `Origo.Bifrost.Bragi` &nbsp;|&nbsp; **Depends on:** Bifrost Foundation 28.0.0.0
 
-Bifrost Bragi is the chat module of the Bifröst platform. It adds a conversational assistant to Business Central: the **Bifrost Chat** control add-in and FactBox on 36 standard pages, a focused chat page, **language models** that hold the provider configuration and the skill text injected into every conversation, seven **chat providers** (Copilot, OpenAI, Azure OpenAI, Custom LLM, Anthropic, xAI and Google/Gemini), an **MCP tool server** that lets the assistant read and act on Business Central data under the signed-in user's own permissions, and the `LLM.Prompt.Complete` message type for one-shot completions in playbooks and scheduled tasks.
+Bifrost Bragi is the chat module of the Bifröst platform. It adds a conversational assistant to Business Central: the Bifrost Chat control add-in and FactBox, language models that hold the provider configuration and the skill text, seven chat providers (Copilot, OpenAI, Azure OpenAI, Custom LLM, Anthropic, xAI and Google/Gemini), an MCP tool server that lets the assistant read and act on Business Central data under the signed-in user's own permissions, and the `LLM.Prompt.Complete` message type.
 
-Bragi was extracted from *Bifrost Foundation* in version 28.0.0.0. Foundation no longer contains chat; Bragi installs beside it and extends it. The six external providers (everything except Copilot) were migrated from the standalone **Origo Cloud Events Chat** app, which Bragi replaces — see [CHANGELOG.md](CHANGELOG.md).
+Bragi was extracted from *Bifrost Foundation* in version 28.0.0.0 and replaces the standalone *Origo Cloud Events Chat* app. It installs beside Foundation and extends it - see [CHANGELOG.md](CHANGELOG.md).
 
-## Chat providers
+## Documentation
 
-| Provider | Codeunit | Auth | Notes |
-| --- | --- | --- | --- |
-| Copilot | `Copilot LangModel Prov. ori` | None (Microsoft-managed) | No API key, no file attachments |
-| OpenAI | `OpenAI LangModel Prov. ori` | Bearer token | |
-| Azure OpenAI | `Azure OAI LangModel Prov. ori` | `api-key` header | Requires a Chat Path / Models Path (deployment-specific) |
-| Custom LLM | `Custom LLM LangModel Prov. ori` | `x-api-key` header | OpenAI-compatible self-hosted endpoints (Ollama, vLLM, ...) |
-| Anthropic | `Anthropic LangModel Prov. ori` (+ `Anthropic LangModel Proxy ori`) | `x-api-key` + `anthropic-version` | Own Messages API — different request/response shape from the rest |
-| xAI (Grok) | `xAI LangModel Prov. ori` | Bearer token | Files go through the Responses API |
-| Google (Gemini) | `Gemini LangModel Prov. ori` | Bearer token | Text via the OpenAI-compatible endpoint, files via native `generateContent` |
+All Bifröst documentation lives at [bifrost.origo.is](https://bifrost.origo.is) (repository `businesscentralal/bifrost`), in English and Icelandic. There are no `docs/` or `Help/` folders in this repository.
 
-All six external providers share `LangModel Prov. Base ori` (config resolution, HTTP-client gate, multi-modal message building), `LangModel API Client ori` (HTTP + response parsing) and `LangModel Chat Proxy ori` (the OpenAI-compatible agentic tool loop against `MCP Tool Server ori`). The shared (service) API key on a language model is gated separately by `BIFROST ChatSvc ori` over table `Chat Svc Gate ori`, so an administrator can delegate "manage the shared key" without granting broader access.
-
-## What Bragi adds to Bifrost Foundation
-
-| Foundation object | What Bragi extends it with |
-| --- | --- |
-| enum `Message Type ori` | value `LLM.Prompt.Complete` (`Bragi Message Type ori`) |
-| enum `Request Log Type ori` | value `Copilot` and its request log masker (`Bragi Request Log Type ori`) |
-| table `User Setup ori` | field `Bifrost Language Model Code` (`User Setup Bragi ori`) |
-| page `User Setup Editor ori` | the language model field and the Bifrost Chat FactBox (`User Setup Editor Bragi ori`) |
-| page `Setup ori` | the **Bifrost Language Models** action (`Setup Bragi ori`) |
+- [Product documentation](https://bifrost.origo.is/en-us/bragi/) - message types, setup, MCP tool server
+- [In-product help](https://bifrost.origo.is/en-us/help/bragi/) - the pages Business Central opens from the help icon
+- [Adding a chat provider](https://bifrost.origo.is/en-us/bragi/extensibility/)
+- [Building on Bifröst](https://bifrost.origo.is/en-us/extensibility/)
 
 ## Repository layout
 
@@ -48,40 +29,19 @@ All six external providers share `LangModel Prov. Base ori` (config resolution, 
 | `app/src/Providers/Shared/` | `LangModel Prov. Base ori`, `LangModel API Client ori`, `LangModel Chat Proxy ori`, `Chat Svc Gate ori`, `Chat Http Notif. Action ori`, `LLM Req Log Masker ori`, take-over codeunit |
 | `app/src/Providers/OpenAI/`, `AzureOpenAI/`, `CustomLLM/`, `Anthropic/`, `xAI/`, `Gemini/` | The six external chat provider codeunits, one folder per provider |
 | `app/src/Permission Set/` | `BIFROST Bragi ori`, `BIFROST Bragi Rd ori`, `BIFROST Chat ori`, `BIFROST ChatSvc ori` |
-| `app/docs/` | Markdown reference documentation (en-us, is-is) - source of truth for message contracts |
-| `app/Help/` | HTML help (en-US, is-IS) published to origopublic blob storage |
+| `app/Translations/` | Icelandic translation (`Bifrost Bragi.is-IS.xlf`) |
 | `test/` | Test app (`Bifrost Bragi - Tests`, object range 96000-96199) |
+| `test/reports/` | Internal test reports - not published |
 | `.AL-Go/`, `.github/` | AL-Go for GitHub / COSMO Alpaca pipeline configuration |
-
-## Permission sets
-
-| Set | Grants |
-| --- | --- |
-| `BIFROST Bragi ori` | Full access to language models and every Bragi object |
-| `BIFROST Bragi Rd ori` | Read-only access to language models |
-| `BIFROST Chat ori` | Write access to the Chat Gate - the gate that lets a user actually open a chat - plus execute on every chat provider codeunit. Assign it on top of one of the sets above; it is deliberately not bundled into any other set. |
-| `BIFROST ChatSvc ori` | Write access to the Chat Service Gate - lets a user view, set or clear the shared (service) API key on a language model. Narrower and separate from `BIFROST Chat ori`; assign only to whoever administers provider keys. |
-
-## Setup
-
-1. Assign `BIFROST Bragi ori` (or `BIFROST Bragi Rd ori`) plus `BIFROST Chat ori` to the users who may chat.
-2. Open **Bifrost Setup** and choose **Bifrost Language Models**. Create a language model, pick a provider (Copilot, OpenAI, Azure OpenAI, Custom LLM, Anthropic, xAI or Google/Gemini), fill in the model settings and write the skill text.
-3. Every external provider needs an API key: a personal key (set by each user from the chat control) or a shared key (set by a user holding `BIFROST ChatSvc ori`). Copilot needs neither — it uses Microsoft-managed resources and must be enabled in **Copilot & AI Capabilities**.
-4. Mark one language model as default, or assign a specific one per user on **User Setup Editor** in the **Language Model Code** field.
-5. The Bifrost Chat FactBox appears on the supported pages once a user has both the permission and a resolvable language model. The external providers additionally need HttpClient requests allowed for this extension (Bragi's Setup page warns when they are not).
 
 ## Development
 
 - Open `al.code-workspace` in VS Code.
 - Development containers: COSMO Alpaca `bc28-is` and `bc28-w1` (see `app/.vscode/launch.json`).
+- Build locally with `alc.exe` from the AL extension, with CodeCop, UICop and AppSourceCop enabled; symbols live in `app/.alpackages`. Zero errors and zero warnings beyond the suppressions in `app.json` is the bar.
+- Publish and run the tests with `bc-origo-bifrost-core/tools/Publish-BifrostApp.ps1` and `Run-BifrostTests.ps1`.
 - Standards: [Origo BC Development Standards](https://github.com/OrigoSoftwareSolutions/bc-dev-standards). Project rules are in `.claude/CLAUDE.md`.
 - Every object carries the mandatory `ori` suffix; the brand name is carried by the namespace, not by object names.
-
-## Documentation
-
-- English: `app/docs/en-us/` - Icelandic: `app/docs/is-is/`
-- Message type reference: `app/docs/en-us/Chat_Message_Types.md`
-- Provider extensibility: `app/docs/en-us/Bragi_Extensibility.md`
 
 <!-- AUTO-UPDATE-START -->
 # COSMO Alpaca AL-Go AppSource App Template

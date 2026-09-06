@@ -5,7 +5,7 @@ using Origo.Bifrost;
 
 pageextension 10035367 "Bifrost Chat PurchInvoices ori" extends "Purchase Invoices"
 {
-    ContextSensitiveHelpPage = 'BifrostChat.html';
+    ContextSensitiveHelpPage = 'bifrost-chat';
     actions
     {
         addlast(Processing)

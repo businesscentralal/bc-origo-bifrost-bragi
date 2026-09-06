@@ -61,6 +61,19 @@ Shared infrastructure lives in `app/src/Providers/Shared/`: `LangModel Prov. Bas
 gate, permission set `BIFROST ChatSvc ori`), `Chat Http Notif. Action ori`, `LLM Req Log Masker ori`.
 Object ids 10035406-10035421 are used; the next free id in Bragi's range is 10035422.
 
+## Documentation
+
+Documentation lives in businesscentralal/bifrost (site bifrost.origo.is); no Help/ or docs/ folders in
+this repo - deviation from the Origo PR gateway check 8 approved by the user 2026-09-06.
+
+- Product documentation: https://bifrost.origo.is/en-us/bragi/ (`docs/bragi/` in the site repository)
+- In-product help: https://bifrost.origo.is/en-us/help/bragi/ (`help/bragi/`)
+- `app.json` points at those URLs through `help` and `contextSensitiveHelpUrl`; `ContextSensitiveHelpPage`
+  on every page and page extension carries the Docusaurus slug (`bifrost-chat`,
+  `bifrost-lang-model-card`, `bifrost-lang-model-list`), not an HTML file name. When you add a page,
+  add the matching `help/bragi/<slug>.md` in the site repository - and its Icelandic translation under
+  `i18n/is-IS/docusaurus-plugin-content-docs-help-bragi/current/`.
+
 ## Development Standards
 
 This project follows the **Origo BC Development Standards** (https://github.com/OrigoSoftwareSolutions/bc-dev-standards).
@@ -100,8 +113,8 @@ Key rules always in effect:
 ## Message Type Conventions
 - Bragi owns exactly one message type, `LLM.Prompt.Complete`, registered on Foundation's `Message Type ori`
   enum by `Bragi Message Type ori`. It has an `LLM Prompt Compl Impl ori` codeunit (`ExecuteBifrostTask`),
-  an `LLM Prompt Compl Help ori` help codeunit and a section in `app/docs/en-us/Chat_Message_Types.md`
-  and `app/docs/is-is/Chat_Message_Types.md`.
+  an `LLM Prompt Compl Help ori` help codeunit and a section in the message-type reference on
+  bifrost.origo.is (`docs/bragi/message-types.md` in the `businesscentralal/bifrost` repository).
 - Errors must be returned as `status = Error` with a helpful message via `Argument.RespondWithError`;
   never let an unhandled exception reach the API.
 

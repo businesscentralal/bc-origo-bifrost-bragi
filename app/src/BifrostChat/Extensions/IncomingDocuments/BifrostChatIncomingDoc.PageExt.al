@@ -5,7 +5,7 @@ using Origo.Bifrost;
 
 pageextension 10035357 "Bifrost Chat IncomingDoc ori" extends "Incoming Document"
 {
-    ContextSensitiveHelpPage = 'BifrostChat.html';
+    ContextSensitiveHelpPage = 'bifrost-chat';
     layout
     {
         addfirst(factboxes)

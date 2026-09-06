@@ -5,7 +5,7 @@ using Origo.Bifrost;
 
 pageextension 10035354 "Bifrost Chat VATEntries ori" extends "VAT Entries"
 {
-    ContextSensitiveHelpPage = 'BifrostChat.html';
+    ContextSensitiveHelpPage = 'bifrost-chat';
     layout
     {
         addfirst(factboxes)

@@ -5,7 +5,7 @@ using Origo.Bifrost;
 
 pageextension 10035378 "Bifrost Chat SalesRetOrder ori" extends "Sales Return Order"
 {
-    ContextSensitiveHelpPage = 'BifrostChat.html';
+    ContextSensitiveHelpPage = 'bifrost-chat';
     layout
     {
         addfirst(factboxes)

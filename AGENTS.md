@@ -60,15 +60,17 @@ app/                          AppSource app "Bifrost Bragi" (Origo, range 100353
     Extensions/               Extensions of Bifrost Foundation objects (enum, table, page)
     ChatGate.Table.al         "Chat Gate ori" — the permission gate table
     Permission Set/           BIFROST Bragi / BIFROST Bragi Rd / BIFROST Chat
-  docs/                       Markdown reference documentation (en-us, is-is)
-  Help/                       HTML help (en-US, is-IS) published to origopublic blob storage
   Translations/               Generated .g.xlf + the maintained is-IS.xlf
   assets/                     Logo250x250.png
 
 test/                         Test app "Bifrost Bragi - Tests" (range 96000-96199)
   src/                        Mock provider + enum extensions, Bragi mock message type
   test/BifrostChat/           5 test codeunits, 114 tests
+  reports/                    Internal test reports (not published)
 ```
+
+Documentation is not kept in this repository. Product docs and in-product help for every Bifröst app
+live in `businesscentralal/bifrost` and are published at https://bifrost.origo.is.
 
 ---
 

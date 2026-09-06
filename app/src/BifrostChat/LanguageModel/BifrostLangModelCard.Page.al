@@ -13,7 +13,7 @@ using System.Utilities;
 page 10035343 "Bifrost LangModel Card ori"
 {
     Caption = 'Bifrost Language Model', Comment = 'is-IS=Bifröst mállíkan';
-    ContextSensitiveHelpPage = 'BifrostLangModelCard.html';
+    ContextSensitiveHelpPage = 'bifrost-lang-model-card';
     PageType = Card;
     SourceTable = "Bifrost Language Model ori";
     ApplicationArea = All;

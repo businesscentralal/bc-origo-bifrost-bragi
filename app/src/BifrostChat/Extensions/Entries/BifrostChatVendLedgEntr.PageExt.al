@@ -5,7 +5,7 @@ using Origo.Bifrost;
 
 pageextension 10035355 "Bifrost Chat VendLedgEntr ori" extends "Vendor Ledger Entries"
 {
-    ContextSensitiveHelpPage = 'BifrostChat.html';
+    ContextSensitiveHelpPage = 'bifrost-chat';
     layout
     {
         addfirst(factboxes)
