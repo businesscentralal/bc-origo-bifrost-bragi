@@ -26,6 +26,19 @@ codeunit 10035390 "Copilot Install ori"
         ChatProvidersInstall: Codeunit "Chat Providers Install ori";
     begin
         ChatProvidersInstall.TakeOverChatProviderData();
+        RegisterSecrets();
+    end;
+
+    /// <summary>
+    /// Registers the API key secrets of every existing language model with the Bifrost Foundation
+    /// secret store, so the administrator sees on Bifrost App Secrets which keys still need a value.
+    /// Idempotent - called from install and from upgrade.
+    /// </summary>
+    internal procedure RegisterSecrets()
+    var
+        BragiSecrets: Codeunit "Bragi Secrets ori";
+    begin
+        BragiSecrets.RegisterAll();
     end;
 
     internal procedure RegisterCapability()

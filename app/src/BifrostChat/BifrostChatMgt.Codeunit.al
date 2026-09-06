@@ -131,8 +131,8 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
         BifrostLanguageModel: Record "Bifrost Language Model ori";
         BifrostUserSetup: Record "User Setup ori";
         TempArgument: Record "Bifrost Chat Argument ori" temporary;
+        BragiSecrets: Codeunit "Bragi Secrets ori";
         Provider: Interface "Bifrost LangModel Provider ori";
-        ServiceKeyTok: Label 'Bifrost_Chat_Svc_', Locked = true;
         ConfigObject: JsonObject;
         ConfigText: Text;
         RoleSkill: Text;
@@ -144,7 +144,7 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
         if ConfigObject.ReadFrom(ConfigText) then begin
             BifrostSetup.GetRecordOnce();
             SetJsonProperty(ConfigObject, 'debug', BifrostSetup."Request Debug Mode");
-            SetJsonProperty(ConfigObject, 'hasServiceKey', IsolatedStorage.Contains(ServiceKeyTok + Format(BifrostLanguageModel.SystemId, 0, 4), DataScope::Company));
+            SetJsonProperty(ConfigObject, 'hasServiceKey', BragiSecrets.HasServiceKey(BifrostLanguageModel.Code));
             SetJsonProperty(ConfigObject, 'canManageServiceKey', GetProviderBool(Provider, TempArgument, TempArgument."Procedure Type"::HasServiceKeyPermission));
             SetJsonProperty(ConfigObject, 'requiresApiKey', GetProviderBool(Provider, TempArgument, TempArgument."Procedure Type"::RequiresApiKey));
             SetJsonProperty(ConfigObject, 'apiKeyLabel', GetProviderText(Provider, TempArgument, TempArgument."Procedure Type"::GetApiKeyLabel));
@@ -170,42 +170,43 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
     end;
 
     /// <summary>
-    /// Delegates to the current provider's SaveApiKey.
+    /// Stores the current user's personal API key for the active language model in the
+    /// Bifrost secret store, or removes it when the key is blank.
     /// </summary>
     /// <param name="ApiKey">The API key text entered by the user.</param>
     [NonDebuggable]
     procedure SaveApiKey(ApiKey: Text)
     var
         BifrostLanguageModel: Record "Bifrost Language Model ori";
-        UserKeyTok: Label 'Bifrost_Chat_Usr_', Locked = true;
-        StorageKey: Text;
+        BragiSecrets: Codeunit "Bragi Secrets ori";
     begin
         GetLangModelProviderWithModel(BifrostLanguageModel);
-        StorageKey := UserKeyTok + Format(BifrostLanguageModel.SystemId, 0, 4) + '_' + Format(UserSecurityId(), 0, 4);
-        if ApiKey = '' then begin
-            if IsolatedStorage.Contains(StorageKey, DataScope::Company) then
-                IsolatedStorage.Delete(StorageKey, DataScope::Company);
-        end else
-            IsolatedStorage.Set(StorageKey, ApiKey, DataScope::Company);
+        if BifrostLanguageModel.Code = '' then
+            exit;
+        if ApiKey = '' then
+            BragiSecrets.ClearUserKey(BifrostLanguageModel.Code)
+        else
+            BragiSecrets.SetUserKey(BifrostLanguageModel.Code, ApiKey);
     end;
 
     /// <summary>
-    /// Delegates to the current provider's SaveServiceApiKey.
+    /// Stores the shared (service) API key of the active language model in the Bifrost secret
+    /// store, or removes it when the key is blank. Requires the BIFROST ChatSvc ori permission set.
     /// </summary>
+    /// <param name="ApiKey">The API key text entered by the administrator.</param>
     [NonDebuggable]
     procedure SaveServiceApiKey(ApiKey: Text)
     var
         BifrostLanguageModel: Record "Bifrost Language Model ori";
-        ServiceKeyTok: Label 'Bifrost_Chat_Svc_', Locked = true;
-        StorageKey: Text;
+        BragiSecrets: Codeunit "Bragi Secrets ori";
     begin
         GetLangModelProviderWithModel(BifrostLanguageModel);
-        StorageKey := ServiceKeyTok + Format(BifrostLanguageModel.SystemId, 0, 4);
-        if ApiKey = '' then begin
-            if IsolatedStorage.Contains(StorageKey, DataScope::Company) then
-                IsolatedStorage.Delete(StorageKey, DataScope::Company);
-        end else
-            IsolatedStorage.Set(StorageKey, ApiKey, DataScope::Company);
+        if BifrostLanguageModel.Code = '' then
+            exit;
+        if ApiKey = '' then
+            BragiSecrets.ClearServiceKey(BifrostLanguageModel.Code)
+        else
+            BragiSecrets.SetServiceKey(BifrostLanguageModel.Code, ApiKey);
     end;
 
     /// <summary>
@@ -264,18 +265,15 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
     end;
 
     /// <summary>
-    /// Delegates to the current provider's ClearCredentials.
+    /// Removes the current user's personal API key for the active language model.
     /// </summary>
     procedure ClearCredentials()
     var
         BifrostLanguageModel: Record "Bifrost Language Model ori";
-        UserKeyTok: Label 'Bifrost_Chat_Usr_', Locked = true;
-        StorageKey: Text;
+        BragiSecrets: Codeunit "Bragi Secrets ori";
     begin
         GetLangModelProviderWithModel(BifrostLanguageModel);
-        StorageKey := UserKeyTok + Format(BifrostLanguageModel.SystemId, 0, 4) + '_' + Format(UserSecurityId(), 0, 4);
-        if IsolatedStorage.Contains(StorageKey, DataScope::Company) then
-            IsolatedStorage.Delete(StorageKey, DataScope::Company);
+        BragiSecrets.ClearUserKey(BifrostLanguageModel.Code);
     end;
 
     [NonDebuggable]
@@ -283,9 +281,8 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
     var
         BifrostSetup: Record "Setup ori";
         BifrostUserSetup: Record "User Setup ori";
-        UserKeyTok: Label 'Bifrost_Chat_Usr_', Locked = true;
-        ServiceKeyTok: Label 'Bifrost_Chat_Svc_', Locked = true;
-        ApiKeyValue: Text;
+        BragiSecrets: Codeunit "Bragi Secrets ori";
+        ApiKeyValue: SecretText;
     begin
         TempArgument.Init();
         TempArgument."Language Model SystemId" := BifrostLanguageModel.SystemId;
@@ -305,12 +302,7 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
         if BifrostSetup.Get() then
             TempArgument."Debug Mode" := BifrostSetup."Request Debug Mode";
 
-        if IsolatedStorage.Get(UserKeyTok + Format(BifrostLanguageModel.SystemId, 0, 4) + '_' + Format(UserSecurityId(), 0, 4), DataScope::Company, ApiKeyValue) then
-            if ApiKeyValue <> '' then begin
-                TempArgument.SetApiKey(ApiKeyValue);
-                exit;
-            end;
-        if IsolatedStorage.Get(ServiceKeyTok + Format(BifrostLanguageModel.SystemId, 0, 4), DataScope::Company, ApiKeyValue) then
+        if BragiSecrets.TryGetApiKey(BifrostLanguageModel.Code, ApiKeyValue) then
             TempArgument.SetApiKey(ApiKeyValue);
     end;
 

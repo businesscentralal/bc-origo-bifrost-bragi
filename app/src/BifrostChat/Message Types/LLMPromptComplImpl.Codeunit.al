@@ -155,9 +155,8 @@ codeunit 10035396 "LLM Prompt Compl Impl ori" implements "Msg Interface ori"
     [NonDebuggable]
     local procedure BuildChatArgument(var BifrostLanguageModel: Record "Bifrost Language Model ori"; var TempChatArg: Record "Bifrost Chat Argument ori" temporary)
     var
-        UserKeyTok: Label 'Bifrost_Chat_Usr_', Locked = true;
-        ServiceKeyTok: Label 'Bifrost_Chat_Svc_', Locked = true;
-        ApiKeyValue: Text;
+        BragiSecrets: Codeunit "Bragi Secrets ori";
+        ApiKeyValue: SecretText;
     begin
         TempChatArg.Init();
         TempChatArg."Language Model SystemId" := BifrostLanguageModel.SystemId;
@@ -165,12 +164,7 @@ codeunit 10035396 "LLM Prompt Compl Impl ori" implements "Msg Interface ori"
         TempChatArg.Model := BifrostLanguageModel.Model;
         TempChatArg."Timeout Ms" := BifrostLanguageModel."Timeout Seconds" * 1000;
         TempChatArg."Max Tokens" := BifrostLanguageModel."Max Tokens";
-        if IsolatedStorage.Get(UserKeyTok + Format(BifrostLanguageModel.SystemId, 0, 4) + '_' + Format(UserSecurityId(), 0, 4), DataScope::Company, ApiKeyValue) then
-            if ApiKeyValue <> '' then begin
-                TempChatArg.SetApiKey(ApiKeyValue);
-                exit;
-            end;
-        if IsolatedStorage.Get(ServiceKeyTok + Format(BifrostLanguageModel.SystemId, 0, 4), DataScope::Company, ApiKeyValue) then
+        if BragiSecrets.TryGetApiKey(BifrostLanguageModel.Code, ApiKeyValue) then
             TempChatArg.SetApiKey(ApiKeyValue);
     end;
 

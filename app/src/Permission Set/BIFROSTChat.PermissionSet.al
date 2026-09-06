@@ -16,6 +16,8 @@ permissionset 10035398 "BIFROST Chat ori"
 
     Permissions =
         tabledata "Chat Gate ori" = RIMD,
+        codeunit "Bragi Secrets ori" = X,
+        codeunit "Secret Store ori" = X,
         codeunit "LangModel Prov. Base ori" = X,
         codeunit "LangModel API Client ori" = X,
         codeunit "LangModel Chat Proxy ori" = X,

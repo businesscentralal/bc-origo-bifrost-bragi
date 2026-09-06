@@ -142,19 +142,25 @@ table 10035335 "Bifrost Language Model ori"
         }
     }
 
+    trigger OnInsert()
+    var
+        BragiSecrets: Codeunit "Bragi Secrets ori";
+    begin
+        BragiSecrets.Register(Code);
+    end;
+
+    trigger OnRename()
+    var
+        BragiSecrets: Codeunit "Bragi Secrets ori";
+    begin
+        BragiSecrets.MoveSecrets(xRec.Code, Code);
+    end;
+
     trigger OnDelete()
     var
-        UserKeyTok: Label 'Bifrost_Chat_Usr_', Locked = true;
-        ServiceKeyTok: Label 'Bifrost_Chat_Svc_', Locked = true;
-        UserStorageKey: Text;
-        ServiceStorageKey: Text;
+        BragiSecrets: Codeunit "Bragi Secrets ori";
     begin
-        UserStorageKey := UserKeyTok + Format(SystemId, 0, 4) + '_' + Format(UserSecurityId(), 0, 4);
-        ServiceStorageKey := ServiceKeyTok + Format(SystemId, 0, 4);
-        if IsolatedStorage.Contains(UserStorageKey, DataScope::Company) then
-            IsolatedStorage.Delete(UserStorageKey, DataScope::Company);
-        if IsolatedStorage.Contains(ServiceStorageKey, DataScope::Company) then
-            IsolatedStorage.Delete(ServiceStorageKey, DataScope::Company);
+        BragiSecrets.ClearSecrets(Code);
     end;
 
     /// <summary>

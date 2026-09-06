@@ -1,4 +1,5 @@
 namespace Origo.Bifrost.Bragi;
+using Origo.Bifrost;
 
 /// <summary>
 /// Read-only access to Bifrost Bragi. Language models can be inspected but not changed.
@@ -20,8 +21,12 @@ permissionset 10035405 "BIFROST Bragi Rd ori"
         page "Bifrost Chat Model List ori" = X,
         page "Bifrost LangModel Card ori" = X,
         page "Bifrost LangModel List ori" = X,
+        page "App Secrets ori" = X,
+        page "Bragi Setup ori" = X,
         page "Chat Focus ori" = X,
         codeunit "Bifrost Chat Mgt ori" = X,
+        codeunit "Bragi Secrets ori" = X,
+        codeunit "Secret Store ori" = X,
         codeunit "Bifrost Chat Transfer ori" = X,
         codeunit "Bifrost Chat Utils ori" = X,
         codeunit "Bifrost LangModel None ori" = X,
