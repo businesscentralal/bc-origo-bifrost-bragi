@@ -42,7 +42,8 @@ that Bragi can make itself through an extension object.
 | enum `Request Log Type ori` | `Bragi Request Log Type ori` - values `Copilot` and `LLM` + maskers |
 | table `User Setup ori` | `User Setup Bragi ori` - field `Bifrost Language Model Code` |
 | page `User Setup Editor ori` | `User Setup Editor Bragi ori` - field + Bifrost Chat FactBox |
-| page `Setup ori` | `Setup Bragi ori` - action `BifrostLangModels` + actionref |
+| page `Setup ori` | `Setup Bragi ori` - **one** action `BragiSetup` (opens `Bragi Setup ori`) + actionref in `Category_Apps` |
+| codeunit `Secret Store ori` | `Bragi Secrets ori` - registers and resolves the language model API keys |
 
 Foundation's `Help WhoAmI Get Impl ori` is `Access = Internal` and cannot be called from Bragi.
 Use `Bifrost Chat Utils ori.GetIdentityJson()`, which runs the public `Help.WhoAmI.Get` message type
@@ -59,7 +60,39 @@ rename table and the `Chat Providers Install ori` data take-over.
 Shared infrastructure lives in `app/src/Providers/Shared/`: `LangModel Prov. Base ori`,
 `LangModel API Client ori`, `LangModel Chat Proxy ori`, table `Chat Svc Gate ori` (shared-key permission
 gate, permission set `BIFROST ChatSvc ori`), `Chat Http Notif. Action ori`, `LLM Req Log Masker ori`.
-Object ids 10035406-10035421 are used; the next free id in Bragi's range is 10035422.
+Object ids 10035406-10035420 are used by the providers; 10035421 (`Bragi Setup ori`) and 10035422
+(`Bragi Secrets ori`) by the setup/secret block. **The free range is 10035423-10035484** (an earlier note
+in this file claimed 10035422 was the next free id - that was wrong, 10035421 was free too and is now used).
+Test ids used: 96000-96014; free test ids: 96015-96199.
+
+## Setup Page and Secrets (Bifrost Foundation platform rules)
+
+- **Setup**: `Setup Bragi ori` (pageextension 10035403) contains **only** `addlast(Apps)` with the
+  `BragiSetup` action and `addlast(Category_Apps)` with its actionref - no fields, no other groups, no
+  trigger. Everything else lives on `Bragi Setup ori` (page 10035421, help slug `bragi-setup`), which
+  shows the language models, the MCP tool count and the missing API keys, opens **Bifrost App Secrets**
+  filtered to Bragi, and carries the HttpClient notification in `OnOpenPage`.
+- **Secrets**: Bragi never touches IsolatedStorage. `Bragi Secrets ori` (codeunit 10035422) wraps
+  Foundation's `Secret Store ori`. Codes per language model:
+
+  | Secret code | Scope | Purpose |
+  | --- | --- | --- |
+  | `LANGMODEL-<Code>-API-KEY` | `Company` | shared key for the whole company |
+  | `LANGMODEL-<Code>-USER-API-KEY` | `"Company And User"` | personal key of one user |
+
+  `<Code>` is the uppercased language model code. The longest possible secret code is 43 characters
+  (10 + `Code[20]` + 13), so a model code is never truncated.
+- Both codes are registered on insert and rename of a language model, and from
+  `Copilot Install ori.OnInstallAppPerCompany` / `Copilot Upgrade ori.OnUpgradePerCompany` for every
+  existing model. `Register` is idempotent. `OnDelete` clears both values.
+- Reads go through `Bragi Secrets ori.TryGetApiKey` (personal key first, then shared, both with
+  `MarkUsed`). Values are `SecretText` all the way into the HTTP header - `SecretText.Unwrap()` is
+  `OnPrem`-scoped and must never be used here. The chat control add-in's `apiKey` config property is a
+  non-secret marker (`Bifrost Chat Argument ori.GetApiKeyIndicator()`); the JavaScript only tests it for
+  truthiness and routes every request back through AL.
+- Secret **values never migrate** between extensions. Administrators re-enter the shared key once per
+  language model and users re-enter their personal key once. Renaming a model leaves the old
+  registration rows behind with no value - `Secret Store ori` has no unregister operation.
 
 ## Documentation
 
@@ -69,8 +102,8 @@ this repo - deviation from the Origo PR gateway check 8 approved by the user 202
 - Product documentation: https://bifrost.origo.is/en-us/bragi/ (`docs/bragi/` in the site repository)
 - In-product help: https://bifrost.origo.is/en-us/help/bragi/ (`help/bragi/`)
 - `app.json` points at those URLs through `help` and `contextSensitiveHelpUrl`; `ContextSensitiveHelpPage`
-  on every page and page extension carries the Docusaurus slug (`bifrost-chat`,
-  `bifrost-lang-model-card`, `bifrost-lang-model-list`), not an HTML file name. When you add a page,
+  on every page and page extension carries the Docusaurus slug (`bragi-setup`,
+  `bifrost-chat`, `bifrost-lang-model-card`, `bifrost-lang-model-list`), not an HTML file name. When you add a page,
   add the matching `help/bragi/<slug>.md` in the site repository - and its Icelandic translation under
   `i18n/is-IS/docusaurus-plugin-content-docs-help-bragi/current/`.
 
