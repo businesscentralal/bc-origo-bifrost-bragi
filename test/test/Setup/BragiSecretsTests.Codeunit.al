@@ -19,12 +19,21 @@ codeunit 96009 "Bragi Secrets Tests"
         Assert: Codeunit "Library Assert";
         Any: Codeunit Any;
         IsInitialized: Boolean;
+        TestCodePrefixTok: Label 'X-SEC-', Locked = true;
+        TestCodeFilterTok: Label 'X-SEC-*', Locked = true;
 
     local procedure Initialize()
+    var
+        LangModel: Record "Bifrost Language Model ori";
     begin
+        LangModel.SetFilter(Code, TestCodeFilterTok);
+        if not LangModel.IsEmpty() then
+            LangModel.DeleteAll(true);
+
         if IsInitialized then
             exit;
 
+        Any.SetDefaultSeed();
         IsInitialized := true;
     end;
 
@@ -344,7 +353,7 @@ codeunit 96009 "Bragi Secrets Tests"
         BragiSecrets.SetServiceKey(OldCode, AsSecret('sk-shared'));
 
         // [WHEN] The language model is renamed
-        NewCode := CopyStr('X-SEC-R' + Format(Any.IntegerInRange(100000, 999999)), 1, MaxStrLen(NewCode));
+        NewCode := UnusedLanguageModelCode();
         LangModel.Rename(NewCode);
 
         // [THEN] The key is stored under the new code and gone from the old one
@@ -355,9 +364,18 @@ codeunit 96009 "Bragi Secrets Tests"
     local procedure CreateLanguageModel(var LangModel: Record "Bifrost Language Model ori")
     begin
         LangModel.Init();
-        LangModel.Code := CopyStr('X-SEC-' + Format(Any.IntegerInRange(100000, 999999)), 1, MaxStrLen(LangModel.Code));
+        LangModel.Code := UnusedLanguageModelCode();
         LangModel.Description := 'Bragi secret store test';
         LangModel.Insert(true);
+    end;
+
+    local procedure UnusedLanguageModelCode() NewCode: Code[20]
+    var
+        LangModel: Record "Bifrost Language Model ori";
+    begin
+        repeat
+            NewCode := CopyStr(TestCodePrefixTok + Format(Any.IntegerInRange(100000, 999999)), 1, MaxStrLen(NewCode));
+        until not LangModel.Get(NewCode);
     end;
 
     local procedure AsSecret(Value: Text) Secret: SecretText
