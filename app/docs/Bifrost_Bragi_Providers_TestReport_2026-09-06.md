@@ -21,18 +21,13 @@
 
 ## Unit tests
 
-Both containers: **149 tests, 148 passed, 1 failed** (`Run-BifrostTests.ps1`, results in `TestResults/bragi_providers_is.xml` and `TestResults/bragi_providers_w1.xml`).
+Both containers: **150 tests, 150 passed, 0 failed** (`Run-BifrostTests.ps1`, 2026-09-06 00:30, results in `TestResults/bragi_is.xml` and `TestResults/bragi_w1.xml`). The first run of the day was 149 tests with 1 failure; see "Resolved failure" below.
 
-New test codeunits (33 tests): `LangModel Prov Base Tests` (17), `LangModel API Client Tests` (5), `LangModel Providers Tests` (7), `Chat Svc Gate Tests` (4). All 116 pre-existing Bragi tests still pass unchanged.
+New test codeunits (34 tests): `LangModel Prov Base Tests` (17), `LangModel API Client Tests` (5), `LangModel Providers Tests` (7), `Chat Svc Gate Tests` (5). All 116 pre-existing Bragi tests still pass unchanged.
 
-### Known failure (both containers, same cause)
+### Resolved failure (both containers, same cause)
 
-`Chat Svc Gate Tests.ChatSvcGate_WritePermission_WithRestrictivePermissions` fails with:
-
-> `Assert.IsTrue failed. WritePermission should be true. Assign BIFROST ChatSvc (Chat Service Gate) permission set to the test user.`
-
-This is a **precondition gap, not a code defect** — the new `BIFROST ChatSvc ori` permission set has not yet been assigned to the AL Test Runner's execution user in either container. The `Access Control` table is an internal Business Central table (confirmed: `Data.Records.Get` refuses it with "internal table"), so it cannot be granted through the generic Bifrost API or an MCP tool; it needs a one-time assignment in the BC UI (or via `AL: Publish and set breakpoints` test-runner setup) on both containers, exactly mirroring the equivalent `CE Chat Svc` precondition the legacy test suite documented for the same scenario. The other three tests in that codeunit (which run under `TestPermissions::Disabled`, matching the SUPER-equivalent behaviour) pass on both containers.
-**Action needed:** an administrator assigns `BIFROST ChatSvc ori` to the test user on bc28-is and bc28-w1.
+`Chat Svc Gate Tests.ChatSvcGate_WritePermission_WithRestrictivePermissions` initially failed because it asserted that the *container's* test user already held `BIFROST ChatSvc ori`. Assigning the set to the user through `Access Control` did not help: under `TestPermissions::Restrictive` the test runner's permission mock decides, not the user's assignments. The test now grants the set itself with `Library - Lower Permissions` (`SetO365Basic` + `AddPermissionSet('BIFROST ChatSvc ori')`), and a new test `ChatSvcGate_WritePermission_WithoutPermissionSet` proves the gate denies a user without it. No container setup is required any more.
 
 ## MCP smoke test (bc28-is, CRONUS IS)
 
@@ -65,6 +60,5 @@ The legacy *Origo Cloud Events Chat* app's only persistent table, `CE Chat Servi
 
 ## Follow-ups
 
-1. Assign `BIFROST ChatSvc ori` to the AL Test Runner user on both containers (see "Known failure" above).
-2. When a real API key becomes available for any provider, extend the smoke test to exercise the actual HTTP call path.
-3. Consider registering `LangModel Chat Proxy ori` / `LangModel API Client ori`'s `SendToEndpoint` with an `OnBeforeSendRequest`-style integration event (mirroring the legacy `CE Chat API Client ori` pattern, but on the path providers actually use) if HTTP-level unit testing is wanted in a future story.
+1. When a real API key becomes available for any provider, extend the smoke test to exercise the actual HTTP call path.
+2. Consider registering `LangModel Chat Proxy ori` / `LangModel API Client ori`'s `SendToEndpoint` with an `OnBeforeSendRequest`-style integration event (mirroring the legacy `CE Chat API Client ori` pattern, but on the path providers actually use) if HTTP-level unit testing is wanted in a future story.
