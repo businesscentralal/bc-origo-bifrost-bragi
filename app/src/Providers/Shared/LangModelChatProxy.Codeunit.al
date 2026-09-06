@@ -27,14 +27,14 @@ codeunit 10035412 "LangModel Chat Proxy ori"
         OpenAITools: JsonArray;
         Model: Text;
         SystemPrompt: Text;
-        ApiKey: Text;
+        ApiKey: SecretText;
         ChatUrl: Text;
     begin
         if not PayloadObject.ReadFrom(PayloadJson) then
             exit(BuildErrorResponse('Invalid payload JSON.'));
 
         ApiKey := Argument.GetApiKey();
-        if ApiKey = '' then
+        if ApiKey.IsEmpty() then
             exit(BuildErrorResponse('API key not configured.'));
 
         Model := GetTextProperty(PayloadObject, 'model');
@@ -66,11 +66,11 @@ codeunit 10035412 "LangModel Chat Proxy ori"
         OpenAITools: JsonArray;
         MessagesToken: JsonToken;
         Model: Text;
-        ApiKey: Text;
+        ApiKey: SecretText;
         ChatUrl: Text;
     begin
         ApiKey := Argument.GetApiKey();
-        if ApiKey = '' then
+        if ApiKey.IsEmpty() then
             exit(BuildErrorResponse('API key not configured.'));
 
         if not StateObject.ReadFrom(ConversationState) then
@@ -91,7 +91,7 @@ codeunit 10035412 "LangModel Chat Proxy ori"
     end;
 
     [NonDebuggable]
-    local procedure CallModelOnce(var ApiClient: Codeunit "LangModel API Client ori"; ChatUrl: Text; AuthHeaderName: Text; ApiKey: Text; TimeoutMs: Integer; MaxTokens: Integer; var Messages: JsonArray; OpenAITools: JsonArray; Model: Text): Text
+    local procedure CallModelOnce(var ApiClient: Codeunit "LangModel API Client ori"; ChatUrl: Text; AuthHeaderName: Text; ApiKey: SecretText; TimeoutMs: Integer; MaxTokens: Integer; var Messages: JsonArray; OpenAITools: JsonArray; Model: Text): Text
     var
         Response: JsonObject;
         RequestBody: JsonObject;
@@ -247,7 +247,7 @@ codeunit 10035412 "LangModel Chat Proxy ori"
 
     [TryFunction]
     [NonDebuggable]
-    local procedure TrySendToModel(var ApiClient: Codeunit "LangModel API Client ori"; ChatUrl: Text; AuthHeaderName: Text; ApiKey: Text; TimeoutMs: Integer; RequestBody: JsonObject; var Response: JsonObject)
+    local procedure TrySendToModel(var ApiClient: Codeunit "LangModel API Client ori"; ChatUrl: Text; AuthHeaderName: Text; ApiKey: SecretText; TimeoutMs: Integer; RequestBody: JsonObject; var Response: JsonObject)
     begin
         Response := ApiClient.SendToEndpoint(ChatUrl, AuthHeaderName, ApiKey, TimeoutMs, RequestBody);
     end;

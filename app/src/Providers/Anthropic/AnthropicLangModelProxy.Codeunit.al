@@ -33,13 +33,13 @@ codeunit 10035417 "Anthropic LangModel Proxy ori"
         AnthropicTools: JsonArray;
         Model: Text;
         SystemPrompt: Text;
-        ApiKey: Text;
+        ApiKey: SecretText;
     begin
         if not PayloadObject.ReadFrom(PayloadJson) then
             exit(BuildErrorResponse('Invalid payload JSON.'));
 
         ApiKey := Argument.GetApiKey();
-        if ApiKey = '' then
+        if ApiKey.IsEmpty() then
             exit(BuildErrorResponse('API key not configured.'));
 
         Model := GetText(PayloadObject, 'model');
@@ -66,13 +66,13 @@ codeunit 10035417 "Anthropic LangModel Proxy ori"
         MessageToken: JsonToken;
         Model: Text;
         SystemPrompt: Text;
-        ApiKey: Text;
+        ApiKey: SecretText;
     begin
         if not PayloadObject.ReadFrom(PayloadJson) then
             exit(BuildErrorResponse('Invalid payload JSON.'));
 
         ApiKey := Argument.GetApiKey();
-        if ApiKey = '' then
+        if ApiKey.IsEmpty() then
             exit(BuildErrorResponse('API key not configured.'));
 
         Model := ProviderBase.GetModel(Argument, 'claude-sonnet-4-6');
@@ -94,7 +94,7 @@ codeunit 10035417 "Anthropic LangModel Proxy ori"
     end;
 
     [NonDebuggable]
-    local procedure CallAnthropicDirect(var Messages: JsonArray; Model: Text; SystemPrompt: Text; ApiKey: Text; BaseUrl: Text; TimeoutMs: Integer; MaxTokens: Integer): Text
+    local procedure CallAnthropicDirect(var Messages: JsonArray; Model: Text; SystemPrompt: Text; ApiKey: SecretText; BaseUrl: Text; TimeoutMs: Integer; MaxTokens: Integer): Text
     var
         Response: JsonObject;
         RequestBody: JsonObject;
@@ -191,10 +191,10 @@ codeunit 10035417 "Anthropic LangModel Proxy ori"
         MessagesToken: JsonToken;
         Model: Text;
         SystemPrompt: Text;
-        ApiKey: Text;
+        ApiKey: SecretText;
     begin
         ApiKey := Argument.GetApiKey();
-        if ApiKey = '' then
+        if ApiKey.IsEmpty() then
             exit(BuildErrorResponse('API key not configured.'));
 
         if not StateObject.ReadFrom(ConversationState) then
@@ -219,7 +219,7 @@ codeunit 10035417 "Anthropic LangModel Proxy ori"
     end;
 
     [NonDebuggable]
-    local procedure CallAnthropicOnce(var Messages: JsonArray; AnthropicTools: JsonArray; Model: Text; SystemPrompt: Text; ApiKey: Text; BaseUrl: Text; TimeoutMs: Integer; MaxTokens: Integer): Text
+    local procedure CallAnthropicOnce(var Messages: JsonArray; AnthropicTools: JsonArray; Model: Text; SystemPrompt: Text; ApiKey: SecretText; BaseUrl: Text; TimeoutMs: Integer; MaxTokens: Integer): Text
     var
         Response: JsonObject;
         RequestBody: JsonObject;
@@ -265,13 +265,13 @@ codeunit 10035417 "Anthropic LangModel Proxy ori"
 
     [TryFunction]
     [NonDebuggable]
-    local procedure TrySendMessages(BaseUrl: Text; ApiKey: Text; TimeoutMs: Integer; RequestBody: JsonObject; var Response: JsonObject)
+    local procedure TrySendMessages(BaseUrl: Text; ApiKey: SecretText; TimeoutMs: Integer; RequestBody: JsonObject; var Response: JsonObject)
     begin
         Response := DoSendMessages(BaseUrl, ApiKey, TimeoutMs, RequestBody);
     end;
 
     [NonDebuggable]
-    local procedure DoSendMessages(BaseUrl: Text; ApiKey: Text; TimeoutMs: Integer; RequestBody: JsonObject) Response: JsonObject
+    local procedure DoSendMessages(BaseUrl: Text; ApiKey: SecretText; TimeoutMs: Integer; RequestBody: JsonObject) Response: JsonObject
     var
         HttpClientVar: HttpClient;
         HttpContent: HttpContent;
@@ -316,7 +316,7 @@ codeunit 10035417 "Anthropic LangModel Proxy ori"
     /// Lists models from the Anthropic Models API.
     /// </summary>
     [NonDebuggable]
-    internal procedure ListModels(BaseUrl: Text; ApiKey: Text) Models: JsonArray
+    internal procedure ListModels(BaseUrl: Text; ApiKey: SecretText) Models: JsonArray
     var
         HttpClientVar: HttpClient;
         HttpResponse: HttpResponseMessage;

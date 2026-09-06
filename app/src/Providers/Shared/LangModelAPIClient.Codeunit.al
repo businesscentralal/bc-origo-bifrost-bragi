@@ -23,6 +23,7 @@ codeunit 10035411 "LangModel API Client ori"
         LastIsSuccess: Boolean;
         HasPendingLog: Boolean;
         ServiceNameTok: Label 'LLM', Locked = true;
+        BearerTok: Label 'Bearer %1', Locked = true;
         CallFailedErr: Label 'Could not reach the LLM API. %1', Comment = '%1 = error detail, is-IS=Náði ekki sambandi við LLM API. %1';
         ApiStatusErr: Label 'LLM API returned status %1. %2', Comment = '%1 = status code, %2 = detail, is-IS=LLM API skilaði stöðu %1. %2';
         InvalidResponseErr: Label 'Received an invalid response from the LLM API.', Comment = 'is-IS=Ógilt svar barst frá LLM API.';
@@ -58,7 +59,7 @@ codeunit 10035411 "LangModel API Client ori"
     /// Sends a chat completion to an explicit endpoint URL with the specified auth.
     /// </summary>
     [NonDebuggable]
-    procedure SendToEndpoint(ChatUrl: Text; AuthHeaderName: Text; ApiKey: Text; TimeoutMs: Integer; RequestBody: JsonObject) Response: JsonObject
+    procedure SendToEndpoint(ChatUrl: Text; AuthHeaderName: Text; ApiKey: SecretText; TimeoutMs: Integer; RequestBody: JsonObject) Response: JsonObject
     var
         HttpClientVar: HttpClient;
         HttpContent: HttpContent;
@@ -79,7 +80,7 @@ codeunit 10035411 "LangModel API Client ori"
 
         DefaultHeaders := HttpClientVar.DefaultRequestHeaders();
         if AuthHeaderName = 'Authorization' then
-            DefaultHeaders.Add('Authorization', 'Bearer ' + ApiKey)
+            DefaultHeaders.Add('Authorization', SecretStrSubstNo(BearerTok, ApiKey))
         else
             DefaultHeaders.Add(AuthHeaderName, ApiKey);
         HttpClientVar.Timeout(TimeoutMs);
@@ -110,7 +111,7 @@ codeunit 10035411 "LangModel API Client ori"
     /// Lists models from an explicit endpoint URL with the specified auth.
     /// </summary>
     [NonDebuggable]
-    procedure ListModelsFromEndpoint(ModelsUrl: Text; AuthHeaderName: Text; ApiKey: Text) Models: JsonArray
+    procedure ListModelsFromEndpoint(ModelsUrl: Text; AuthHeaderName: Text; ApiKey: SecretText) Models: JsonArray
     var
         HttpClientVar: HttpClient;
         HttpResponse: HttpResponseMessage;
@@ -121,7 +122,7 @@ codeunit 10035411 "LangModel API Client ori"
     begin
         DefaultHeaders := HttpClientVar.DefaultRequestHeaders();
         if AuthHeaderName = 'Authorization' then
-            DefaultHeaders.Add('Authorization', 'Bearer ' + ApiKey)
+            DefaultHeaders.Add('Authorization', SecretStrSubstNo(BearerTok, ApiKey))
         else
             DefaultHeaders.Add(AuthHeaderName, ApiKey);
 

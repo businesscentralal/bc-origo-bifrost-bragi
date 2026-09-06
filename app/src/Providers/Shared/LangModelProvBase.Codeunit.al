@@ -69,7 +69,7 @@ codeunit 10035410 "LangModel Prov. Base ori"
     [NonDebuggable]
     internal procedure IsConfigured(var Argument: Record "Bifrost Chat Argument ori" temporary; DefaultBaseUrl: Text): Boolean
     begin
-        if Argument.GetApiKey() = '' then
+        if not Argument.HasApiKey() then
             exit(false);
         exit(GetBaseUrl(Argument, DefaultBaseUrl) <> '');
     end;

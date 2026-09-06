@@ -19,6 +19,7 @@ codeunit 10035419 "Gemini LangModel Prov. ori" implements "Bifrost LangModel Pro
         ApiKeyLabelLbl: Label 'API Key', Comment = 'is-IS=API-lykill';
         ApiKeyInstructionLbl: Label 'Enter your Google AI API key.', Comment = 'is-IS=Sláðu inn Google AI API-lykilinn þinn.';
         ApiKeyPlaceholderTok: Label 'AIza...', Locked = true;
+        ApiKeyHeaderTok: Label 'x-goog-api-key', Locked = true;
         ApiKeyDocsUrlTok: Label 'https://aistudio.google.com/apikey', Locked = true;
         ApiKeyDocsLinkTextLbl: Label 'Get key from Google AI Studio', Comment = 'is-IS=Sækja lykil á Google AI Studio';
         ServiceKeyDescLbl: Label 'Shared keys are used by all users in this company who do not have a personal key.', Comment = 'is-IS=Sameiginlegir lyklar eru notaðir af öllum notendum í þessu fyrirtæki sem hafa ekki persónulegan lykil.';
@@ -100,7 +101,7 @@ codeunit 10035419 "Gemini LangModel Prov. ori" implements "Bifrost LangModel Pro
     begin
         ProviderBase.EnsureHttpClientAllowed();
         ConfigJson.Add('provider', ProviderNameTok);
-        ConfigJson.Add('apiKey', Argument.GetApiKey());
+        ConfigJson.Add('apiKey', Argument.GetApiKeyIndicator());
         ConfigJson.Add('model', ProviderBase.GetModel(Argument, DefaultModelTok));
         ConfigJson.Add('baseUrl', ProviderBase.GetBaseUrl(Argument, DefaultBaseUrlTok));
         ConfigJson.Add('timeoutMs', ProviderBase.GetTimeoutMs(Argument, 120000));
@@ -196,7 +197,7 @@ codeunit 10035419 "Gemini LangModel Prov. ori" implements "Bifrost LangModel Pro
         UserPrompt: Text;
         GenerateUrl: Text;
         ResultText: Text;
-        GenerateUrlTok: Label '%1/models/%2:generateContent?key=%3', Locked = true;
+        GenerateUrlTok: Label '%1/models/%2:generateContent', Locked = true;
     begin
         ProviderBase.EnsureHttpClientAllowed();
         UserPrompt := GetFirstUserMessage(PayloadObject);
@@ -224,10 +225,9 @@ codeunit 10035419 "Gemini LangModel Prov. ori" implements "Bifrost LangModel Pro
 
         GenerateUrl := StrSubstNo(GenerateUrlTok,
             GetNativeBaseUrl(Argument),
-            StripModelsPrefix(ProviderBase.GetModel(Argument, DefaultModelTok)),
-            Argument.GetApiKey());
+            StripModelsPrefix(ProviderBase.GetModel(Argument, DefaultModelTok)));
 
-        Response := SendGenerateContent(GenerateUrl,
+        Response := SendGenerateContent(GenerateUrl, Argument.GetApiKey(),
             ProviderBase.GetTimeoutMs(Argument, 120000), RequestBody);
 
         ResponseObj.Add('reply', ExtractGenerateContentText(Response));
@@ -292,17 +292,16 @@ codeunit 10035419 "Gemini LangModel Prov. ori" implements "Bifrost LangModel Pro
     end;
 
     [NonDebuggable]
-    local procedure SendGenerateContent(Url: Text; TimeoutMs: Integer; RequestBody: JsonObject) Response: JsonObject
+    local procedure SendGenerateContent(Url: Text; ApiKey: SecretText; TimeoutMs: Integer; RequestBody: JsonObject) Response: JsonObject
     var
         HttpClientVar: HttpClient;
         HttpContent: HttpContent;
         HttpResponse: HttpResponseMessage;
         ContentHeaders: HttpHeaders;
+        DefaultHeaders: HttpHeaders;
         RequestText: Text;
         ResponseText: Text;
-        MaskedUrl: Text;
         StartTime: DateTime;
-        KeyPos: Integer;
     begin
         RequestBody.WriteTo(RequestText);
         HttpContent.WriteFrom(RequestText);
@@ -310,6 +309,8 @@ codeunit 10035419 "Gemini LangModel Prov. ori" implements "Bifrost LangModel Pro
         if ContentHeaders.Contains('Content-Type') then
             ContentHeaders.Remove('Content-Type');
         ContentHeaders.Add('Content-Type', 'application/json');
+        DefaultHeaders := HttpClientVar.DefaultRequestHeaders();
+        DefaultHeaders.Add(ApiKeyHeaderTok, ApiKey);
         HttpClientVar.Timeout(TimeoutMs);
 
         StartTime := CurrentDateTime();
@@ -323,11 +324,7 @@ codeunit 10035419 "Gemini LangModel Prov. ori" implements "Bifrost LangModel Pro
         if not Response.ReadFrom(ResponseText) then
             Error(CallFailedErr, 'Invalid response JSON.');
 
-        MaskedUrl := Url;
-        KeyPos := MaskedUrl.IndexOf('?key=');
-        if KeyPos > 0 then
-            MaskedUrl := CopyStr(MaskedUrl, 1, KeyPos + 4) + '***';
-        LogApiCall('generateContent', 'POST', MaskedUrl,
+        LogApiCall('generateContent', 'POST', Url,
             HttpResponse.HttpStatusCode(), CurrentDateTime() - StartTime, RequestText, ResponseText);
     end;
 
@@ -394,6 +391,7 @@ codeunit 10035419 "Gemini LangModel Prov. ori" implements "Bifrost LangModel Pro
         TempNameValueBuffer: Record "Name/Value Buffer" temporary;
         HttpClientVar: HttpClient;
         HttpResponse: HttpResponseMessage;
+        DefaultHeaders: HttpHeaders;
         Response: JsonObject;
         ModelsToken: JsonToken;
         ModelToken: JsonToken;
@@ -402,12 +400,12 @@ codeunit 10035419 "Gemini LangModel Prov. ori" implements "Bifrost LangModel Pro
         ModelsUrl: Text;
         IdValue: Text;
         EntryNo: Integer;
-        ModelsUrlTok: Label '%1/models?key=%2', Locked = true;
+        ModelsUrlTok: Label '%1/models', Locked = true;
     begin
-        ModelsUrl := StrSubstNo(ModelsUrlTok,
-            GetNativeBaseUrl(Argument),
-            Argument.GetApiKey());
+        ModelsUrl := StrSubstNo(ModelsUrlTok, GetNativeBaseUrl(Argument));
 
+        DefaultHeaders := HttpClientVar.DefaultRequestHeaders();
+        DefaultHeaders.Add(ApiKeyHeaderTok, Argument.GetApiKey());
         HttpClientVar.Timeout(15000);
         if not HttpClientVar.Get(ModelsUrl, HttpResponse) then
             exit(false);
@@ -443,7 +441,7 @@ codeunit 10035419 "Gemini LangModel Prov. ori" implements "Bifrost LangModel Pro
     var
         NoKeyErr: Label 'No API key configured. Enter a personal or shared API key.', Comment = 'is-IS=Enginn API-lykill stilltur. Sláðu inn persónulegan eða sameiginlegan API-lykil.';
     begin
-        if Argument.GetApiKey() = '' then begin
+        if not Argument.HasApiKey() then begin
             Argument.SetErrorMessage(NoKeyErr);
             exit(false);
         end;

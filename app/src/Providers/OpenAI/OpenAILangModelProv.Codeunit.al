@@ -100,7 +100,7 @@ codeunit 10035413 "OpenAI LangModel Prov. ori" implements "Bifrost LangModel Pro
     begin
         ProviderBase.EnsureHttpClientAllowed();
         ConfigJson.Add('provider', ProviderNameTok);
-        ConfigJson.Add('apiKey', Argument.GetApiKey());
+        ConfigJson.Add('apiKey', Argument.GetApiKeyIndicator());
         ConfigJson.Add('model', ProviderBase.GetModel(Argument, ''));
         ConfigJson.Add('baseUrl', ProviderBase.GetBaseUrl(Argument, ''));
         ConfigJson.Add('timeoutMs', ProviderBase.GetTimeoutMs(Argument, 120000));
@@ -227,7 +227,7 @@ codeunit 10035413 "OpenAI LangModel Prov. ori" implements "Bifrost LangModel Pro
         NoKeyErr: Label 'No API key configured. Enter a personal or shared API key.', Comment = 'is-IS=Enginn API-lykill stilltur. Sláðu inn persónulegan eða sameiginlegan API-lykil.';
         NoBaseUrlErr: Label 'No Base URL configured for this language model.', Comment = 'is-IS=Engin grunnslóð stillt fyrir þetta mállíkan.';
     begin
-        if Argument.GetApiKey() = '' then begin
+        if not Argument.HasApiKey() then begin
             Argument.SetErrorMessage(NoKeyErr);
             exit(false);
         end;

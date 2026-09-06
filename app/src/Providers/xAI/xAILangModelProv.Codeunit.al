@@ -98,7 +98,7 @@ codeunit 10035418 "xAI LangModel Prov. ori" implements "Bifrost LangModel Provid
     begin
         ProviderBase.EnsureHttpClientAllowed();
         ConfigJson.Add('provider', ProviderNameTok);
-        ConfigJson.Add('apiKey', Argument.GetApiKey());
+        ConfigJson.Add('apiKey', Argument.GetApiKeyIndicator());
         ConfigJson.Add('model', ProviderBase.GetModel(Argument, DefaultModelTok));
         ConfigJson.Add('baseUrl', ProviderBase.GetBaseUrl(Argument, DefaultBaseUrlTok));
         ConfigJson.Add('timeoutMs', ProviderBase.GetTimeoutMs(Argument, 120000));
@@ -350,7 +350,7 @@ codeunit 10035418 "xAI LangModel Prov. ori" implements "Bifrost LangModel Provid
         BaseUrl: Text;
         NoKeyErr: Label 'No API key configured. Enter a personal or shared API key.', Comment = 'is-IS=Enginn API-lykill stilltur. Sláðu inn persónulegan eða sameiginlegan API-lykil.';
     begin
-        if Argument.GetApiKey() = '' then begin
+        if not Argument.HasApiKey() then begin
             Argument.SetErrorMessage(NoKeyErr);
             exit(false);
         end;

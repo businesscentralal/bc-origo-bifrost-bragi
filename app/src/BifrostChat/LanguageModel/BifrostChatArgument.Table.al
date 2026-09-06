@@ -94,7 +94,7 @@ table 10035337 "Bifrost Chat Argument ori"
 
     var
         TempModels: Record "Name/Value Buffer" temporary;
-        ApiKeyValue: Text;
+        ApiKeyValue: SecretText;
         SkillValue: Text;
         UserPromptValue: Text;
         PayloadValue: Text;
@@ -103,18 +103,52 @@ table 10035337 "Bifrost Chat Argument ori"
         ResultTextValue: Text;
         ErrorMessageValue: Text;
 
-    // --- API Key (blob for NonDebuggable) ---
+    // --- API Key (SecretText, never persisted) ---
 
+    /// <summary>
+    /// Stores the API key the provider must use for this request. The value is held as
+    /// SecretText and never reaches a table field, telemetry or an error message.
+    /// </summary>
+    /// <param name="ApiKey">The API key read from the Bifrost secret store.</param>
     [NonDebuggable]
-    procedure SetApiKey(ApiKey: Text)
+    procedure SetApiKey(ApiKey: SecretText)
     begin
         ApiKeyValue := ApiKey;
     end;
 
+    /// <summary>
+    /// Returns the API key. It stays SecretText all the way into the HTTP header or the
+    /// request URL - the value is never converted to Text.
+    /// </summary>
+    /// <returns>SecretText. The API key, empty when none is set.</returns>
     [NonDebuggable]
-    procedure GetApiKey(): Text
+    procedure GetApiKey(): SecretText
     begin
         exit(ApiKeyValue);
+    end;
+
+    /// <summary>
+    /// Returns whether an API key is available for this request.
+    /// </summary>
+    /// <returns>Boolean. True when a non-empty key is set.</returns>
+    procedure HasApiKey(): Boolean
+    begin
+        exit(not ApiKeyValue.IsEmpty());
+    end;
+
+    /// <summary>
+    /// Returns the non-secret marker the chat control add-in uses to decide whether a key is
+    /// configured. The add-in only tests the value for truthiness; the key itself never
+    /// leaves the server.
+    /// </summary>
+    /// <returns>Text. A fixed marker when a key is set, otherwise an empty string.</returns>
+    procedure GetApiKeyIndicator(): Text
+    var
+        ApiKeySetTok: Label 'set', Locked = true;
+    begin
+        if ApiKeyValue.IsEmpty() then
+            exit('');
+        exit(ApiKeySetTok);
     end;
 
     // --- Large text I/O via global variables ---

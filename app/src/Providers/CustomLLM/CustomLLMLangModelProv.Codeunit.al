@@ -98,7 +98,7 @@ codeunit 10035415 "Custom LLM LangModel Prov. ori" implements "Bifrost LangModel
     begin
         ProviderBase.EnsureHttpClientAllowed();
         ConfigJson.Add('provider', ProviderNameTok);
-        ConfigJson.Add('apiKey', Argument.GetApiKey());
+        ConfigJson.Add('apiKey', Argument.GetApiKeyIndicator());
         ConfigJson.Add('model', ProviderBase.GetModel(Argument, ''));
         ConfigJson.Add('baseUrl', ProviderBase.GetBaseUrl(Argument, ''));
         ConfigJson.Add('timeoutMs', ProviderBase.GetTimeoutMs(Argument, 300000));
