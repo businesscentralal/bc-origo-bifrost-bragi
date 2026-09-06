@@ -108,7 +108,9 @@ Key rules always in effect:
   -TestAppJson test/app.json -ResultsFile TestResults/bragi_is.xml`.
 - The AL test runner drives a web client session on a shared container. When other agents publish to the
   same container at the same time the run can return an empty result file (`Codeunits: 1  Tests:` with no
-  numbers). That is contention, not a test failure - pass a fresh `-TestSuite` name and retry.
+  numbers). Cause: the Command Line Test Tool returns no tests on the first visit of a suite name that does not
+  exist yet. `Run-BifrostTests.ps1` now visits the suite before running; if you pass your own `-TestSuite`, run twice
+  or reuse an existing name. Never switch to a fresh name to "retry" - that reproduces the empty run.
 
 ## Message Type Conventions
 - Bragi owns exactly one message type, `LLM.Prompt.Complete`, registered on Foundation's `Message Type ori`
