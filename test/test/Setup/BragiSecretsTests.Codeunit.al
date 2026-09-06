@@ -19,6 +19,7 @@ codeunit 96009 "Bragi Secrets Tests"
         Assert: Codeunit "Library Assert";
         Any: Codeunit Any;
         IsInitialized: Boolean;
+        TestCodeSequence: Integer;
         TestCodePrefixTok: Label 'X-SEC-', Locked = true;
         TestCodeFilterTok: Label 'X-SEC-*', Locked = true;
 
@@ -372,10 +373,17 @@ codeunit 96009 "Bragi Secrets Tests"
     local procedure UnusedLanguageModelCode() NewCode: Code[20]
     var
         LangModel: Record "Bifrost Language Model ori";
+        AppSecret: Record "App Secret ori";
+        BragiSecrets: Codeunit "Bragi Secrets ori";
     begin
+        // A code is only free when no language model uses it AND the secret store holds no
+        // registry row for it. Registrations outlive the model - Clear keeps the row so the
+        // administrator still sees the missing secret - so a recycled code would inherit the
+        // Set On and Last Used On stamps of an earlier test.
         repeat
-            NewCode := CopyStr(TestCodePrefixTok + Format(Any.IntegerInRange(100000, 999999)), 1, MaxStrLen(NewCode));
-        until not LangModel.Get(NewCode);
+            TestCodeSequence += 1;
+            NewCode := CopyStr(TestCodePrefixTok + Format(TestCodeSequence) + '-' + Format(Any.IntegerInRange(100000, 999999)), 1, MaxStrLen(NewCode));
+        until (not LangModel.Get(NewCode)) and (not AppSecret.Get(BragiSecrets.GetAppId(), BragiSecrets.GetServiceKeyCode(NewCode)));
     end;
 
     local procedure AsSecret(Value: Text) Secret: SecretText
