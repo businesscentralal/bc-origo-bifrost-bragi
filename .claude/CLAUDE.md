@@ -99,8 +99,8 @@ Test ids used: 96000-96014; free test ids: 96015-96199.
 Documentation lives in businesscentralal/bifrost (site bifrost.origo.is); no Help/ or docs/ folders in
 this repo - deviation from the Origo PR gateway check 8 approved by the user 2026-09-06.
 
-- Product documentation: https://bifrost.origo.is/en-us/bragi/ (`docs/bragi/` in the site repository)
-- In-product help: https://bifrost.origo.is/en-us/help/bragi/ (`help/bragi/`)
+- Product documentation: https://businesscentralal.github.io/bifrost/en-us/bragi/ (`docs/bragi/` in the site repository)
+- In-product help: https://businesscentralal.github.io/bifrost/en-us/help/bragi/ (`help/bragi/`)
 - `app.json` points at those URLs through `help` and `contextSensitiveHelpUrl`; `ContextSensitiveHelpPage`
   on every page and page extension carries the Docusaurus slug (`bragi-setup`,
   `bifrost-chat`, `bifrost-lang-model-card`, `bifrost-lang-model-list`), not an HTML file name. When you add a page,

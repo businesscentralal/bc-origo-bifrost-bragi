@@ -70,7 +70,7 @@ test/                         Test app "Bifrost Bragi - Tests" (range 96000-9619
 ```
 
 Documentation is not kept in this repository. Product docs and in-product help for every Bifröst app
-live in `businesscentralal/bifrost` and are published at https://bifrost.origo.is.
+live in `businesscentralal/bifrost` and are published at https://businesscentralal.github.io/bifrost.
 
 ---
 

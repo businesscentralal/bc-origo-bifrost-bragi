@@ -8,12 +8,12 @@ Bragi was extracted from *Bifrost Foundation* in version 28.0.0.0 and replaces t
 
 ## Documentation
 
-All Bifröst documentation lives at [bifrost.origo.is](https://bifrost.origo.is) (repository `businesscentralal/bifrost`), in English and Icelandic. There are no `docs/` or `Help/` folders in this repository.
+All Bifröst documentation lives at [bifrost.origo.is](https://businesscentralal.github.io/bifrost) (repository `businesscentralal/bifrost`), in English and Icelandic. There are no `docs/` or `Help/` folders in this repository.
 
-- [Product documentation](https://bifrost.origo.is/en-us/bragi/) - message types, setup, MCP tool server
-- [In-product help](https://bifrost.origo.is/en-us/help/bragi/) - the pages Business Central opens from the help icon
-- [Adding a chat provider](https://bifrost.origo.is/en-us/bragi/extensibility/)
-- [Building on Bifröst](https://bifrost.origo.is/en-us/extensibility/)
+- [Product documentation](https://businesscentralal.github.io/bifrost/en-us/bragi/) - message types, setup, MCP tool server
+- [In-product help](https://businesscentralal.github.io/bifrost/en-us/help/bragi/) - the pages Business Central opens from the help icon
+- [Adding a chat provider](https://businesscentralal.github.io/bifrost/en-us/bragi/extensibility/)
+- [Building on Bifröst](https://businesscentralal.github.io/bifrost/en-us/extensibility/)
 
 ## Repository layout
 
