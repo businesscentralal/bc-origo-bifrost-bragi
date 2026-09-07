@@ -30,6 +30,7 @@ permissionset 10035404 "BIFROST LLM ori"
         page "LangModel Setup ori" = X,
         page "Chat Focus ori" = X,
         codeunit "Bifrost Chat Mgt ori" = X,
+        codeunit "LangModel Registration ori" = X,
         codeunit "LangModel Secrets ori" = X,
         codeunit "Secret Store ori" = X,
         codeunit "Bifrost Chat Transfer ori" = X,

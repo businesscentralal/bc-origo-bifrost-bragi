@@ -4,6 +4,29 @@ All notable changes to Bifrost Language Models are documented here.
 
 ## [28.0.0.0] - 2026-09-07
 
+### Changed (2026-09-07) - setup notifications and wizard
+
+Setup notifications now live on the **Bifrost Setup** page only, for every app in the Bifröst family,
+and their only action is **Start setup wizard**. Bifrost Language Models no longer raises a setup
+notification of its own anywhere - it makes itself known to Bifröst Foundation instead, and Foundation
+aggregates the outstanding setup work of all installed Bifröst apps in one place.
+
+- **Added** codeunit 10035423 `LangModel Registration ori` (`Access = Internal`): one subscriber to
+  Foundation's public `App Registry ori.OnRegisterApps` that calls `AddApp` with this app's module id,
+  its display name and `Page::"LangModel Setup ori"`. Foundation fills in the HTTP status and the
+  registered/missing credential counts itself. Granted by `BIFROST LLM ori`.
+- **Removed** the HttpClient notification from `LangModel Setup ori`: the `ShowHttpClientNotification`
+  procedure, its call in `OnOpenPage`, the `HttpClientDisabledMsg` and `EnableHttpClientLbl` labels and
+  the now-unused `System.Apps` / `System.Environment.Configuration` usings. The page still shows the
+  language models, the MCP tool count and the missing API keys.
+- **Removed** codeunit 10035408 `Chat Http Notif. Action ori` entirely - the notification action it
+  carried was its only purpose and nothing else referenced it. Its grant is gone from `BIFROST Chat ori`
+  and object id 10035408 is free again.
+- **Tests**: new `LangModel Registration Tests` (96016) asserts that `App Registry ori.GetApps` lists
+  Bifrost Language Models under the module id returned by `LangModel Secrets ori.GetAppId()` and points
+  at `LangModel Setup ori`. `LangModel Setup Page Tests` no longer declares `NotificationHandler` on the
+  two page tests - the page sends no notification any more, so a declared handler could never run.
+
 ### Changed (2026-09-07) - tests run on Foundation's public API
 
 - The test app no longer depends on Bifröst Foundation's internals: Bifrost Language Models - Tests has been removed

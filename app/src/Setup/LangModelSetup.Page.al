@@ -1,14 +1,13 @@
 namespace Origo.Bifrost.LanguageModels;
 
 using Origo.Bifrost;
-using System.Apps;
-using System.Environment.Configuration;
 
 /// <summary>
 /// Setup page of Bifrost Language Models, opened from the Apps group on the Bifrost Setup page.
 /// It shows the state of the language models, of the MCP tool server and of the API keys
-/// Bifrost Language Models keeps in the Bifrost Foundation secret store, and it warns when HttpClient requests
-/// are blocked for the extension.
+/// Bifrost Language Models keeps in the Bifrost Foundation secret store.
+/// Setup notifications - including the one about blocked HttpClient requests - are raised by
+/// Bifrost Foundation on the Bifrost Setup page, never here.
 /// </summary>
 page 10035421 "LangModel Setup ori"
 {
@@ -142,8 +141,6 @@ page 10035421 "LangModel Setup ori"
         FavorableStyleTok: Label 'Favorable', Locked = true;
         KeyMissingHintTxt: Label 'API keys cannot be moved from another extension. Open a language model and use Set Personal API Key or Set Shared API Key to enter each key once.', Comment = 'is-IS=Ekki er hægt að flytja API-lykla frá annarri viðbót. Opnaðu mállíkan og notaðu Skrá persónulegan API-lykil eða Skrá sameiginlegan API-lykil til að slá hvern lykil inn einu sinni.';
         NoDefaultLanguageModelTxt: Label '(none)', Comment = 'is-IS=(ekkert)';
-        HttpClientDisabledMsg: Label 'HTTP client requests are not enabled for the Bifrost Language Models extension. The external chat providers (OpenAI, Azure OpenAI, Custom LLM, Anthropic, xAI, Google/Gemini) will not work until an administrator enables Allow HttpClient Requests in Extension Settings.', Comment = 'is-IS=HTTP-biðlarabeiðnir eru ekki virkar fyrir viðbótina Bifröst mállíkön. Ytri spjallveitendur (OpenAI, Azure OpenAI, Custom LLM, Anthropic, xAI, Google/Gemini) virka ekki fyrr en kerfisstjóri virkjar Leyfa HttpClient-beiðnir í stillingum viðbótar.';
-        EnableHttpClientLbl: Label 'Open Extension Settings', Comment = 'is-IS=Opna stillingar viðbótar';
 
     trigger OnOpenPage()
     var
@@ -151,7 +148,6 @@ page 10035421 "LangModel Setup ori"
     begin
         LangModelSecrets.RegisterAll();
         RefreshStatus();
-        ShowHttpClientNotification();
     end;
 
     local procedure RefreshStatus()
@@ -184,23 +180,5 @@ page 10035421 "LangModel Setup ori"
 
         if DefaultLanguageModelCode = '' then
             DefaultLanguageModelCode := CopyStr(NoDefaultLanguageModelTxt, 1, MaxStrLen(DefaultLanguageModelCode));
-    end;
-
-    local procedure ShowHttpClientNotification()
-    var
-        NavAppSetting: Record "NAV App Setting";
-        LangModelSecrets: Codeunit "LangModel Secrets ori";
-        HttpNotification: Notification;
-    begin
-        NavAppSetting.SetLoadFields("Allow HttpClient Requests");
-        if NavAppSetting.Get(LangModelSecrets.GetAppId()) then
-            if NavAppSetting."Allow HttpClient Requests" then
-                exit;
-
-        HttpNotification.Id := '8f1c6b2a-4e7d-4a91-9c3e-2d5f7a1b9e64';
-        HttpNotification.Scope := NotificationScope::LocalScope;
-        HttpNotification.Message := HttpClientDisabledMsg;
-        HttpNotification.AddAction(EnableHttpClientLbl, Codeunit::"Chat Http Notif. Action ori", 'OpenExtensionSettings');
-        HttpNotification.Send();
     end;
 }

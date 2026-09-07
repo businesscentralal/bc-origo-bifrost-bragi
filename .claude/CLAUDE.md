@@ -44,6 +44,7 @@ that Bifrost Language Models can make itself through an extension object.
 | page `User Setup Editor ori` | `User Setup Editor LangMdl ori` - field + Bifrost Chat FactBox |
 | page `Setup ori` | `Setup LangModel ori` - **one** action `LangModelSetup` (opens `LangModel Setup ori`) + actionref in `Category_Apps` |
 | codeunit `Secret Store ori` | `LangModel Secrets ori` - registers and resolves the language model API keys |
+| codeunit `App Registry ori` | `LangModel Registration ori` - one `OnRegisterApps` subscriber, no other code |
 
 Foundation's `Help WhoAmI Get Impl ori` is `Access = Internal` and cannot be called from Bifrost Language Models.
 Use `Bifrost Chat Utils ori.GetIdentityJson()`, which runs the public `Help.WhoAmI.Get` message type
@@ -59,19 +60,29 @@ as values on the base enum `Bifrost LangModel Prov. ori` (2-7): `OpenAI LangMode
 rename table and the `Chat Providers Install ori` data take-over.
 Shared infrastructure lives in `app/src/Providers/Shared/`: `LangModel Prov. Base ori`,
 `LangModel API Client ori`, `LangModel Chat Proxy ori`, table `Chat Svc Gate ori` (shared-key permission
-gate, permission set `BIFROST ChatSvc ori`), `Chat Http Notif. Action ori`, `LLM Req Log Masker ori`.
-Object ids 10035406-10035420 are used by the providers; 10035421 (`LangModel Setup ori`) and 10035422
-(`LangModel Secrets ori`) by the setup/secret block. **The free range is 10035423-10035484** (an earlier note
-in this file claimed 10035422 was the next free id - that was wrong, 10035421 was free too and is now used).
-Test ids used: 96000-96015 (96015 = `LLM Req Log Masker Tests`); free test ids: 96016-96199.
+gate, permission set `BIFROST ChatSvc ori`), `LLM Req Log Masker ori`.
+Object ids 10035406-10035420 are used by the providers - except **10035408, which is free again** since
+`Chat Http Notif. Action ori` was deleted with the setup notifications (2026-09-07). 10035421
+(`LangModel Setup ori`), 10035422 (`LangModel Secrets ori`) and 10035423 (`LangModel Registration ori`)
+carry the setup/secret/registration block. **The free range is 10035424-10035484, plus 10035408.**
+Test ids used: 96000-96016 (96015 = `LLM Req Log Masker Tests`, 96016 = `LangModel Registration Tests`);
+free test ids: 96017-96199.
 
 ## Setup Page and Secrets (Bifrost Foundation platform rules)
 
 - **Setup**: `Setup LangModel ori` (pageextension 10035403) contains **only** `addlast(Apps)` with the
   `LangModelSetup` action and `addlast(Category_Apps)` with its actionref - no fields, no other groups, no
   trigger. Everything else lives on `LangModel Setup ori` (page 10035421, help slug `bragi-setup`), which
-  shows the language models, the MCP tool count and the missing API keys, opens **Bifrost App Secrets**
-  filtered to Bifrost Language Models, and carries the HttpClient notification in `OnOpenPage`.
+  shows the language models, the MCP tool count and the missing API keys and opens **Bifrost App Secrets**
+  filtered to Bifrost Language Models.
+- **Setup notifications**: this app raises **none**, anywhere. Across the Bifröst family setup
+  notifications live only on Bifrost Foundation's `Setup ori` page ("Bifrost Setup") and their only
+  action is "Start setup wizard". Bifrost Language Models makes itself known instead: codeunit
+  `LangModel Registration ori` (10035423) holds a single `OnRegisterApps` subscriber on Foundation's
+  public `App Registry ori` and calls `AddApp` with its own module id, its name and
+  `Page::"LangModel Setup ori"`. Foundation reads the HTTP status and the missing-credential counts
+  from the registry itself. Never add a `Notification.Send()` for missing setup, a missing API key or
+  a blocked HttpClient to this app - extend the registration instead.
 - **Secrets**: Bifrost Language Models never touches IsolatedStorage. `LangModel Secrets ori` (codeunit 10035422) wraps
   Foundation's `Secret Store ori`. Codes per language model:
 

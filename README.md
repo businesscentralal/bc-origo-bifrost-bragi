@@ -133,7 +133,7 @@ Supporting paths:
 
 | Step | Where | What |
 | --- | --- | --- |
-| 1 | Extension Management (page 2500) | Enable **Allow HttpClient Requests** for Bifrost Language Models. Every external provider needs it; `LangModel Setup ori` shows a notification with a one-click action when it is off. |
+| 1 | Extension Management (page 2500) | Enable **Allow HttpClient Requests** for Bifrost Language Models. Every external provider needs it; the **Bifrost Setup** page shows a notification with a **Start setup wizard** action when it is off for any installed Bifröst app. |
 | 2 | **Bifröst Setup** → *Apps* → **Bifröst mállíkön** | Open `LangModel Setup ori` (page 10035421), the single place this module is configured. It reports the number of language models, the default one, the MCP tool count and how many models still need an API key. |
 | 3 | `Bifrost LangModel List ori` / `Bifrost LangModel Card ori` | Create one row per language model and fill in the provider and endpoint fields. |
 | 4 | `Bifrost LangModel Card ori` actions | **Set / Clear Shared API Key** (needs `BIFROST ChatSvc ori`) and **Set / Clear Personal API Key**. Both use Foundation's shared masked dialog. |
@@ -196,9 +196,9 @@ comes back as `status = Error` with a message naming the cause — no exception 
 
 ## Objects
 
-90 objects, all inside range 10035335–10035484. Ids 10035335–10035422 are used with no gaps and no
-duplicates; the free range is **10035423–10035484**. Every object carries the mandatory ` ori`
-affix.
+90 objects, all inside range 10035335–10035484. Ids 10035335–10035423 are used, with 10035408 free
+again since `Chat Http Notif. Action ori` was removed with the setup notifications; the free range is
+**10035424–10035484, plus 10035408**. Every object carries the mandatory ` ori` affix.
 
 ### Tables
 
@@ -281,7 +281,6 @@ affix.
 | 10035395 | `Copilot Default Skill ori` | Ships the default skill text of the Copilot language model, kept in sync with the tool server. |
 | 10035396 | `LLM Prompt Compl Impl ori` | `LLM.Prompt.Complete` — one-shot completion, no tools and no conversation state. |
 | 10035397 | `LLM Prompt Compl Help ori` | Runtime Markdown help contract for `LLM.Prompt.Complete`. |
-| 10035408 | `Chat Http Notif. Action ori` | Notification action that opens Extension Management to allow HttpClient requests. |
 | 10035409 | `LLM Req Log Masker ori` | Strips API keys from logged LLM requests and redacts bodies outside debug mode. |
 | 10035410 | `LangModel Prov. Base ori` | Shared helpers: config resolution, service-key permission check, token-usage parsing, multi-modal message building. |
 | 10035411 | `LangModel API Client ori` | Thin HTTP client for the OpenAI-compatible providers: chat completions and model list, with a caller-supplied auth header. |
@@ -295,6 +294,7 @@ affix.
 | 10035419 | `Gemini LangModel Prov. ori` | Google Gemini: OpenAI-compatible chat, native `generateContent` for files, `x-goog-api-key` header. |
 | 10035420 | `Chat Providers Install ori` | One-time data take-over from the published *Origo Cloud Events Chat* app. |
 | 10035422 | `LangModel Secrets ori` | This app's facade over Foundation's `Secret Store ori`; owns the `LANGMODEL-*` secret codes. |
+| 10035423 | `LangModel Registration ori` | One `OnRegisterApps` subscriber that registers this app and its setup page with Foundation's `App Registry ori`. |
 
 ### Permission sets
 
@@ -371,9 +371,9 @@ its Icelandic translation under
 | `app/src/BifrostChat/Server/` | MCP tool server and tool executor |
 | `app/src/BifrostChat/Message Types/` | `LLM.Prompt.Complete` implementation and help codeunit |
 | `app/src/Extensions/` | Extensions of Bifrost Foundation objects (enum, table, page) |
-| `app/src/Providers/Shared/` | `LangModel Prov. Base ori`, `LangModel API Client ori`, `LangModel Chat Proxy ori`, `Chat Svc Gate ori`, `Chat Http Notif. Action ori`, `LLM Req Log Masker ori`, take-over codeunit |
+| `app/src/Providers/Shared/` | `LangModel Prov. Base ori`, `LangModel API Client ori`, `LangModel Chat Proxy ori`, `Chat Svc Gate ori`, `LLM Req Log Masker ori`, take-over codeunit |
 | `app/src/Providers/OpenAI/`, `AzureOpenAI/`, `CustomLLM/`, `Anthropic/`, `xAI/`, `Gemini/` | The six external chat provider codeunits, one folder per provider |
-| `app/src/Setup/` | `LangModel Setup ori` page and `LangModel Secrets ori` |
+| `app/src/Setup/` | `LangModel Setup ori` page, `LangModel Secrets ori` and `LangModel Registration ori` |
 | `app/src/Permission Set/` | `BIFROST LLM ori`, `BIFROST LLM Rd ori`, `BIFROST Chat ori`, `BIFROST ChatSvc ori` |
 | `app/Translations/` | Icelandic translation (`Bifrost Language Models.is-IS.xlf`) |
 | `test/` | Test app (`Bifrost Language Models - Tests`, object range 96000–96199) |

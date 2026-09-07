@@ -28,7 +28,6 @@ codeunit 96014 "LangModel Setup Page Tests"
     end;
 
     [Test]
-    [HandlerFunctions('NotificationHandler')]
     procedure LangModelSetupPage_Opens()
     var
         LangModelSetupPage: TestPage "LangModel Setup ori";
@@ -48,7 +47,6 @@ codeunit 96014 "LangModel Setup Page Tests"
     end;
 
     [Test]
-    [HandlerFunctions('NotificationHandler')]
     procedure LangModelSetupPage_CountsTheLanguageModels()
     var
         LangModel: Record "Bifrost Language Model ori";
@@ -84,9 +82,6 @@ codeunit 96014 "LangModel Setup Page Tests"
         // [SCENARIO] Bifrost Language Models contributes exactly one action to the Apps group of Bifrost Setup.
         // The removed action "BifrostLangModels" and its actionref are enforced by the
         // compiler: referring to them here would not compile.
-        // No NotificationHandler here on purpose: the HttpClient notification moved to
-        // "LangModel Setup ori", so opening "Setup ori" sends no notification and a declared
-        // handler would never run.
         Initialize();
 
         // [WHEN] The Bifrost Foundation setup page is opened
@@ -97,11 +92,5 @@ codeunit 96014 "LangModel Setup Page Tests"
         Assert.IsTrue(BifrostSetupPage.LangModelSetup.Visible(), 'The Bifrost Language Models Setup action must be visible on Bifrost Setup.');
 
         BifrostSetupPage.Close();
-    end;
-
-    [SendNotificationHandler]
-    procedure NotificationHandler(var TheNotification: Notification): Boolean
-    begin
-        exit(true);
     end;
 }

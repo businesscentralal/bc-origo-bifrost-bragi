@@ -29,6 +29,5 @@ permissionset 10035398 "BIFROST Chat ori"
         codeunit "Anthropic LangModel Prov. ori" = X,
         codeunit "xAI LangModel Prov. ori" = X,
         codeunit "Gemini LangModel Prov. ori" = X,
-        codeunit "Chat Http Notif. Action ori" = X,
         codeunit "LLM Req Log Masker ori" = X;
 }
