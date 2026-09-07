@@ -1011,6 +1011,12 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Prófa tengingu</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Bifrost LangModel Card ori - Action TestConnection - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3015956304 - Action 4263468516 - Method 1377591017 - NamedType 459534428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Connection test failed. %1</source>
+          <target state="translated">Tengipróf mistókst. %1</target>
+          <note from="Developer" annotates="general" priority="2">%1 = the provider error detail, is-IS=Tengipróf mistókst. %1</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bifrost LangModel Card ori - Action TestConnection - Method OnAction - NamedType TestFailedErr</note>
+        </trans-unit>
         <trans-unit id="Page 3015956304 - Action 4263468516 - Method 1377591017 - NamedType 1556380518" size-unit="char" translate="yes" xml:space="preserve">
           <source>Connection test passed.</source>
           <target state="translated">Tengipróf tókst.</target>

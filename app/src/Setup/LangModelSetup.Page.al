@@ -160,6 +160,7 @@ page 10035421 "LangModel Setup ori"
         LangModelSecrets: Codeunit "LangModel Secrets ori";
         MCPServer: Codeunit "MCP Tool Server ori";
     begin
+        LangModel.ReadIsolation := IsolationLevel::ReadUncommitted;
         LangModel.SetLoadFields(Code, Default);
         LanguageModelCount := LangModel.Count();
 

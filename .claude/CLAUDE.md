@@ -63,7 +63,7 @@ gate, permission set `BIFROST ChatSvc ori`), `Chat Http Notif. Action ori`, `LLM
 Object ids 10035406-10035420 are used by the providers; 10035421 (`LangModel Setup ori`) and 10035422
 (`LangModel Secrets ori`) by the setup/secret block. **The free range is 10035423-10035484** (an earlier note
 in this file claimed 10035422 was the next free id - that was wrong, 10035421 was free too and is now used).
-Test ids used: 96000-96014; free test ids: 96015-96199.
+Test ids used: 96000-96015 (96015 = `LLM Req Log Masker Tests`); free test ids: 96016-96199.
 
 ## Setup Page and Secrets (Bifrost Foundation platform rules)
 

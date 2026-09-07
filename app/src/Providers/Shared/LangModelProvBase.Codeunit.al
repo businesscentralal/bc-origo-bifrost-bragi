@@ -107,6 +107,7 @@ codeunit 10035410 "LangModel Prov. Base ori"
     var
         BifrostLanguageModel: Record "Bifrost Language Model ori";
     begin
+        BifrostLanguageModel.ReadIsolation := IsolationLevel::ReadUncommitted;
         BifrostLanguageModel.SetFilter("Chat Provider", '<>%1', BifrostLanguageModel."Chat Provider"::None);
         exit(not BifrostLanguageModel.IsEmpty());
     end;

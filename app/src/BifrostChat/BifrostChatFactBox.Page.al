@@ -250,6 +250,7 @@ page 10035341 "Bifrost Chat FactBox ori"
         IdentityToken: JsonToken;
         IdentityKey: Text;
     begin
+        Company.ReadIsolation := IsolationLevel::ReadUncommitted;
         Company.SetLoadFields(Name, "Display Name");
         if Company.FindSet() then
             repeat

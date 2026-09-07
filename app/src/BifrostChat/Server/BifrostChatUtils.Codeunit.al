@@ -172,6 +172,11 @@ codeunit 10035388 "Bifrost Chat Utils ori"
         exit(StrLen(Content) div 4);
     end;
 
+    /// <summary>
+    /// Returns the character limit used for a single tool result when the caller does not
+    /// pass one. Defaults to 65000 until SetDefaults changes it.
+    /// </summary>
+    /// <returns>Integer. Maximum number of characters kept in one tool result.</returns>
     procedure GetDefaultMaxResultChars(): Integer
     begin
         if DefaultMaxResultChars = 0 then
@@ -179,6 +184,11 @@ codeunit 10035388 "Bifrost Chat Utils ori"
         exit(DefaultMaxResultChars);
     end;
 
+    /// <summary>
+    /// Returns the character budget used for the whole message history when the caller does
+    /// not pass one. Defaults to 80000 until SetDefaults changes it.
+    /// </summary>
+    /// <returns>Integer. Maximum number of characters kept across all messages.</returns>
     procedure GetDefaultMaxHistoryChars(): Integer
     begin
         if DefaultMaxHistoryChars = 0 then
@@ -186,6 +196,12 @@ codeunit 10035388 "Bifrost Chat Utils ori"
         exit(DefaultMaxHistoryChars);
     end;
 
+    /// <summary>
+    /// Overrides the two built-in character budgets for this session. Call it once before the
+    /// tool loop starts when a provider needs a smaller or larger context than the defaults.
+    /// </summary>
+    /// <param name="MaxResultChars">Maximum number of characters kept in one tool result.</param>
+    /// <param name="MaxHistoryChars">Maximum number of characters kept across all messages.</param>
     procedure SetDefaults(MaxResultChars: Integer; MaxHistoryChars: Integer)
     begin
         DefaultMaxResultChars := MaxResultChars;

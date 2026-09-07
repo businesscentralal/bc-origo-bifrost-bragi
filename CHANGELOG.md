@@ -2,9 +2,23 @@
 
 All notable changes to Bifrost Language Models are documented here.
 
-## [28.0.0.0] - 2026-09-05
+## [28.0.0.0] - 2026-09-07
 
 First release. The chat module was moved out of **Bifrost Foundation** 28.0.0.0 into this separate AppSource app, installed side by side with Foundation and depending on it.
+
+### Fixed (2026-09-07)
+
+- **A failed Google Gemini connection test no longer fails silently.** `Gemini LangModel Prov. ori.DoGetAvailableModels` returned `false` without setting an error message when the model list call failed, so **Test Connection** on the language model card raised an empty error and the administrator saw nothing at all. The procedure now checks `IsSuccessStatusCode` and reports the provider's own error detail for a transport failure, a non-success status (a wrong API key), an unparseable body, a missing `models` key and an empty model list.
+- **A failed connection test no longer pins the session to the tested language model.** `Bifrost LangModel Card ori` raised the error before calling `Bifrost LangModel Test Ctx ori.ClearLanguageModel()`, so the single-instance test context survived and every later chat in that session ran on the model whose test had just failed. The context is now cleared before the outcome is reported, and the failure message is wrapped in a new **Connection test failed. %1** label. The model lookup on the same page already cleared on both paths.
+
+### Changed (2026-09-07)
+
+- `BIFROST LLM ori` grants `codeunit "Chat Providers Install ori"`, matching the existing grants for `Copilot Install ori` and `Copilot Upgrade ori`.
+- `BIFROST Chat ori` and `BIFROST ChatSvc ori` pair their `tabledata` grants with the object-level `table "Chat Gate ori" = X` and `table "Chat Svc Gate ori" = X`, the way both `BIFROST LLM ori` sets already do.
+- `ReadIsolation = ReadUncommitted` on the read-only record probes that had none: `Bifrost Chat Mgt ori.ShowBifrostChat` (the hot path — it runs on every one of the 36 chat page extensions), `LangModel Prov. Base ori.HasServiceGate`, `LangModel Secrets ori.RegisterAll`, `LangModel Setup ori.RefreshStatus`, and the company scans on `Bifrost Chat FactBox ori` and `Chat Focus ori`. `SetLoadFields` added to the language model reads in `Bifrost Chat Mgt ori.GetLangModelProvider` and the `Default` uniqueness check on `Bifrost Language Model ori`.
+- XML documentation added to the 25 public procedures that had none: the 16 large-text accessors on `Bifrost Chat Argument ori`, the 5 public procedures on `MCP Tool Server ori`, 3 on `Bifrost Chat Utils ori`, and the `Execute` method on interface `Bifrost LangModel Provider ori` — the last one matters because every provider's implementing `Execute` is deliberately undocumented and inherits the interface contract.
+- Tests: new `LLM Req Log Masker Tests` (10 tests) covering debug-mode passthrough, redaction outside debug mode, error text surviving both modes, and `GetBaseUrl` stripping path and query. `LangModel Setup Page Tests.SetupOri_ExposesTheSingleLangModelAppsAction` no longer declares a `NotificationHandler` — the HttpClient notification moved to `LangModel Setup ori`, so opening `Setup ori` sends none and the declared handler could never run. **178 tests, all passing on both bc28-is and bc28-w1.**
+- `README.md` rebuilt against the mandatory Origo template (Overview, Functional Flow, Benefits, Logic Flow, Setup &amp; Configuration, Example Scenario, Objects, Dependencies, Documentation), with all 90 objects listed and the context-sensitive help slugs documented.
 
 ### Renamed before release
 

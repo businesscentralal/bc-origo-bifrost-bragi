@@ -407,15 +407,27 @@ codeunit 10035419 "Gemini LangModel Prov. ori" implements "Bifrost LangModel Pro
         DefaultHeaders := HttpClientVar.DefaultRequestHeaders();
         DefaultHeaders.Add(ApiKeyHeaderTok, Argument.GetApiKey());
         HttpClientVar.Timeout(15000);
-        if not HttpClientVar.Get(ModelsUrl, HttpResponse) then
+        if not HttpClientVar.Get(ModelsUrl, HttpResponse) then begin
+            Argument.SetErrorMessage(StrSubstNo(CallFailedErr, 'The request could not be sent.'));
             exit(false);
+        end;
         HttpResponse.Content.ReadAs(ResponseText);
-        if not Response.ReadFrom(ResponseText) then
+        if not HttpResponse.IsSuccessStatusCode() then begin
+            Argument.SetErrorMessage(StrSubstNo(ApiStatusErr, Format(HttpResponse.HttpStatusCode()), GetErrorDetail(ResponseText)));
             exit(false);
-        if not Response.Get('models', ModelsToken) then
+        end;
+        if not Response.ReadFrom(ResponseText) then begin
+            Argument.SetErrorMessage(StrSubstNo(CallFailedErr, 'Invalid response JSON.'));
             exit(false);
-        if not ModelsToken.IsArray() then
+        end;
+        if not Response.Get('models', ModelsToken) then begin
+            Argument.SetErrorMessage(StrSubstNo(CallFailedErr, GetErrorDetail(ResponseText)));
             exit(false);
+        end;
+        if not ModelsToken.IsArray() then begin
+            Argument.SetErrorMessage(StrSubstNo(CallFailedErr, 'The model list was not an array.'));
+            exit(false);
+        end;
 
         foreach ModelToken in ModelsToken.AsArray() do begin
             if not ModelToken.IsObject() then
@@ -434,7 +446,11 @@ codeunit 10035419 "Gemini LangModel Prov. ori" implements "Bifrost LangModel Pro
             end;
         end;
         Argument.SetModels(TempNameValueBuffer);
-        exit(EntryNo > 0);
+        if EntryNo = 0 then begin
+            Argument.SetErrorMessage(StrSubstNo(CallFailedErr, 'The API key is valid but no models were returned.'));
+            exit(false);
+        end;
+        exit(true);
     end;
 
     local procedure DoTestConnection(var Argument: Record "Bifrost Chat Argument ori" temporary): Boolean

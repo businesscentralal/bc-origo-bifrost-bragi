@@ -215,6 +215,7 @@ page 10035345 "Chat Focus ori"
         IdentityToken: JsonToken;
         IdentityKey: Text;
     begin
+        Company.ReadIsolation := IsolationLevel::ReadUncommitted;
         Company.SetLoadFields(Name, "Display Name");
         if Company.FindSet() then
             repeat

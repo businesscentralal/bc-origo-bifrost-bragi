@@ -48,6 +48,7 @@ table 10035335 "Bifrost Language Model ori"
             begin
                 if not Default then
                     exit;
+                OtherRole.SetLoadFields(Code);
                 OtherRole.SetRange(Default, true);
                 OtherRole.SetFilter(Code, '<>%1', Code);
                 if OtherRole.FindFirst() then

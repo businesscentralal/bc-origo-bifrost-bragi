@@ -87,6 +87,7 @@ codeunit 10035422 "LangModel Secrets ori"
     var
         LangModel: Record "Bifrost Language Model ori";
     begin
+        LangModel.ReadIsolation := IsolationLevel::ReadUncommitted;
         LangModel.SetLoadFields(Code);
         if not LangModel.FindSet() then
             exit;

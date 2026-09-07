@@ -226,16 +226,22 @@ page 10035343 "Bifrost LangModel Card ori"
                     TestCtx: Codeunit "Bifrost LangModel Test Ctx ori";
                     Provider: Interface "Bifrost LangModel Provider ori";
                     SuccessMsg: Label 'Connection test passed.', Comment = 'is-IS=Tengipróf tókst.';
+                    TestFailedErr: Label 'Connection test failed. %1', Comment = '%1 = the provider error detail, is-IS=Tengipróf mistókst. %1';
+                    Succeeded: Boolean;
+                    ErrorDetail: Text;
                 begin
                     Provider := Rec."Chat Provider";
                     TestCtx.SetLanguageModel(Rec.Code);
                     BuildPageArgument(TempArgument);
                     ExecuteProvider(Provider, TempArgument, TempArgument."Procedure Type"::TestConnection);
-                    if TempArgument."Result Boolean" then
-                        Message(SuccessMsg)
-                    else
-                        Error(TempArgument.GetErrorMessage());
+                    Succeeded := TempArgument."Result Boolean";
+                    ErrorDetail := TempArgument.GetErrorMessage();
+                    // Clear the session-wide test context before reporting, so a failed test does not
+                    // leave every later chat in this session pinned to the language model just tested.
                     TestCtx.ClearLanguageModel();
+                    if not Succeeded then
+                        Error(TestFailedErr, ErrorDetail);
+                    Message(SuccessMsg);
                 end;
             }
             action(GetApiKey)

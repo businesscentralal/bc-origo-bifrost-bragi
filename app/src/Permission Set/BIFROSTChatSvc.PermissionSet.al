@@ -14,5 +14,6 @@ permissionset 10035407 "BIFROST ChatSvc ori"
     Caption = 'Chat Service Gate', MaxLength = 30, Comment = 'is-IS=LLM þjónustuhlið';
 
     Permissions =
+        table "Chat Svc Gate ori" = X,
         tabledata "Chat Svc Gate ori" = RIMD;
 }

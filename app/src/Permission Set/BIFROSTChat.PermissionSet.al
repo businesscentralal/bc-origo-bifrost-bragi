@@ -15,6 +15,7 @@ permissionset 10035398 "BIFROST Chat ori"
     Caption = 'Chat Gate', MaxLength = 30, Comment = 'is-IS=Spjallhlið';
 
     Permissions =
+        table "Chat Gate ori" = X,
         tabledata "Chat Gate ori" = RIMD,
         codeunit "LangModel Secrets ori" = X,
         codeunit "Secret Store ori" = X,

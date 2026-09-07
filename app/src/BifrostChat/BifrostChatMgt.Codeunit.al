@@ -25,6 +25,7 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
         if not HasChatPermission() then
             exit(false);
         if not HasLanguageModelAssignment() then begin
+            BifrostLanguageModel.ReadIsolation := IsolationLevel::ReadUncommitted;
             BifrostLanguageModel.SetRange(Default, true);
             if BifrostLanguageModel.IsEmpty() then
                 exit(false);
@@ -75,11 +76,13 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
     var
         BifrostLanguageModel: Record "Bifrost Language Model ori";
     begin
-        if RoleCode <> '' then
+        if RoleCode <> '' then begin
+            BifrostLanguageModel.SetLoadFields("Chat Provider");
             if BifrostLanguageModel.Get(RoleCode) then begin
                 Provider := BifrostLanguageModel."Chat Provider";
                 exit;
             end;
+        end;
         exit(GetLangModelProviderWithModel(BifrostLanguageModel));
     end;
 
