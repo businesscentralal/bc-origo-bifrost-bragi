@@ -4,6 +4,12 @@ All notable changes to Bifrost Language Models are documented here.
 
 ## [28.0.0.0] - 2026-09-07
 
+### Added (2026-09-07) - setup wizard action
+
+- `LangModel Setup ori` gains a **Setup Wizard** action (promoted, `Category_Process`) that opens
+  Bifrost Foundation's `Setup Wizard ori` (page 10077925), which enables HTTP client requests for
+  all Bifröst apps and walks through the credentials of every app.
+
 ### Changed (2026-09-07) - setup notifications and wizard
 
 Setup notifications now live on the **Bifrost Setup** page only, for every app in the Bifröst family,

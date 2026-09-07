@@ -116,6 +116,14 @@ page 10035421 "LangModel Setup ori"
                     AppSecretsPage.Run();
                 end;
             }
+            action(SetupWizard)
+            {
+                ApplicationArea = All;
+                Caption = 'Setup Wizard', Comment = 'is-IS=Uppsetningarleiðsögn';
+                ToolTip = 'Opens the Bifrost setup wizard, which enables HTTP client requests for all Bifrost apps and walks through the credentials of every app.', Comment = 'is-IS=Opnar uppsetningarleiðsögn Bifröst, sem virkjar HTTP biðlarabeiðnir fyrir öll Bifröst forrit og fer yfir auðkenni hvers forrits.';
+                Image = Setup;
+                RunObject = page "Setup Wizard ori";
+            }
         }
         area(Promoted)
         {
@@ -125,6 +133,7 @@ page 10035421 "LangModel Setup ori"
 
                 actionref(LanguageModelList_Promoted; LanguageModelList) { }
                 actionref(AppSecrets_Promoted; AppSecrets) { }
+                actionref(SetupWizard_Promoted; SetupWizard) { }
             }
         }
     }
