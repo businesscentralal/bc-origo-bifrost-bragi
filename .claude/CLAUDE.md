@@ -153,6 +153,14 @@ Key rules always in effect:
 - Errors must be returned as `status = Error` with a helpful message via `Argument.RespondWithError`;
   never let an unhandled exception reach the API.
 
+## Test App Rules
+- **The test app uses Bifröst Foundation's public API only.** Bifrost Language Models - Tests is not listed in
+  Foundation's `app.json` `internalsVisibleTo` and must never be added back. A test that needs a
+  message type executed runs it through the public `Dispatcher ori` (`Execute` for a lightweight
+  dispatch, `EnqueueAndProcess` when the persisted queue row is needed); the dispatcher marks the
+  call licensed itself, so the internal `SetLicensed` is never needed. An Impl may still be called
+  directly on a temporary `Message Argument ori` when that Impl does not call `AssertIsLicensed`.
+
 ## Testing Through the MCP Server
 - `get_message_type_help` and `invoke_message_type` on the `origo-bc-bc28-is` server hit Bifrost Language Models through
   Foundation's route (`origo/bifrost/v1.0`). Keep calls serial - parallel bursts crash the server.

@@ -4,6 +4,14 @@ All notable changes to Bifrost Language Models are documented here.
 
 ## [28.0.0.0] - 2026-09-07
 
+### Changed (2026-09-07) - tests run on Foundation's public API
+
+- The test app no longer depends on Bifröst Foundation's internals: Bifrost Language Models - Tests has been removed
+  from Foundation's `internalsVisibleTo`, and the test suite compiles and runs against a Foundation
+  package that does not grant it. No test code had to change - the suite never touched a Foundation
+  internal.
+
+
 First release. The chat module was moved out of **Bifrost Foundation** 28.0.0.0 into this separate AppSource app, installed side by side with Foundation and depending on it.
 
 ### Fixed (2026-09-07)
