@@ -196,6 +196,7 @@ codeunit 10035422 "LangModel Secrets ori"
         CheckLangModelCode(LangModelCode);
         CheckServiceKeyPermission();
         Register(LangModelCode);
+        Commit(); // Persist Register writes so Secret Store's masked-input Page.RunModal is not blocked by an open write transaction.
         exit(SecretStore.SetFromDialog(GetAppId(), GetServiceKeyCode(LangModelCode)));
     end;
 
@@ -212,6 +213,7 @@ codeunit 10035422 "LangModel Secrets ori"
     begin
         CheckLangModelCode(LangModelCode);
         Register(LangModelCode);
+        Commit(); // Persist Register writes so Secret Store's masked-input Page.RunModal is not blocked by an open write transaction.
         exit(SecretStore.SetFromDialog(GetAppId(), GetUserKeyCode(LangModelCode)));
     end;
 

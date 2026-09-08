@@ -121,6 +121,8 @@ page 10035343 "Bifrost LangModel Card ori"
                         end;
                         TestCtx.ClearLanguageModel();
                         TempNameValueBuffer.Name := Rec.Model;
+                        CurrPage.SaveRecord();
+                        Commit(); // Persist pending card edits so the Name/Value Lookup Page.RunModal is not blocked by an open write transaction.
                         if Page.RunModal(Page::"Name/Value Lookup", TempNameValueBuffer) = Action::LookupOK then begin
                             Text := TempNameValueBuffer.Name;
                             exit(true);
