@@ -394,9 +394,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Bifrost Chat Mgt ori - Method AddChatLabels - NamedType ServiceKeyExistsLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3345766045 - Method 3174596470 - NamedType 4212443408" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bifrost Chat is disabled. Assign a Language Model with a provider in your Bifrost User Setup to enable chat.</source>
-          <target>Spjalla við Bifröst er óvirkt. Úthlutaðu mállíkani með veitanda í Bifröst notandauppsetningu til að virkja spjall.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla við Bifröst er óvirkt. Úthlutaðu mállíkani með veitanda í Bifröst notandauppsetningu til að virkja spjall.</note>
+          <source>Chat via Bifrost is disabled. Assign a Language Model with a provider in your Bifrost User Setup to enable chat.</source>
+          <target>Spjalla með Bifröst er óvirkt. Úthlutaðu mállíkani með veitanda í Bifröst notandauppsetningu til að virkja spjall.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla með Bifröst er óvirkt. Úthlutaðu mállíkani með veitanda í Bifröst notandauppsetningu til að virkja spjall.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Bifrost Chat Mgt ori - Method AddChatLabels - NamedType ChatDisabledLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3345766045 - Method 3174596470 - NamedType 2386369997" size-unit="char" translate="yes" xml:space="preserve">
@@ -412,9 +412,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Bifrost Chat Mgt ori - Method AddChatLabels - NamedType ApiKeyInstructionLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4240728454 - NamedType 3178682067" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bifrost Chat is disabled. Assign a Language Model with a provider in your Bifrost User Setup to enable chat.</source>
-          <target>Spjalla við Bifröst er óvirkt. Úthlutaðu mállíkani með veitanda í Bifröst notandauppsetningu til að virkja spjall.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla við Bifröst er óvirkt. Úthlutaðu mállíkani með veitanda í Bifröst notandauppsetningu til að virkja spjall.</note>
+          <source>Chat via Bifrost is disabled. Assign a Language Model with a provider in your Bifrost User Setup to enable chat.</source>
+          <target>Spjalla með Bifröst er óvirkt. Úthlutaðu mállíkani með veitanda í Bifröst notandauppsetningu til að virkja spjall.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla með Bifröst er óvirkt. Úthlutaðu mállíkani með veitanda í Bifröst notandauppsetningu til að virkja spjall.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Bifrost LangModel None ori - NamedType DisabledMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 4240728454 - NamedType 3883761671" size-unit="char" translate="yes" xml:space="preserve">
@@ -706,9 +706,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit xAI LangModel Prov. ori - Method DoTestConnection - NamedType NoKeyErr</note>
         </trans-unit>
         <trans-unit id="Page 3070616516 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bifrost Chat</source>
-          <target>Spjalla við Bifröst</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla við Bifröst</note>
+          <source>Chat via Bifrost</source>
+          <target>Spjalla með Bifröst</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla með Bifröst</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Bifrost Chat FactBox ori - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3070616516 - Action 3159835264 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
@@ -742,8 +742,8 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Bifrost Chat Model List ori - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1419416396 - Control 2961552353 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the AI model identifier available from the active Bifrost Chat provider.</source>
-          <target>Tilgreinir auðkenni gervigreindarlíkans sem er tiltækt frá virkum Bifröst Spjallveitanda.</target>
+          <source>Specifies the AI model identifier available from the active Chat via Bifrost provider.</source>
+          <target>Tilgreinir auðkenni gervigreindarlíkans sem er tiltækt frá virkum veitanda fyrir Spjalla með Bifröst.</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir auðkenni gervigreindarlíkans sem er tiltækt frá virkum Bifröst Spjallveitanda.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Bifrost Chat Model List ori - Control Name - Property ToolTip</note>
         </trans-unit>
@@ -1120,9 +1120,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Bifrost LangModel List ori - Action Category_Process - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1374133218 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bifrost Chat</source>
-          <target>Spjalla við Bifröst</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla við Bifröst</note>
+          <source>Chat via Bifrost</source>
+          <target>Spjalla með Bifröst</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla með Bifröst</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Chat Focus ori - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3027829156 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
@@ -1144,9 +1144,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page LangModel Setup ori - NamedType NoDefaultLanguageModelTxt</note>
         </trans-unit>
         <trans-unit id="Page 3027829156 - Control 1873111202 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve">
-          <source>A language model connects Bifrost Chat to a provider - Copilot, OpenAI, Azure OpenAI, a custom LLM, Anthropic, xAI or Google Gemini - and carries the skill content injected into every chat.</source>
-          <target>Mállíkan tengir Spjalla við Bifröst við veitanda - Copilot, OpenAI, Azure OpenAI, sérsniðið LLM, Anthropic, xAI eða Google Gemini - og ber hæfniefnið sem er sett inn í hvert spjall.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Mállíkan tengir Spjalla við Bifröst við veitanda - Copilot, OpenAI, Azure OpenAI, sérsniðið LLM, Anthropic, xAI eða Google Gemini - og ber hæfniefnið sem er sett inn í hvert spjall.</note>
+          <source>A language model connects Chat via Bifrost to a provider - Copilot, OpenAI, Azure OpenAI, a custom LLM, Anthropic, xAI or Google Gemini - and carries the skill content injected into every chat.</source>
+          <target>Mállíkan tengir Spjalla með Bifröst við veitanda - Copilot, OpenAI, Azure OpenAI, sérsniðið LLM, Anthropic, xAI eða Google Gemini - og ber hæfniefnið sem er sett inn í hvert spjall.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Mállíkan tengir Spjalla með Bifröst við veitanda - Copilot, OpenAI, Azure OpenAI, sérsniðið LLM, Anthropic, xAI eða Google Gemini - og ber hæfniefnið sem er sett inn í hvert spjall.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page LangModel Setup ori - Control LanguageModels - Property InstructionalText</note>
         </trans-unit>
         <trans-unit id="Page 3027829156 - Control 1873111202 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
@@ -1216,9 +1216,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page LangModel Setup ori - Control ModelsWithoutKey - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3027829156 - Control 433915863 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bifrost Chat exposes the Bifrost message types to the language model as Model Context Protocol tools, so the model can read and write Business Central data on your behalf.</source>
-          <target>Spjalla við Bifröst birtir mállíkaninu skilaboðategundir Bifröst sem Model Context Protocol verkfæri, svo líkanið geti lesið og skrifað gögn í Business Central fyrir þína hönd.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla við Bifröst birtir mállíkaninu skilaboðategundir Bifröst sem Model Context Protocol verkfæri, svo líkanið geti lesið og skrifað gögn í Business Central fyrir þína hönd.</note>
+          <source>Chat via Bifrost exposes the Bifrost message types to the language model as Model Context Protocol tools, so the model can read and write Business Central data on your behalf.</source>
+          <target>Spjalla með Bifröst birtir mállíkaninu skilaboðategundir Bifröst sem Model Context Protocol verkfæri, svo líkanið geti lesið og skrifað gögn í Business Central fyrir þína hönd.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla með Bifröst birtir mállíkaninu skilaboðategundir Bifröst sem Model Context Protocol verkfæri, svo líkanið geti lesið og skrifað gögn í Business Central fyrir þína hönd.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page LangModel Setup ori - Control ToolServer - Property InstructionalText</note>
         </trans-unit>
         <trans-unit id="Page 3027829156 - Control 433915863 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
@@ -1252,9 +1252,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page LangModel Setup ori - Action AppSecrets - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3027829156 - Action 3359815809 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Manage the language models with the skill content injected into Bifrost Chat.</source>
-          <target>Stjórna mállíkönum með hæfniefni sem er sett inn í Spjalla við Bifröst.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Stjórna mállíkönum með hæfniefni sem er sett inn í Spjalla við Bifröst.</note>
+          <source>Manage the language models with the skill content injected into Chat via Bifrost.</source>
+          <target>Stjórna mállíkönum með hæfniefni sem er sett inn í Spjalla með Bifröst.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Stjórna mállíkönum með hæfniefni sem er sett inn í Spjalla með Bifröst.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page LangModel Setup ori - Action LanguageModelList - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3027829156 - Action 3359815809 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
@@ -1288,9 +1288,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat CustomerList ori - Action ori_BifrostChat - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 518916197 - Action 639024038 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2901867346">
-          <source>Bifrost Chat</source>
-          <target>Spjalla við Bifröst</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla við Bifröst</note>
+          <source>Chat via Bifrost</source>
+          <target>Spjalla með Bifröst</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla með Bifröst</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat CustomerList ori - Action ori_BifrostChat - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 1547003100 - Action 639024038 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1755308350">
@@ -1300,9 +1300,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat IncomingDocs ori - Action ori_BifrostChat - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 1547003100 - Action 639024038 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1755308350">
-          <source>Bifrost Chat</source>
-          <target>Spjalla við Bifröst</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla við Bifröst</note>
+          <source>Chat via Bifrost</source>
+          <target>Spjalla með Bifröst</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla með Bifröst</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat IncomingDocs ori - Action ori_BifrostChat - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 3237769854 - Action 639024038 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4178721393">
@@ -1312,9 +1312,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat ItemList ori - Action ori_BifrostChat - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 3237769854 - Action 639024038 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4178721393">
-          <source>Bifrost Chat</source>
-          <target>Spjalla við Bifröst</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla við Bifröst</note>
+          <source>Chat via Bifrost</source>
+          <target>Spjalla með Bifröst</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla með Bifröst</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat ItemList ori - Action ori_BifrostChat - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 2055001307 - Action 639024038 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 291926049">
@@ -1324,9 +1324,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat PurchCrMemos ori - Action ori_BifrostChat - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 2055001307 - Action 639024038 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 291926049">
-          <source>Bifrost Chat</source>
-          <target>Spjalla við Bifröst</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla við Bifröst</note>
+          <source>Chat via Bifrost</source>
+          <target>Spjalla með Bifröst</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla með Bifröst</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat PurchCrMemos ori - Action ori_BifrostChat - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 2634228589 - Action 639024038 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4037192291">
@@ -1336,9 +1336,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat PurchInvoices ori - Action ori_BifrostChat - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 2634228589 - Action 639024038 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4037192291">
-          <source>Bifrost Chat</source>
-          <target>Spjalla við Bifröst</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla við Bifröst</note>
+          <source>Chat via Bifrost</source>
+          <target>Spjalla með Bifröst</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla með Bifröst</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat PurchInvoices ori - Action ori_BifrostChat - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 2127119048 - Action 639024038 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2882327954">
@@ -1348,9 +1348,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat PurchOrders ori - Action ori_BifrostChat - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 2127119048 - Action 639024038 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2882327954">
-          <source>Bifrost Chat</source>
-          <target>Spjalla við Bifröst</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla við Bifröst</note>
+          <source>Chat via Bifrost</source>
+          <target>Spjalla með Bifröst</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla með Bifröst</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat PurchOrders ori - Action ori_BifrostChat - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 3190730300 - Action 639024038 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1819353702">
@@ -1360,9 +1360,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat PurchQuotes ori - Action ori_BifrostChat - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 3190730300 - Action 639024038 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1819353702">
-          <source>Bifrost Chat</source>
-          <target>Spjalla við Bifröst</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla við Bifröst</note>
+          <source>Chat via Bifrost</source>
+          <target>Spjalla með Bifröst</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla með Bifröst</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat PurchQuotes ori - Action ori_BifrostChat - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 742313540 - Action 639024038 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 849761688">
@@ -1372,9 +1372,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat PurchRetOrds ori - Action ori_BifrostChat - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 742313540 - Action 639024038 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 849761688">
-          <source>Bifrost Chat</source>
-          <target>Spjalla við Bifröst</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla við Bifröst</note>
+          <source>Chat via Bifrost</source>
+          <target>Spjalla með Bifröst</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla með Bifröst</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat PurchRetOrds ori - Action ori_BifrostChat - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 3297727975 - Action 639024038 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1948356160">
@@ -1384,9 +1384,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat SalesCrMemos ori - Action ori_BifrostChat - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 3297727975 - Action 639024038 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1948356160">
-          <source>Bifrost Chat</source>
-          <target>Spjalla við Bifröst</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla við Bifröst</note>
+          <source>Chat via Bifrost</source>
+          <target>Spjalla með Bifröst</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla með Bifröst</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat SalesCrMemos ori - Action ori_BifrostChat - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 1374104601 - Action 639024038 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
@@ -1396,9 +1396,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat SalesInvoices ori - Action ori_BifrostChat - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 1374104601 - Action 639024038 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
-          <source>Bifrost Chat</source>
-          <target>Spjalla við Bifröst</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla við Bifröst</note>
+          <source>Chat via Bifrost</source>
+          <target>Spjalla með Bifröst</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla með Bifröst</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat SalesInvoices ori - Action ori_BifrostChat - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 2261984796 - Action 639024038 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3332899200">
@@ -1408,9 +1408,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat SalesOrders ori - Action ori_BifrostChat - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 2261984796 - Action 639024038 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3332899200">
-          <source>Bifrost Chat</source>
-          <target>Spjalla við Bifröst</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla við Bifröst</note>
+          <source>Chat via Bifrost</source>
+          <target>Spjalla með Bifröst</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla með Bifröst</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat SalesOrders ori - Action ori_BifrostChat - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 3731832872 - Action 639024038 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 734185571">
@@ -1420,9 +1420,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat SalesQuotes ori - Action ori_BifrostChat - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 3731832872 - Action 639024038 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 734185571">
-          <source>Bifrost Chat</source>
-          <target>Spjalla við Bifröst</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla við Bifröst</note>
+          <source>Chat via Bifrost</source>
+          <target>Spjalla með Bifröst</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla með Bifröst</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat SalesQuotes ori - Action ori_BifrostChat - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 67842896 - Action 639024038 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 942220850">
@@ -1432,9 +1432,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat SalesRetOrds ori - Action ori_BifrostChat - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 67842896 - Action 639024038 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 942220850">
-          <source>Bifrost Chat</source>
-          <target>Spjalla við Bifröst</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla við Bifröst</note>
+          <source>Chat via Bifrost</source>
+          <target>Spjalla með Bifröst</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla með Bifröst</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat SalesRetOrds ori - Action ori_BifrostChat - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 2811179901 - Action 639024038 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4194195770">
@@ -1444,9 +1444,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat VendorList ori - Action ori_BifrostChat - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 2811179901 - Action 639024038 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4194195770">
-          <source>Bifrost Chat</source>
-          <target>Spjalla við Bifröst</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla við Bifröst</note>
+          <source>Chat via Bifrost</source>
+          <target>Spjalla með Bifröst</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Spjalla með Bifröst</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Chat VendorList ori - Action ori_BifrostChat - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 2188717972 - Action 4150131648 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1243421685">
@@ -1462,9 +1462,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Setup LangModel ori - Action LangModelSetup - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 1187635734 - Control 1905762929 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 709338957">
-          <source>Specifies the language model whose skill is injected into the Bifrost Chat. If empty, a default who_am_i instruction is used.</source>
-          <target>Tilgreinir mállíkanið sem hæfni er sótt úr fyrir Spjalla við Bifröst. Ef tómt eru sjálfgefnar who_am_i leiðbeiningar notaðar.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir mállíkanið sem hæfni er sótt úr fyrir Spjalla við Bifröst. Ef tómt eru sjálfgefnar who_am_i leiðbeiningar notaðar.</note>
+          <source>Specifies the language model whose skill is injected into Chat via Bifrost. If empty, a default who_am_i instruction is used.</source>
+          <target>Tilgreinir mállíkanið sem hæfni er sótt úr fyrir Spjalla með Bifröst. Ef tómt eru sjálfgefnar who_am_i leiðbeiningar notaðar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir mállíkanið sem hæfni er sótt úr fyrir Spjalla með Bifröst. Ef tómt eru sjálfgefnar who_am_i leiðbeiningar notaðar.</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension User Setup Editor LangMdl ori - Control Bifrost Language Model Code - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 1187635734 - Control 1905762929 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 709338957">

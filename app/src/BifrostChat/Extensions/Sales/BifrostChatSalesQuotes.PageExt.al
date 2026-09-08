@@ -12,7 +12,7 @@ pageextension 10035376 "Bifrost Chat SalesQuotes ori" extends "Sales Quotes"
         {
             action(ori_BifrostChat)
             {
-                Caption = 'Bifrost Chat', Comment = 'is-IS=Spjalla við Bifröst';
+                Caption = 'Chat via Bifrost', Comment = 'is-IS=Spjalla með Bifröst';
                 ToolTip = 'Chat about this quote in Business Central.', Comment = 'is-IS=Spjalla um þetta tilboð í Business Central';
                 ApplicationArea = All;
                 Visible = ChatBoxVisible;

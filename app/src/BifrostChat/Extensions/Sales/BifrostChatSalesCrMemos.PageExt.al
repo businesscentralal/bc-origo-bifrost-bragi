@@ -12,7 +12,7 @@ pageextension 10035371 "Bifrost Chat SalesCrMemos ori" extends "Sales Credit Mem
         {
             action(ori_BifrostChat)
             {
-                Caption = 'Bifrost Chat', Comment = 'is-IS=Spjalla við Bifröst';
+                Caption = 'Chat via Bifrost', Comment = 'is-IS=Spjalla með Bifröst';
                 ToolTip = 'Chat about this credit memo in Business Central.', Comment = 'is-IS=Spjalla um þessa kreditnótu í Business Central';
                 ApplicationArea = All;
                 Visible = ChatBoxVisible;

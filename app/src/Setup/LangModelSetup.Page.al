@@ -27,7 +27,7 @@ page 10035421 "LangModel Setup ori"
             group(LanguageModels)
             {
                 Caption = 'Language Models', Comment = 'is-IS=Mállíkön';
-                InstructionalText = 'A language model connects Bifrost Chat to a provider - Copilot, OpenAI, Azure OpenAI, a custom LLM, Anthropic, xAI or Google Gemini - and carries the skill content injected into every chat.', Comment = 'is-IS=Mállíkan tengir Spjalla við Bifröst við veitanda - Copilot, OpenAI, Azure OpenAI, sérsniðið LLM, Anthropic, xAI eða Google Gemini - og ber hæfniefnið sem er sett inn í hvert spjall.';
+                InstructionalText = 'A language model connects Chat via Bifrost to a provider - Copilot, OpenAI, Azure OpenAI, a custom LLM, Anthropic, xAI or Google Gemini - and carries the skill content injected into every chat.', Comment = 'is-IS=Mállíkan tengir Spjalla með Bifröst við veitanda - Copilot, OpenAI, Azure OpenAI, sérsniðið LLM, Anthropic, xAI eða Google Gemini - og ber hæfniefnið sem er sett inn í hvert spjall.';
 
                 field(LanguageModelCount; LanguageModelCount)
                 {
@@ -49,7 +49,7 @@ page 10035421 "LangModel Setup ori"
             group(ToolServer)
             {
                 Caption = 'MCP Tool Server', Comment = 'is-IS=MCP verkfæraþjónn';
-                InstructionalText = 'Bifrost Chat exposes the Bifrost message types to the language model as Model Context Protocol tools, so the model can read and write Business Central data on your behalf.', Comment = 'is-IS=Spjalla við Bifröst birtir mállíkaninu skilaboðategundir Bifröst sem Model Context Protocol verkfæri, svo líkanið geti lesið og skrifað gögn í Business Central fyrir þína hönd.';
+                InstructionalText = 'Chat via Bifrost exposes the Bifrost message types to the language model as Model Context Protocol tools, so the model can read and write Business Central data on your behalf.', Comment = 'is-IS=Spjalla með Bifröst birtir mállíkaninu skilaboðategundir Bifröst sem Model Context Protocol verkfæri, svo líkanið geti lesið og skrifað gögn í Business Central fyrir þína hönd.';
 
                 field(ToolCount; ToolCount)
                 {
@@ -95,7 +95,7 @@ page 10035421 "LangModel Setup ori"
             {
                 ApplicationArea = All;
                 Caption = 'Language Models', Comment = 'is-IS=Mállíkön';
-                ToolTip = 'Manage the language models with the skill content injected into Bifrost Chat.', Comment = 'is-IS=Stjórna mállíkönum með hæfniefni sem er sett inn í Spjalla við Bifröst.';
+                ToolTip = 'Manage the language models with the skill content injected into Chat via Bifrost.', Comment = 'is-IS=Stjórna mállíkönum með hæfniefni sem er sett inn í Spjalla með Bifröst.';
                 Image = Permission;
                 RunObject = page "Bifrost LangModel List ori";
             }

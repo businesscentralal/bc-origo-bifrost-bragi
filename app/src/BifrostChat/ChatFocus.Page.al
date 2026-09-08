@@ -11,7 +11,7 @@ using System.Reflection;
 /// </summary>
 page 10035345 "Chat Focus ori"
 {
-    Caption = 'Bifrost Chat', Comment = 'is-IS=Spjalla við Bifröst';
+    Caption = 'Chat via Bifrost', Comment = 'is-IS=Spjalla með Bifröst';
     PageType = UserControlHost;
     UsageCategory = None;
 

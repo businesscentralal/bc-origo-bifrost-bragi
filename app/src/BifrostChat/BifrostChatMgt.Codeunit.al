@@ -371,7 +371,7 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
         PersonalKeySavedLbl: Label 'Personal key saved. You can now chat.', Comment = 'is-IS=Persónulegur lykill vistaður. Nú getur þú spjallað.';
         ServiceKeySavedLbl: Label 'Shared key saved for all users in this company.', Comment = 'is-IS=Sameiginlegur lykill vistaður fyrir alla notendur í þessu fyrirtæki.';
         ServiceKeyExistsLbl: Label 'A shared key is configured. Enter a personal key to override it, or leave empty to use the shared key.', Comment = 'is-IS=Sameiginlegur lykill er stilltur. Sláðu inn persónulegan lykil til að hnekkja honum, eða skildu eftir autt til að nota sameiginlega lykilinn.';
-        ChatDisabledLbl: Label 'Bifrost Chat is disabled. Assign a Language Model with a provider in your Bifrost User Setup to enable chat.', Comment = 'is-IS=Spjalla við Bifröst er óvirkt. Úthlutaðu mállíkani með veitanda í Bifröst notandauppsetningu til að virkja spjall.';
+        ChatDisabledLbl: Label 'Chat via Bifrost is disabled. Assign a Language Model with a provider in your Bifrost User Setup to enable chat.', Comment = 'is-IS=Spjalla með Bifröst er óvirkt. Úthlutaðu mállíkani með veitanda í Bifröst notandauppsetningu til að virkja spjall.';
         ApiKeyLabelLbl: Label 'API Key', Comment = 'is-IS=API-lykill';
         ApiKeyInstructionLbl: Label 'Enter your key to enable chat.', Comment = 'is-IS=Sláðu inn lykilinn þinn til að virkja spjall.';
     begin

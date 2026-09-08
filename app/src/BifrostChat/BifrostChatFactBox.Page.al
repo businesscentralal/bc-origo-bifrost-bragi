@@ -11,7 +11,7 @@ using System.Reflection;
 /// </summary>
 page 10035341 "Bifrost Chat FactBox ori"
 {
-    Caption = 'Bifrost Chat', Comment = 'is-IS=Spjalla við Bifröst';
+    Caption = 'Chat via Bifrost', Comment = 'is-IS=Spjalla með Bifröst';
     PageType = CardPart;
     RefreshOnActivate = true;
     DataCaptionExpression = DataCaptionText;

@@ -65,7 +65,7 @@ codeunit 10035389 "Bifrost LangModel None ori" implements "Bifrost LangModel Pro
     var
         NoProviderErr: Label 'No provider configured for this language model.', Comment = 'is-IS=Enginn veitandi stilltur fyrir þetta mállíkan.';
         NoProviderMsgErr: Label 'No chat provider configured on the language model.', Comment = 'is-IS=Enginn spjallveitandi stilltur á mállíkaninu.';
-        DisabledMsg: Label 'Bifrost Chat is disabled. Assign a Language Model with a provider in your Bifrost User Setup to enable chat.', Comment = 'is-IS=Spjalla við Bifröst er óvirkt. Úthlutaðu mállíkani með veitanda í Bifröst notandauppsetningu til að virkja spjall.';
+        DisabledMsg: Label 'Chat via Bifrost is disabled. Assign a Language Model with a provider in your Bifrost User Setup to enable chat.', Comment = 'is-IS=Spjalla með Bifröst er óvirkt. Úthlutaðu mállíkani með veitanda í Bifröst notandauppsetningu til að virkja spjall.';
 
     local procedure BuildDisabledConfig(): Text
     var
