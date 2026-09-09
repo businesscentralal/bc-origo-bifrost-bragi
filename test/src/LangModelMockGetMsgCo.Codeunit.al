@@ -15,30 +15,30 @@ codeunit 96007 "LangModel Mock Get Msg Co" implements "Msg Interface ori"
         EnabledState: Boolean;
         EnabledStateSet: Boolean;
 
-    internal procedure IsEnabled(): Boolean
+    procedure IsEnabled(): Boolean
     begin
         if EnabledStateSet then
             exit(EnabledState);
         exit(true);
     end;
 
-    internal procedure GetFilterTableNo() FilterTableId: Integer
+    procedure GetFilterTableNo() FilterTableId: Integer
     begin
     end;
 
-    internal procedure GetDescription() Description: Text[250]
+    procedure GetDescription() Description: Text[250]
     begin
     end;
 
-    internal procedure GetMessageDirection() MessageDirection: Enum "Msg Direction ori"
+    procedure GetMessageDirection() MessageDirection: Enum "Msg Direction ori"
     begin
     end;
 
-    internal procedure GetMessageHelpAsMarkdownDocument(var Argument: Record "Message Argument ori")
+    procedure GetMessageHelpAsMarkdownDocument(var Argument: Record "Message Argument ori")
     begin
     end;
 
-    internal procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
+    procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     begin
         Argument.SetResponseText(ResponseText);
     end;

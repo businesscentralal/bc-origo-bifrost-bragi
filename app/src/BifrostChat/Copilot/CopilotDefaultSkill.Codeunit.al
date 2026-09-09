@@ -9,7 +9,7 @@ codeunit 10035395 "Copilot Default Skill ori"
 {
     Access = Internal;
 
-    internal procedure GetSkillText() SkillText: Text
+    procedure GetSkillText() SkillText: Text
     var
         Skill: TextBuilder;
     begin

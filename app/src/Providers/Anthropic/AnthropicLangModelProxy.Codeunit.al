@@ -26,7 +26,7 @@ codeunit 10035417 "Anthropic LangModel Proxy ori"
         InvalidResponseErr: Label 'Received an invalid response from the Anthropic API.', Comment = 'is-IS=Ógilt svar barst frá Anthropic API.';
 
     [NonDebuggable]
-    internal procedure SendChatMessage(var Argument: Record "Bifrost Chat Argument ori" temporary; PayloadJson: Text): Text
+    procedure SendChatMessage(var Argument: Record "Bifrost Chat Argument ori" temporary; PayloadJson: Text): Text
     var
         PayloadObject: JsonObject;
         Messages: JsonArray;
@@ -58,7 +58,7 @@ codeunit 10035417 "Anthropic LangModel Proxy ori"
     end;
 
     [NonDebuggable]
-    internal procedure CompletePrompt(var Argument: Record "Bifrost Chat Argument ori" temporary; PayloadJson: Text): Text
+    procedure CompletePrompt(var Argument: Record "Bifrost Chat Argument ori" temporary; PayloadJson: Text): Text
     var
         PayloadObject: JsonObject;
         Messages: JsonArray;
@@ -181,7 +181,7 @@ codeunit 10035417 "Anthropic LangModel Proxy ori"
     end;
 
     [NonDebuggable]
-    internal procedure ContinueWithToolResults(var Argument: Record "Bifrost Chat Argument ori" temporary; ConversationState: Text; ToolResultsJson: Text): Text
+    procedure ContinueWithToolResults(var Argument: Record "Bifrost Chat Argument ori" temporary; ConversationState: Text; ToolResultsJson: Text): Text
     var
         StateObject: JsonObject;
         Messages: JsonArray;
@@ -316,7 +316,7 @@ codeunit 10035417 "Anthropic LangModel Proxy ori"
     /// Lists models from the Anthropic Models API.
     /// </summary>
     [NonDebuggable]
-    internal procedure ListModels(BaseUrl: Text; ApiKey: SecretText) Models: JsonArray
+    procedure ListModels(BaseUrl: Text; ApiKey: SecretText) Models: JsonArray
     var
         HttpClientVar: HttpClient;
         HttpResponse: HttpResponseMessage;

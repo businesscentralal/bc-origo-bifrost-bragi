@@ -19,7 +19,7 @@ codeunit 10035412 "LangModel Chat Proxy ori"
         MissingMessageErr: Label 'AI model returned a choice without a "message" field. Response snippet: %1', Comment = '%1 = raw response snippet, is-IS=AI mállíkan skilaði svari án "message"-reits. Sýnishorn af svari: %1';
 
     [NonDebuggable]
-    internal procedure SendChatMessage(var Argument: Record "Bifrost Chat Argument ori" temporary; PayloadJson: Text; AuthHeaderName: Text): Text
+    procedure SendChatMessage(var Argument: Record "Bifrost Chat Argument ori" temporary; PayloadJson: Text; AuthHeaderName: Text): Text
     var
         EmptyExtras: JsonObject;
     begin
@@ -27,7 +27,7 @@ codeunit 10035412 "LangModel Chat Proxy ori"
     end;
 
     [NonDebuggable]
-    internal procedure SendChatMessage(var Argument: Record "Bifrost Chat Argument ori" temporary; PayloadJson: Text; AuthHeaderName: Text; ExtraRequestFields: JsonObject): Text
+    procedure SendChatMessage(var Argument: Record "Bifrost Chat Argument ori" temporary; PayloadJson: Text; AuthHeaderName: Text; ExtraRequestFields: JsonObject): Text
     var
         ProviderBase: Codeunit "LangModel Prov. Base ori";
         ApiClient: Codeunit "LangModel API Client ori";
@@ -66,7 +66,7 @@ codeunit 10035412 "LangModel Chat Proxy ori"
     end;
 
     [NonDebuggable]
-    internal procedure ContinueWithToolResults(var Argument: Record "Bifrost Chat Argument ori" temporary; ConversationState: Text; ToolResultsJson: Text; AuthHeaderName: Text): Text
+    procedure ContinueWithToolResults(var Argument: Record "Bifrost Chat Argument ori" temporary; ConversationState: Text; ToolResultsJson: Text; AuthHeaderName: Text): Text
     var
         EmptyExtras: JsonObject;
     begin
@@ -74,7 +74,7 @@ codeunit 10035412 "LangModel Chat Proxy ori"
     end;
 
     [NonDebuggable]
-    internal procedure ContinueWithToolResults(var Argument: Record "Bifrost Chat Argument ori" temporary; ConversationState: Text; ToolResultsJson: Text; AuthHeaderName: Text; ExtraRequestFields: JsonObject): Text
+    procedure ContinueWithToolResults(var Argument: Record "Bifrost Chat Argument ori" temporary; ConversationState: Text; ToolResultsJson: Text; AuthHeaderName: Text; ExtraRequestFields: JsonObject): Text
     var
         ProviderBase: Codeunit "LangModel Prov. Base ori";
         ApiClient: Codeunit "LangModel API Client ori";
@@ -413,7 +413,7 @@ codeunit 10035412 "LangModel Chat Proxy ori"
     end;
 
     [NonDebuggable]
-    internal procedure SendChatMessageResponses(var Argument: Record "Bifrost Chat Argument ori" temporary; PayloadJson: Text; AuthHeaderName: Text; ExtraRequestFields: JsonObject): Text
+    procedure SendChatMessageResponses(var Argument: Record "Bifrost Chat Argument ori" temporary; PayloadJson: Text; AuthHeaderName: Text; ExtraRequestFields: JsonObject): Text
     var
         ProviderBase: Codeunit "LangModel Prov. Base ori";
         ApiClient: Codeunit "LangModel API Client ori";
@@ -456,7 +456,7 @@ codeunit 10035412 "LangModel Chat Proxy ori"
     end;
 
     [NonDebuggable]
-    internal procedure ContinueWithToolResultsResponses(var Argument: Record "Bifrost Chat Argument ori" temporary; ConversationState: Text; ToolResultsJson: Text; AuthHeaderName: Text; ExtraRequestFields: JsonObject): Text
+    procedure ContinueWithToolResultsResponses(var Argument: Record "Bifrost Chat Argument ori" temporary; ConversationState: Text; ToolResultsJson: Text; AuthHeaderName: Text; ExtraRequestFields: JsonObject): Text
     var
         ProviderBase: Codeunit "LangModel Prov. Base ori";
         ApiClient: Codeunit "LangModel API Client ori";

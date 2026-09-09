@@ -19,7 +19,7 @@ codeunit 10035420 "Chat Providers Install ori"
     /// table 10035495) into the new "Chat Svc Gate ori" table when the legacy app is still
     /// installed in this company and the new table is still empty.
     /// </summary>
-    internal procedure TakeOverChatProviderData()
+    procedure TakeOverChatProviderData()
     var
         ChatSvcGate: Record "Chat Svc Gate ori";
         TableMetadata: Record "Table Metadata";

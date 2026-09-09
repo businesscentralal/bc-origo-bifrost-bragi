@@ -8,7 +8,7 @@ codeunit 10035397 "LLM Prompt Compl Help ori"
 {
     Access = Internal;
 
-    internal procedure GetHelpText() HelpText: Text
+    procedure GetHelpText() HelpText: Text
     var
         HelpBuilder: TextBuilder;
     begin
