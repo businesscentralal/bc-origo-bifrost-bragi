@@ -1,11 +1,11 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 using Microsoft.Sales.Customer;
 
 using Origo.Bifrost;
 
 pageextension 10035346 "Bifrost Chat CustomerCard ori" extends "Customer Card"
 {
-    ContextSensitiveHelpPage = 'BifrostChat.html';
+    ContextSensitiveHelpPage = 'bifrost-chat';
     layout
     {
         addfirst(factboxes)

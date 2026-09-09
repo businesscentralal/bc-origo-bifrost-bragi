@@ -1,4 +1,4 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 using Microsoft.Utilities;
 
 /// <summary>
@@ -48,6 +48,7 @@ table 10035335 "Bifrost Language Model ori"
             begin
                 if not Default then
                     exit;
+                OtherRole.SetLoadFields(Code);
                 OtherRole.SetRange(Default, true);
                 OtherRole.SetFilter(Code, '<>%1', Code);
                 if OtherRole.FindFirst() then
@@ -142,19 +143,25 @@ table 10035335 "Bifrost Language Model ori"
         }
     }
 
+    trigger OnInsert()
+    var
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
+    begin
+        LangModelSecrets.Register(Code);
+    end;
+
+    trigger OnRename()
+    var
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
+    begin
+        LangModelSecrets.MoveSecrets(xRec.Code, Code);
+    end;
+
     trigger OnDelete()
     var
-        UserKeyTok: Label 'Bifrost_Chat_Usr_', Locked = true;
-        ServiceKeyTok: Label 'Bifrost_Chat_Svc_', Locked = true;
-        UserStorageKey: Text;
-        ServiceStorageKey: Text;
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
     begin
-        UserStorageKey := UserKeyTok + Format(SystemId, 0, 4) + '_' + Format(UserSecurityId(), 0, 4);
-        ServiceStorageKey := ServiceKeyTok + Format(SystemId, 0, 4);
-        if IsolatedStorage.Contains(UserStorageKey, DataScope::Company) then
-            IsolatedStorage.Delete(UserStorageKey, DataScope::Company);
-        if IsolatedStorage.Contains(ServiceStorageKey, DataScope::Company) then
-            IsolatedStorage.Delete(ServiceStorageKey, DataScope::Company);
+        LangModelSecrets.ClearSecrets(Code);
     end;
 
     /// <summary>
@@ -198,8 +205,8 @@ table 10035335 "Bifrost Language Model ori"
         ProcType: Enum "Bifrost Chat Proc. Type ori";
         SkillUrl: Text;
         SkillText: Text;
-        OverwriteQst: Label 'Skill content already exists for language model %1. Do you want to overwrite it?', Comment = '%1 = Code, is-IS=H\u00e6fniefni er \u00feegar til fyrir m\u00e1ll\u00edkan %1. Viltu skrifa yfir \u00fea\u00f0?';
-        NoDefaultSkillErr: Label 'The selected provider does not have default skill content.', Comment = 'is-IS=Valinn veitandi hefur ekki sj\u00e1lfgefi\u00f0 h\u00e6fniefni.';
+        OverwriteQst: Label 'Skill content already exists for language model %1. Do you want to overwrite it?', Comment = '%1 = Code, is-IS=Hæfniefni er þegar til fyrir mállíkan %1. Viltu skrifa yfir það?';
+        NoDefaultSkillErr: Label 'The selected provider does not have default skill content.', Comment = 'is-IS=Valinn veitandi hefur ekki sjálfgefið hæfniefni.';
     begin
         Provider := "Chat Provider";
         TempArg.Init();

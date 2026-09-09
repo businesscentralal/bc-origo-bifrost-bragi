@@ -1,9 +1,9 @@
 #pragma warning disable AL0432
-namespace Origo.Bifrost.Bragi.Test;
+namespace Origo.Bifrost.LanguageModels.Test;
 using Microsoft.Utilities;
 using Origo.Bifrost;
 
-using Origo.Bifrost.Bragi;
+using Origo.Bifrost.LanguageModels;
 using System.TestLibraries.Utilities;
 
 /// <summary>

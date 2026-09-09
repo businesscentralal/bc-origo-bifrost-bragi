@@ -1,4 +1,4 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 using Origo.Bifrost;
 
 /// <summary>
@@ -9,7 +9,7 @@ using Origo.Bifrost;
 page 10035344 "Bifrost LangModel List ori"
 {
     Caption = 'Bifrost Language Models', Comment = 'is-IS=Bifröst mállíkön';
-    ContextSensitiveHelpPage = 'BifrostLangModelList.html';
+    ContextSensitiveHelpPage = 'bifrost-lang-model-list';
     PageType = List;
     SourceTable = "Bifrost Language Model ori";
     ApplicationArea = All;

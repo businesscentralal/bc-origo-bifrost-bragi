@@ -1,11 +1,11 @@
 {
     "folders": [
         {
-            "name": "Bifröst Bragi",
+            "name": "Bifröst mállíkön",
             "path": "app"
         },
         {
-            "name": "Bifröst Bragi.Tests",
+            "name": "Bifröst mállíkön.Tests",
             "path": "test"
         },
         {
@@ -36,7 +36,7 @@
         "al.enableCodeActions": true,
         "al.incrementalBuild": true,
         "al.packageCachePath": "./.alpackages",
-        "al.namespaceTemplate": "Origo.Bifrost.Bragi",
+        "al.namespaceTemplate": "Origo.Bifrost.LanguageModels",
         "dotnetAcquisitionExtension.existingDotnetPath": []
     },
     "extensions": {

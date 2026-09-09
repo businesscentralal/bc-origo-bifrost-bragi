@@ -1,4 +1,4 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 using Origo.Bifrost;
 
 using System.Environment;
@@ -11,7 +11,7 @@ using System.Reflection;
 /// </summary>
 page 10035341 "Bifrost Chat FactBox ori"
 {
-    Caption = 'Bifrost Chat', Comment = 'is-IS=Spjalla við Bifröst';
+    Caption = 'Chat via Bifrost', Comment = 'is-IS=Spjalla með Bifröst';
     PageType = CardPart;
     RefreshOnActivate = true;
     DataCaptionExpression = DataCaptionText;
@@ -250,6 +250,7 @@ page 10035341 "Bifrost Chat FactBox ori"
         IdentityToken: JsonToken;
         IdentityKey: Text;
     begin
+        Company.ReadIsolation := IsolationLevel::ReadUncommitted;
         Company.SetLoadFields(Name, "Display Name");
         if Company.FindSet() then
             repeat

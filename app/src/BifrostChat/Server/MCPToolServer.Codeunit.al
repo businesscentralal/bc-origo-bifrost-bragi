@@ -1,4 +1,4 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 using Origo.Bifrost;
 
 using System.Text;
@@ -30,6 +30,15 @@ codeunit 10035387 "MCP Tool Server ori"
         InvalidBlobRefErr: Label 'Invalid or expired blob reference: %1', Comment = '%1 = blob GUID, is-IS=Ógild eða útrunnin blobvísun: %1';
         DownloadNoGuiErr: Label 'download_blob requires an interactive BC session.', Locked = true;
 
+    /// <summary>
+    /// Builds the system prompt that starts a chat session. Clears any previous session state,
+    /// then reads the caller's identity, language, administrator prompt and the user and company
+    /// memory through the matching Bifrost message types and adds the tool usage rules. The
+    /// result is cached, so later calls in the same session return the same text without
+    /// re-reading anything. Call ClearSession to force a rebuild.
+    /// </summary>
+    /// <param name="RecordContext">Description of the record the user currently has open, added to the prompt when not empty.</param>
+    /// <returns>Text. The complete system prompt for the chat provider.</returns>
     procedure Bootstrap(RecordContext: Text) SystemPrompt: Text
     var
         PromptBuilder: TextBuilder;
@@ -103,6 +112,11 @@ codeunit 10035387 "MCP Tool Server ori"
         CachedSystemPrompt := SystemPrompt;
     end;
 
+    /// <summary>
+    /// Returns the tool definitions to send to the chat provider, building the registry on the
+    /// first call and reusing it afterwards.
+    /// </summary>
+    /// <param name="Tools">Receives the tool definitions as a JSON array.</param>
     procedure ListTools(var Tools: JsonArray)
     begin
         if not ToolsBuilt then
@@ -110,6 +124,17 @@ codeunit 10035387 "MCP Tool Server ori"
         Tools := ToolRegistry;
     end;
 
+    /// <summary>
+    /// Runs one tool call on behalf of the chat provider. Blob references in the arguments are
+    /// resolved first, the tool is dispatched to its Bifrost message type, large base64 values in
+    /// the response are replaced by blob references, and the call is written to the request log.
+    /// An unknown tool name is reported through IsError instead of raising an error.
+    /// </summary>
+    /// <param name="ToolName">Name of the tool to run, as published by ListTools.</param>
+    /// <param name="Arguments">Tool arguments as sent by the chat provider.</param>
+    /// <param name="ResultText">Receives the tool result, or the error message when IsError is true.</param>
+    /// <param name="IsError">Receives true when the tool failed or the tool name is unknown.</param>
+    /// <returns>Boolean. Always true - the call was handled. Read IsError for the outcome.</returns>
     procedure CallTool(ToolName: Text; Arguments: JsonObject; var ResultText: Text; var IsError: Boolean): Boolean
     var
         StartTime: DateTime;
@@ -184,6 +209,11 @@ codeunit 10035387 "MCP Tool Server ori"
         exit(true);
     end;
 
+    /// <summary>
+    /// Returns how many tools the server publishes, building the registry first when needed.
+    /// Used by the setup page to show that the tool server is available.
+    /// </summary>
+    /// <returns>Integer. Number of tool definitions in the registry.</returns>
     procedure GetToolCount(): Integer
     begin
         if not ToolsBuilt then
@@ -191,6 +221,11 @@ codeunit 10035387 "MCP Tool Server ori"
         exit(ToolRegistry.Count());
     end;
 
+    /// <summary>
+    /// Drops the session state this single-instance codeunit holds: the stored blobs with their
+    /// content types and sizes, and the cached system prompt. Call it when a new chat session
+    /// starts so the next Bootstrap builds a fresh prompt.
+    /// </summary>
     procedure ClearSession()
     begin
         Clear(BlobStore);

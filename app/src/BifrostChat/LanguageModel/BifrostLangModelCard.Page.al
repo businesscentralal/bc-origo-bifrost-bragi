@@ -1,4 +1,4 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 using Microsoft.Utilities;
 
 /// <summary>
@@ -13,7 +13,7 @@ using System.Utilities;
 page 10035343 "Bifrost LangModel Card ori"
 {
     Caption = 'Bifrost Language Model', Comment = 'is-IS=Bifröst mállíkan';
-    ContextSensitiveHelpPage = 'BifrostLangModelCard.html';
+    ContextSensitiveHelpPage = 'bifrost-lang-model-card';
     PageType = Card;
     SourceTable = "Bifrost Language Model ori";
     ApplicationArea = All;
@@ -121,6 +121,8 @@ page 10035343 "Bifrost LangModel Card ori"
                         end;
                         TestCtx.ClearLanguageModel();
                         TempNameValueBuffer.Name := Rec.Model;
+                        CurrPage.SaveRecord();
+                        Commit(); // Persist pending card edits so the Name/Value Lookup Page.RunModal is not blocked by an open write transaction.
                         if Page.RunModal(Page::"Name/Value Lookup", TempNameValueBuffer) = Action::LookupOK then begin
                             Text := TempNameValueBuffer.Name;
                             exit(true);
@@ -133,70 +135,33 @@ page 10035343 "Bifrost LangModel Card ori"
             {
                 Caption = 'Authentication', Comment = 'is-IS=Auðkenning';
                 Visible = RequiresApiKeyVisible;
+                InstructionalText = 'API keys are kept in the Bifrost secret store, not on this record. Use the API Key actions to enter or remove a key.', Comment = 'is-IS=API-lyklar eru geymdir í leyndarmálageymslu Bifröst, ekki á þessari færslu. Notaðu API-lykla aðgerðirnar til að skrá eða fjarlægja lykil.';
 
-                field(PersonalApiKey; PersonalApiKeyValue)
-                {
-                    ApplicationArea = All;
-                    Caption = 'Personal API Key', Comment = 'is-IS=Persónulegur API-lykill';
-                    ToolTip = 'Enter your personal API key. Stored per-user and takes priority over the service key. Clear the field to remove the stored key.', Comment = 'is-IS=Sláðu inn persónulegan API-lykil. Geymdur á hvern notanda og hefur forgang yfir þjónustulykil. Hreinsaðu reitinn til að fjarlægja geymdan lykil.';
-                    ExtendedDatatype = Masked;
-
-                    trigger OnValidate()
-                    var
-                        UserKeyTok: Label 'Bifrost_Chat_Usr_', Locked = true;
-                        StorageKey: Text;
-                    begin
-                        CurrPage.SaveRecord();
-                        StorageKey := UserKeyTok + Format(Rec.SystemId, 0, 4) + '_' + Format(UserSecurityId(), 0, 4);
-                        if (PersonalApiKeyValue = '') or (PersonalApiKeyValue = MaskedKeyTok) then begin
-                            if HasPersonalKey and (PersonalApiKeyValue = '') then
-                                if IsolatedStorage.Contains(StorageKey, DataScope::Company) then
-                                    IsolatedStorage.Delete(StorageKey, DataScope::Company);
-                        end else
-                            IsolatedStorage.Set(StorageKey, PersonalApiKeyValue, DataScope::Company);
-                        Clear(PersonalApiKeyValue);
-                        UpdateAuthFlags();
-                    end;
-                }
                 field(HasPersonalKeyField; HasPersonalKey)
                 {
                     ApplicationArea = All;
                     Caption = 'Personal Key Stored', Comment = 'is-IS=Persónulegur lykill geymdur';
-                    ToolTip = 'Indicates whether you have a personal API key stored.', Comment = 'is-IS=Gefur til kynna hvort þú sért með persónulegan API-lykil geymdan.';
+                    ToolTip = 'Indicates whether you have a personal API key stored. A personal key takes priority over the shared key.', Comment = 'is-IS=Gefur til kynna hvort þú sért með persónulegan API-lykil geymdan. Persónulegur lykill hefur forgang yfir sameiginlegan lykil.';
                     Editable = false;
-                }
-                field(ServiceApiKey; ServiceApiKeyValue)
-                {
-                    ApplicationArea = All;
-                    Caption = 'Service API Key', Comment = 'is-IS=Þjónustu API-lykill';
-                    ToolTip = 'Enter a shared service key used by all users without a personal key. Clear the field to remove the stored key.', Comment = 'is-IS=Sláðu inn sameiginlegan þjónustulykil sem allir notendur nota sem hafa ekki persónulegan lykil. Hreinsaðu reitinn til að fjarlægja geymdan lykil.';
-                    ExtendedDatatype = Masked;
-                    Enabled = HasServiceKeyPerm;
-
-                    trigger OnValidate()
-                    var
-                        ServiceKeyTok: Label 'Bifrost_Chat_Svc_', Locked = true;
-                        StorageKey: Text;
-                    begin
-                        CurrPage.SaveRecord();
-                        StorageKey := ServiceKeyTok + Format(Rec.SystemId, 0, 4);
-                        if (ServiceApiKeyValue = '') or (ServiceApiKeyValue = MaskedKeyTok) then begin
-                            if HasServiceKey and (ServiceApiKeyValue = '') then
-                                if IsolatedStorage.Contains(StorageKey, DataScope::Company) then
-                                    IsolatedStorage.Delete(StorageKey, DataScope::Company);
-                        end else
-                            IsolatedStorage.Set(StorageKey, ServiceApiKeyValue, DataScope::Company);
-                        Clear(ServiceApiKeyValue);
-                        UpdateAuthFlags();
-                    end;
                 }
                 field(HasServiceKeyField; HasServiceKey)
                 {
                     ApplicationArea = All;
-                    Caption = 'Service Key Stored', Comment = 'is-IS=Þjónustulykill geymdur';
-                    ToolTip = 'Indicates whether a shared service API key is stored.', Comment = 'is-IS=Gefur til kynna hvort sameiginlegur þjónustulykill sé geymdur.';
+                    Caption = 'Shared Key Stored', Comment = 'is-IS=Sameiginlegur lykill geymdur';
+                    ToolTip = 'Indicates whether a shared API key is stored for the whole company.', Comment = 'is-IS=Gefur til kynna hvort sameiginlegur API-lykill sé geymdur fyrir allt fyrirtækið.';
                     Editable = false;
                     Enabled = HasServiceKeyPerm;
+                }
+                field(KeyMissingHintField; KeyMissingHint)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Note', Comment = 'is-IS=Athugasemd';
+                    ToolTip = 'Specifies what to do when no API key is stored for this language model yet.', Comment = 'is-IS=Tilgreinir hvað eigi að gera þegar enginn API-lykill er geymdur fyrir þetta mállíkan.';
+                    Editable = false;
+                    MultiLine = true;
+                    ShowCaption = false;
+                    Visible = KeyMissingVisible;
+                    Style = Unfavorable;
                 }
             }
             group(SkillContent)
@@ -263,16 +228,22 @@ page 10035343 "Bifrost LangModel Card ori"
                     TestCtx: Codeunit "Bifrost LangModel Test Ctx ori";
                     Provider: Interface "Bifrost LangModel Provider ori";
                     SuccessMsg: Label 'Connection test passed.', Comment = 'is-IS=Tengipróf tókst.';
+                    TestFailedErr: Label 'Connection test failed. %1', Comment = '%1 = the provider error detail, is-IS=Tengipróf mistókst. %1';
+                    Succeeded: Boolean;
+                    ErrorDetail: Text;
                 begin
                     Provider := Rec."Chat Provider";
                     TestCtx.SetLanguageModel(Rec.Code);
                     BuildPageArgument(TempArgument);
                     ExecuteProvider(Provider, TempArgument, TempArgument."Procedure Type"::TestConnection);
-                    if TempArgument."Result Boolean" then
-                        Message(SuccessMsg)
-                    else
-                        Error(TempArgument.GetErrorMessage());
+                    Succeeded := TempArgument."Result Boolean";
+                    ErrorDetail := TempArgument.GetErrorMessage();
+                    // Clear the session-wide test context before reporting, so a failed test does not
+                    // leave every later chat in this session pinned to the language model just tested.
                     TestCtx.ClearLanguageModel();
+                    if not Succeeded then
+                        Error(TestFailedErr, ErrorDetail);
+                    Message(SuccessMsg);
                 end;
             }
             action(GetApiKey)
@@ -290,6 +261,79 @@ page 10035343 "Bifrost LangModel Card ori"
                 begin
                     Provider := Rec."Chat Provider";
                     Hyperlink(GetProviderText(Provider, TempArgument, TempArgument."Procedure Type"::GetApiKeyDocsUrl));
+                end;
+            }
+            action(SetPersonalApiKey)
+            {
+                ApplicationArea = All;
+                Caption = 'Set Personal API Key', Comment = 'is-IS=Skrá persónulegan API-lykil';
+                ToolTip = 'Enter your personal API key for this language model. It is stored in the Bifrost secret store for you only and takes priority over the shared key.', Comment = 'is-IS=Sláðu inn persónulegan API-lykil fyrir þetta mállíkan. Hann er geymdur í leyndarmálageymslu Bifröst fyrir þig eingöngu og hefur forgang yfir sameiginlega lykilinn.';
+                Image = EncryptionKeys;
+                Visible = RequiresApiKeyVisible;
+
+                trigger OnAction()
+                var
+                    LangModelSecrets: Codeunit "LangModel Secrets ori";
+                begin
+                    CurrPage.SaveRecord();
+                    if LangModelSecrets.SetUserKeyFromDialog(Rec.Code) then
+                        UpdateAuthFlags();
+                end;
+            }
+            action(ClearPersonalApiKey)
+            {
+                ApplicationArea = All;
+                Caption = 'Clear Personal API Key', Comment = 'is-IS=Hreinsa persónulegan API-lykil';
+                ToolTip = 'Remove your personal API key for this language model. Chat requests then fall back to the shared key.', Comment = 'is-IS=Fjarlægja persónulegan API-lykil fyrir þetta mállíkan. Spjallbeiðnir nota þá sameiginlega lykilinn.';
+                Image = ClearLog;
+                Visible = RequiresApiKeyVisible;
+                Enabled = HasPersonalKey;
+
+                trigger OnAction()
+                var
+                    LangModelSecrets: Codeunit "LangModel Secrets ori";
+                begin
+                    if not Confirm(ClearPersonalKeyQst, false, Rec.Code) then
+                        exit;
+                    LangModelSecrets.ClearUserKey(Rec.Code);
+                    UpdateAuthFlags();
+                end;
+            }
+            action(SetServiceApiKey)
+            {
+                ApplicationArea = All;
+                Caption = 'Set Shared API Key', Comment = 'is-IS=Skrá sameiginlegan API-lykil';
+                ToolTip = 'Enter the shared API key used by every user without a personal key. Requires the BIFROST ChatSvc ori permission set.', Comment = 'is-IS=Sláðu inn sameiginlega API-lykilinn sem allir notendur án persónulegs lykils nota. Krefst heimildasafnsins BIFROST ChatSvc ori.';
+                Image = EncryptionKeys;
+                Visible = RequiresApiKeyVisible;
+                Enabled = HasServiceKeyPerm;
+
+                trigger OnAction()
+                var
+                    LangModelSecrets: Codeunit "LangModel Secrets ori";
+                begin
+                    CurrPage.SaveRecord();
+                    if LangModelSecrets.SetServiceKeyFromDialog(Rec.Code) then
+                        UpdateAuthFlags();
+                end;
+            }
+            action(ClearServiceApiKey)
+            {
+                ApplicationArea = All;
+                Caption = 'Clear Shared API Key', Comment = 'is-IS=Hreinsa sameiginlegan API-lykil';
+                ToolTip = 'Remove the shared API key of this language model. Requires the BIFROST ChatSvc ori permission set.', Comment = 'is-IS=Fjarlægja sameiginlega API-lykil þessa mállíkans. Krefst heimildasafnsins BIFROST ChatSvc ori.';
+                Image = ClearLog;
+                Visible = RequiresApiKeyVisible;
+                Enabled = HasServiceKeyPerm and HasServiceKey;
+
+                trigger OnAction()
+                var
+                    LangModelSecrets: Codeunit "LangModel Secrets ori";
+                begin
+                    if not Confirm(ClearServiceKeyQst, false, Rec.Code) then
+                        exit;
+                    LangModelSecrets.ClearServiceKey(Rec.Code);
+                    UpdateAuthFlags();
                 end;
             }
             action(TryIt)
@@ -322,13 +366,25 @@ page 10035343 "Bifrost LangModel Card ori"
                 actionref(TryIt_Promoted; TryIt) { }
                 actionref(GetApiKey_Promoted; GetApiKey) { }
             }
+            group(Category_Keys)
+            {
+                Caption = 'API Keys', Comment = 'is-IS=API-lyklar';
+
+                actionref(SetPersonalApiKey_Promoted; SetPersonalApiKey) { }
+                actionref(ClearPersonalApiKey_Promoted; ClearPersonalApiKey) { }
+                actionref(SetServiceApiKey_Promoted; SetServiceApiKey) { }
+                actionref(ClearServiceApiKey_Promoted; ClearServiceApiKey) { }
+            }
         }
     }
 
     var
         SkillTextValue: Text;
+        KeyMissingHint: Text;
         SkillPlaceholderTxt: Label 'Enter skill instructions in markdown...', Comment = 'is-IS=Sláðu inn hæfnileiðbeiningar á markdown-sniði...';
-        MaskedKeyTok: Label '••••••••••••', Locked = true;
+        KeyMissingHintTxt: Label 'No API key is stored for this language model yet. Keys cannot be moved from another extension - use Set Personal API Key or Set Shared API Key to enter it once.', Comment = 'is-IS=Enginn API-lykill er geymdur fyrir þetta mállíkan. Ekki er hægt að flytja lykla frá annarri viðbót - notaðu Skrá persónulegan API-lykil eða Skrá sameiginlegan API-lykil til að slá hann inn einu sinni.';
+        ClearPersonalKeyQst: Label 'Remove your personal API key for language model %1?', Comment = '%1 = language model code, is-IS=Fjarlægja persónulega API-lykilinn þinn fyrir mállíkanið %1?';
+        ClearServiceKeyQst: Label 'Remove the shared API key for language model %1? Every user without a personal key loses access.', Comment = '%1 = language model code, is-IS=Fjarlægja sameiginlega API-lykilinn fyrir mállíkanið %1? Allir notendur án persónulegs lykils missa aðgang.';
         HasExternalEndpoint: Boolean;
         ChatPathVisible: Boolean;
         ModelsPathVisible: Boolean;
@@ -340,8 +396,7 @@ page 10035343 "Bifrost LangModel Card ori"
         HasPersonalKey: Boolean;
         HasServiceKey: Boolean;
         HasServiceKeyPerm: Boolean;
-        PersonalApiKeyValue: Text[2048];
-        ServiceApiKeyValue: Text[2048];
+        KeyMissingVisible: Boolean;
 
     trigger OnAfterGetCurrRecord()
     begin
@@ -371,36 +426,33 @@ page 10035343 "Bifrost LangModel Card ori"
     local procedure UpdateAuthFlags()
     var
         TempArgument: Record "Bifrost Chat Argument ori" temporary;
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
         Provider: Interface "Bifrost LangModel Provider ori";
-        UserKeyTok: Label 'Bifrost_Chat_Usr_', Locked = true;
-        ServiceKeyTok: Label 'Bifrost_Chat_Svc_', Locked = true;
     begin
         Provider := Rec."Chat Provider";
         if not GetProviderBool(Provider, TempArgument, TempArgument."Procedure Type"::RequiresApiKey) then begin
             HasPersonalKey := false;
             HasServiceKey := false;
             HasServiceKeyPerm := false;
+            KeyMissingVisible := false;
+            KeyMissingHint := '';
             exit;
         end;
         HasServiceKeyPerm := GetProviderBool(Provider, TempArgument, TempArgument."Procedure Type"::HasServiceKeyPermission);
-        HasServiceKey := IsolatedStorage.Contains(ServiceKeyTok + Format(Rec.SystemId, 0, 4), DataScope::Company);
-        HasPersonalKey := IsolatedStorage.Contains(UserKeyTok + Format(Rec.SystemId, 0, 4) + '_' + Format(UserSecurityId(), 0, 4), DataScope::Company);
-        if HasPersonalKey then
-            PersonalApiKeyValue := MaskedKeyTok
+        HasServiceKey := LangModelSecrets.HasServiceKey(Rec.Code);
+        HasPersonalKey := LangModelSecrets.HasUserKey(Rec.Code);
+        KeyMissingVisible := not HasServiceKey and not HasPersonalKey;
+        if KeyMissingVisible then
+            KeyMissingHint := KeyMissingHintTxt
         else
-            Clear(PersonalApiKeyValue);
-        if HasServiceKey then
-            ServiceApiKeyValue := MaskedKeyTok
-        else
-            Clear(ServiceApiKeyValue);
+            KeyMissingHint := '';
     end;
 
     [NonDebuggable]
     local procedure BuildPageArgument(var TempArgument: Record "Bifrost Chat Argument ori" temporary)
     var
-        UserKeyTok: Label 'Bifrost_Chat_Usr_', Locked = true;
-        ServiceKeyTok: Label 'Bifrost_Chat_Svc_', Locked = true;
-        ApiKeyValue: Text;
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
+        ApiKeyValue: SecretText;
     begin
         TempArgument.Init();
         TempArgument."Language Model SystemId" := Rec.SystemId;
@@ -410,12 +462,7 @@ page 10035343 "Bifrost LangModel Card ori"
         TempArgument."Max Tokens" := Rec."Max Tokens";
         TempArgument."Chat Path" := Rec."Chat Path";
         TempArgument."Models Path" := Rec."Models Path";
-        if IsolatedStorage.Get(UserKeyTok + Format(Rec.SystemId, 0, 4) + '_' + Format(UserSecurityId(), 0, 4), DataScope::Company, ApiKeyValue) then
-            if ApiKeyValue <> '' then begin
-                TempArgument.SetApiKey(ApiKeyValue);
-                exit;
-            end;
-        if IsolatedStorage.Get(ServiceKeyTok + Format(Rec.SystemId, 0, 4), DataScope::Company, ApiKeyValue) then
+        if LangModelSecrets.TryGetApiKey(Rec.Code, ApiKeyValue) then
             TempArgument.SetApiKey(ApiKeyValue);
     end;
 

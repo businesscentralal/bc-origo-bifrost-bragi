@@ -1,11 +1,11 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 using Microsoft.Purchases.Document;
 
 using Origo.Bifrost;
 
 pageextension 10035363 "Bifrost Chat PurchOrder ori" extends "Purchase Order"
 {
-    ContextSensitiveHelpPage = 'BifrostChat.html';
+    ContextSensitiveHelpPage = 'bifrost-chat';
     layout
     {
         addfirst(factboxes)

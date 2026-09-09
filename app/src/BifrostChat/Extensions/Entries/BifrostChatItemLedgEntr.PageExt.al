@@ -1,11 +1,11 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 using Microsoft.Inventory.Ledger;
 
 using Origo.Bifrost;
 
 pageextension 10035352 "Bifrost Chat ItemLedgEntr ori" extends "Item Ledger Entries"
 {
-    ContextSensitiveHelpPage = 'BifrostChat.html';
+    ContextSensitiveHelpPage = 'bifrost-chat';
     layout
     {
         addfirst(factboxes)

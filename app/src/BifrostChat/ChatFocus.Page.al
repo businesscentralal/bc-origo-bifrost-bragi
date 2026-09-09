@@ -1,4 +1,4 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 using Origo.Bifrost;
 
 using System.Environment;
@@ -11,7 +11,7 @@ using System.Reflection;
 /// </summary>
 page 10035345 "Chat Focus ori"
 {
-    Caption = 'Bifrost Chat', Comment = 'is-IS=Spjalla við Bifröst';
+    Caption = 'Chat via Bifrost', Comment = 'is-IS=Spjalla með Bifröst';
     PageType = UserControlHost;
     UsageCategory = None;
 
@@ -215,6 +215,7 @@ page 10035345 "Chat Focus ori"
         IdentityToken: JsonToken;
         IdentityKey: Text;
     begin
+        Company.ReadIsolation := IsolationLevel::ReadUncommitted;
         Company.SetLoadFields(Name, "Display Name");
         if Company.FindSet() then
             repeat

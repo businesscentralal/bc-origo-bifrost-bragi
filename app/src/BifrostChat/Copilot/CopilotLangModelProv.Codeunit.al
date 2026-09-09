@@ -1,4 +1,4 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 using Origo.Bifrost;
 
 using System.AI;
@@ -83,53 +83,12 @@ codeunit 10035385 "Copilot LangModel Prov. ori" implements "Bifrost LangModel Pr
     local procedure BuildConfigJsonInternal(): Text
     var
         Config: JsonObject;
-        Labels: JsonObject;
         ConfigText: Text;
-        ThinkingLbl: Label 'Thinking...', Comment = 'is-IS=Hugsar...';
-        WaitingLbl: Label 'Waiting for response...', Comment = 'is-IS=Bíð eftir svari...';
-        InputPlaceholderLbl: Label 'Ask about your Business Central data...', Comment = 'is-IS=Spurðu um Business Central gögnin þín...';
-        SendBtnLbl: Label 'Send', Comment = 'is-IS=Senda';
-        ReadyToChatLbl: Label 'Ready to chat.', Comment = 'is-IS=Tilbúið til spjalls.';
-        ConnectedLbl: Label 'Connected', Comment = 'is-IS=Tengt';
-        ValidatingLbl: Label 'Validating connection...', Comment = 'is-IS=Staðfesti tengingu...';
-        ToolErrorsLbl: Label 'Tool errors', Comment = 'is-IS=Verkfæravillur';
-        FailedParseLbl: Label 'Failed to parse response.', Comment = 'is-IS=Ekki tókst að þátta svar.';
-        InvalidFormatLbl: Label 'Invalid response format.', Comment = 'is-IS=Ógilt svarsnið.';
-        FailedHistoryLbl: Label 'Failed to restore chat history.', Comment = 'is-IS=Ekki tókst að endurheimta spjallsögu.';
-        SavePersonalKeyLbl: Label 'Save Personal Key', Comment = 'is-IS=Vista persónulegan lykil';
-        SaveServiceKeyLbl: Label 'Save as Shared Key', Comment = 'is-IS=Vista sem sameiginlegan lykil';
-        PersonalKeySavedLbl: Label 'Personal key saved. You can now chat.', Comment = 'is-IS=Persónulegur lykill vistaður. Nú getur þú spjallað.';
-        ServiceKeySavedLbl: Label 'Shared key saved for all users in this company.', Comment = 'is-IS=Sameiginlegur lykill vistaður fyrir alla notendur í þessu fyrirtæki.';
-        ServiceKeyExistsLbl: Label 'A shared key is configured. Enter a personal key to override it, or leave empty to use the shared key.', Comment = 'is-IS=Sameiginlegur lykill er stilltur. Sláðu inn persónulegan lykil til að hnekkja honum, eða skildu eftir autt til að nota sameiginlega lykilinn.';
-        ChatDisabledLbl: Label 'Bifrost Chat is disabled. Assign a Language Model with a provider in your Bifrost User Setup to enable chat.', Comment = 'is-IS=Spjalla við Bifröst er óvirkt. Úthlutaðu mállíkani með veitanda í Bifröst notandauppsetningu til að virkja spjall.';
-        ApiKeyLabelLbl: Label 'API Key', Comment = 'is-IS=API-lykill';
-        ApiKeyInstructionLbl: Label 'Enter your key to enable chat.', Comment = 'is-IS=Sláðu inn lykilinn þinn til að virkja spjall.';
         DefaultSkillInstructionTok: Label 'On startup, call the who_am_i tool to learn about the current user and company.', Locked = true;
     begin
-        Labels.Add('thinking', ThinkingLbl);
-        Labels.Add('waitingForResponse', WaitingLbl);
-        Labels.Add('inputPlaceholder', InputPlaceholderLbl);
-        Labels.Add('sendBtn', SendBtnLbl);
-        Labels.Add('readyToChat', ReadyToChatLbl);
-        Labels.Add('connected', ConnectedLbl);
-        Labels.Add('validatingConnection', ValidatingLbl);
-        Labels.Add('toolErrors', ToolErrorsLbl);
-        Labels.Add('failedToParseResponse', FailedParseLbl);
-        Labels.Add('invalidResponseFormat', InvalidFormatLbl);
-        Labels.Add('failedRestoreHistory', FailedHistoryLbl);
-        Labels.Add('savePersonalKey', SavePersonalKeyLbl);
-        Labels.Add('saveServiceKey', SaveServiceKeyLbl);
-        Labels.Add('apiKeySaved', PersonalKeySavedLbl);
-        Labels.Add('serviceKeySaved', ServiceKeySavedLbl);
-        Labels.Add('serviceKeyExists', ServiceKeyExistsLbl);
-        Labels.Add('chatDisabled', ChatDisabledLbl);
-        Labels.Add('apiKeyLabel', ApiKeyLabelLbl);
-        Labels.Add('apiKeyInstruction', ApiKeyInstructionLbl);
-
         Config.Add('provider', 'Copilot');
         Config.Add('authMode', 'none');
         Config.Add('requiresApiKey', false);
-        Config.Add('labels', Labels);
         Config.Add('defaultSkillInstruction', DefaultSkillInstructionTok);
 
         Config.WriteTo(ConfigText);

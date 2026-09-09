@@ -1,8 +1,8 @@
-namespace Origo.Bifrost.Bragi.Test;
+namespace Origo.Bifrost.LanguageModels.Test;
 using Microsoft.Utilities;
 using Origo.Bifrost;
 
-using Origo.Bifrost.Bragi;
+using Origo.Bifrost.LanguageModels;
 
 /// <summary>
 /// Configurable mock implementation of the "Bifrost LangModel Provider ori" interface for unit testing
@@ -202,7 +202,7 @@ codeunit 96001 "Mock Bifrost Chat Provider" implements "Bifrost LangModel Provid
         LastModel := Argument.Model;
         LastChatPath := Argument."Chat Path";
         LastModelsPath := Argument."Models Path";
-        LastApiKey := Argument.GetApiKey();
+        LastApiKey := Argument.GetApiKeyIndicator();
         LastTimeoutMs := Argument."Timeout Ms";
         LastMaxTokens := Argument."Max Tokens";
         LastDebugMode := Argument."Debug Mode";

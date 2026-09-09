@@ -1,18 +1,18 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 using Microsoft.Purchases.Document;
 
 using Origo.Bifrost;
 
 pageextension 10035364 "Bifrost Chat PurchOrders ori" extends "Purchase Orders"
 {
-    ContextSensitiveHelpPage = 'BifrostChat.html';
+    ContextSensitiveHelpPage = 'bifrost-chat';
     actions
     {
         addlast(Processing)
         {
             action(ori_BifrostChat)
             {
-                Caption = 'Bifrost Chat', Comment = 'is-IS=Spjalla við Bifröst';
+                Caption = 'Chat via Bifrost', Comment = 'is-IS=Spjalla með Bifröst';
                 ToolTip = 'Chat about this order in Business Central.', Comment = 'is-IS=Spjalla um þessa pöntun í Business Central';
                 ApplicationArea = All;
                 Visible = ChatBoxVisible;

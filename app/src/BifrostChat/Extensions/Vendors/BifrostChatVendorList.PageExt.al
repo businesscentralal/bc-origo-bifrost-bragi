@@ -1,18 +1,18 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 using Microsoft.Purchases.Vendor;
 
 using Origo.Bifrost;
 
 pageextension 10035381 "Bifrost Chat VendorList ori" extends "Vendor List"
 {
-    ContextSensitiveHelpPage = 'BifrostChat.html';
+    ContextSensitiveHelpPage = 'bifrost-chat';
     actions
     {
         addlast(Processing)
         {
             action(ori_BifrostChat)
             {
-                Caption = 'Bifrost Chat', Comment = 'is-IS=Spjalla við Bifröst';
+                Caption = 'Chat via Bifrost', Comment = 'is-IS=Spjalla með Bifröst';
                 ToolTip = 'Chat about this vendor in Business Central.', Comment = 'is-IS=Spjalla um þennan lánardrottin í Business Central';
                 ApplicationArea = All;
                 Visible = ChatBoxVisible;

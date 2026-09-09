@@ -1,11 +1,11 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 using Microsoft.Sales.Receivables;
 
 using Origo.Bifrost;
 
 pageextension 10035349 "Bifrost Chat DtldCustLEntr ori" extends "Detailed Cust. Ledg. Entries"
 {
-    ContextSensitiveHelpPage = 'BifrostChat.html';
+    ContextSensitiveHelpPage = 'bifrost-chat';
     layout
     {
         addfirst(factboxes)

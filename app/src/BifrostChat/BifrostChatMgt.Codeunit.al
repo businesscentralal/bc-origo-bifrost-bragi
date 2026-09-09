@@ -1,4 +1,4 @@
-namespace Origo.Bifrost.Bragi;
+namespace Origo.Bifrost.LanguageModels;
 using Microsoft.Utilities;
 
 using Origo.Bifrost;
@@ -25,6 +25,7 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
         if not HasChatPermission() then
             exit(false);
         if not HasLanguageModelAssignment() then begin
+            BifrostLanguageModel.ReadIsolation := IsolationLevel::ReadUncommitted;
             BifrostLanguageModel.SetRange(Default, true);
             if BifrostLanguageModel.IsEmpty() then
                 exit(false);
@@ -75,11 +76,13 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
     var
         BifrostLanguageModel: Record "Bifrost Language Model ori";
     begin
-        if RoleCode <> '' then
+        if RoleCode <> '' then begin
+            BifrostLanguageModel.SetLoadFields("Chat Provider");
             if BifrostLanguageModel.Get(RoleCode) then begin
                 Provider := BifrostLanguageModel."Chat Provider";
                 exit;
             end;
+        end;
         exit(GetLangModelProviderWithModel(BifrostLanguageModel));
     end;
 
@@ -131,8 +134,8 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
         BifrostLanguageModel: Record "Bifrost Language Model ori";
         BifrostUserSetup: Record "User Setup ori";
         TempArgument: Record "Bifrost Chat Argument ori" temporary;
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
         Provider: Interface "Bifrost LangModel Provider ori";
-        ServiceKeyTok: Label 'Bifrost_Chat_Svc_', Locked = true;
         ConfigObject: JsonObject;
         ConfigText: Text;
         RoleSkill: Text;
@@ -144,7 +147,7 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
         if ConfigObject.ReadFrom(ConfigText) then begin
             BifrostSetup.GetRecordOnce();
             SetJsonProperty(ConfigObject, 'debug', BifrostSetup."Request Debug Mode");
-            SetJsonProperty(ConfigObject, 'hasServiceKey', IsolatedStorage.Contains(ServiceKeyTok + Format(BifrostLanguageModel.SystemId, 0, 4), DataScope::Company));
+            SetJsonProperty(ConfigObject, 'hasServiceKey', LangModelSecrets.HasServiceKey(BifrostLanguageModel.Code));
             SetJsonProperty(ConfigObject, 'canManageServiceKey', GetProviderBool(Provider, TempArgument, TempArgument."Procedure Type"::HasServiceKeyPermission));
             SetJsonProperty(ConfigObject, 'requiresApiKey', GetProviderBool(Provider, TempArgument, TempArgument."Procedure Type"::RequiresApiKey));
             SetJsonProperty(ConfigObject, 'apiKeyLabel', GetProviderText(Provider, TempArgument, TempArgument."Procedure Type"::GetApiKeyLabel));
@@ -154,6 +157,7 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
             SetJsonProperty(ConfigObject, 'apiKeyDocsLinkText', GetProviderText(Provider, TempArgument, TempArgument."Procedure Type"::GetApiKeyDocsLinkText));
             SetJsonProperty(ConfigObject, 'serviceKeyDescription', GetProviderText(Provider, TempArgument, TempArgument."Procedure Type"::GetServiceKeyDescription));
             SetJsonProperty(ConfigObject, 'supportsToolLoop', GetProviderBool(Provider, TempArgument, TempArgument."Procedure Type"::SupportsSplitToolExecution));
+            AddChatLabels(ConfigObject);
 
             // Inject the language model's skill content so the JS sends it in every payload
             BifrostUserSetup.SetLoadFields("Bifrost Language Model Code");
@@ -170,42 +174,43 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
     end;
 
     /// <summary>
-    /// Delegates to the current provider's SaveApiKey.
+    /// Stores the current user's personal API key for the active language model in the
+    /// Bifrost secret store, or removes it when the key is blank.
     /// </summary>
     /// <param name="ApiKey">The API key text entered by the user.</param>
     [NonDebuggable]
     procedure SaveApiKey(ApiKey: Text)
     var
         BifrostLanguageModel: Record "Bifrost Language Model ori";
-        UserKeyTok: Label 'Bifrost_Chat_Usr_', Locked = true;
-        StorageKey: Text;
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
     begin
         GetLangModelProviderWithModel(BifrostLanguageModel);
-        StorageKey := UserKeyTok + Format(BifrostLanguageModel.SystemId, 0, 4) + '_' + Format(UserSecurityId(), 0, 4);
-        if ApiKey = '' then begin
-            if IsolatedStorage.Contains(StorageKey, DataScope::Company) then
-                IsolatedStorage.Delete(StorageKey, DataScope::Company);
-        end else
-            IsolatedStorage.Set(StorageKey, ApiKey, DataScope::Company);
+        if BifrostLanguageModel.Code = '' then
+            exit;
+        if ApiKey = '' then
+            LangModelSecrets.ClearUserKey(BifrostLanguageModel.Code)
+        else
+            LangModelSecrets.SetUserKey(BifrostLanguageModel.Code, ApiKey);
     end;
 
     /// <summary>
-    /// Delegates to the current provider's SaveServiceApiKey.
+    /// Stores the shared (service) API key of the active language model in the Bifrost secret
+    /// store, or removes it when the key is blank. Requires the BIFROST ChatSvc ori permission set.
     /// </summary>
+    /// <param name="ApiKey">The API key text entered by the administrator.</param>
     [NonDebuggable]
     procedure SaveServiceApiKey(ApiKey: Text)
     var
         BifrostLanguageModel: Record "Bifrost Language Model ori";
-        ServiceKeyTok: Label 'Bifrost_Chat_Svc_', Locked = true;
-        StorageKey: Text;
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
     begin
         GetLangModelProviderWithModel(BifrostLanguageModel);
-        StorageKey := ServiceKeyTok + Format(BifrostLanguageModel.SystemId, 0, 4);
-        if ApiKey = '' then begin
-            if IsolatedStorage.Contains(StorageKey, DataScope::Company) then
-                IsolatedStorage.Delete(StorageKey, DataScope::Company);
-        end else
-            IsolatedStorage.Set(StorageKey, ApiKey, DataScope::Company);
+        if BifrostLanguageModel.Code = '' then
+            exit;
+        if ApiKey = '' then
+            LangModelSecrets.ClearServiceKey(BifrostLanguageModel.Code)
+        else
+            LangModelSecrets.SetServiceKey(BifrostLanguageModel.Code, ApiKey);
     end;
 
     /// <summary>
@@ -264,18 +269,15 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
     end;
 
     /// <summary>
-    /// Delegates to the current provider's ClearCredentials.
+    /// Removes the current user's personal API key for the active language model.
     /// </summary>
     procedure ClearCredentials()
     var
         BifrostLanguageModel: Record "Bifrost Language Model ori";
-        UserKeyTok: Label 'Bifrost_Chat_Usr_', Locked = true;
-        StorageKey: Text;
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
     begin
         GetLangModelProviderWithModel(BifrostLanguageModel);
-        StorageKey := UserKeyTok + Format(BifrostLanguageModel.SystemId, 0, 4) + '_' + Format(UserSecurityId(), 0, 4);
-        if IsolatedStorage.Contains(StorageKey, DataScope::Company) then
-            IsolatedStorage.Delete(StorageKey, DataScope::Company);
+        LangModelSecrets.ClearUserKey(BifrostLanguageModel.Code);
     end;
 
     [NonDebuggable]
@@ -283,9 +285,8 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
     var
         BifrostSetup: Record "Setup ori";
         BifrostUserSetup: Record "User Setup ori";
-        UserKeyTok: Label 'Bifrost_Chat_Usr_', Locked = true;
-        ServiceKeyTok: Label 'Bifrost_Chat_Svc_', Locked = true;
-        ApiKeyValue: Text;
+        LangModelSecrets: Codeunit "LangModel Secrets ori";
+        ApiKeyValue: SecretText;
     begin
         TempArgument.Init();
         TempArgument."Language Model SystemId" := BifrostLanguageModel.SystemId;
@@ -305,12 +306,7 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
         if BifrostSetup.Get() then
             TempArgument."Debug Mode" := BifrostSetup."Request Debug Mode";
 
-        if IsolatedStorage.Get(UserKeyTok + Format(BifrostLanguageModel.SystemId, 0, 4) + '_' + Format(UserSecurityId(), 0, 4), DataScope::Company, ApiKeyValue) then
-            if ApiKeyValue <> '' then begin
-                TempArgument.SetApiKey(ApiKeyValue);
-                exit;
-            end;
-        if IsolatedStorage.Get(ServiceKeyTok + Format(BifrostLanguageModel.SystemId, 0, 4), DataScope::Company, ApiKeyValue) then
+        if LangModelSecrets.TryGetApiKey(BifrostLanguageModel.Code, ApiKeyValue) then
             TempArgument.SetApiKey(ApiKeyValue);
     end;
 
@@ -353,5 +349,55 @@ codeunit 10035382 "Bifrost Chat Mgt ori"
             JObject.Replace(PropertyName, JValue)
         else
             JObject.Add(PropertyName, JValue);
+    end;
+
+    // Provider-independent UI strings for the chat control add-in. Overrides any labels the provider supplied so translation is centralized.
+    local procedure AddChatLabels(var ConfigObject: JsonObject)
+    var
+        Labels: JsonObject;
+        ThinkingLbl: Label 'Thinking...', Comment = 'is-IS=Hugsar...';
+        WaitingLbl: Label 'Waiting for response...', Comment = 'is-IS=Bíð eftir svari...';
+        InputPlaceholderLbl: Label 'Ask about your Business Central data...', Comment = 'is-IS=Spurðu um Business Central-gögnin þín...';
+        SendBtnLbl: Label 'Send', Comment = 'is-IS=Senda';
+        ReadyToChatLbl: Label 'Ready to chat.', Comment = 'is-IS=Tilbúið að spjalla.';
+        ConnectedLbl: Label 'Connected', Comment = 'is-IS=Tengt';
+        ValidatingLbl: Label 'Validating connection...', Comment = 'is-IS=Staðfesti tengingu...';
+        ToolErrorsLbl: Label 'Tool errors', Comment = 'is-IS=Verkfæravillur';
+        FailedParseLbl: Label 'Failed to parse response.', Comment = 'is-IS=Ekki tókst að þátta svar.';
+        InvalidFormatLbl: Label 'Invalid response format.', Comment = 'is-IS=Ógilt svarsnið.';
+        FailedHistoryLbl: Label 'Failed to restore chat history.', Comment = 'is-IS=Ekki tókst að endurheimta spjallsögu.';
+        SavePersonalKeyLbl: Label 'Save Personal Key', Comment = 'is-IS=Vista persónulegan lykil';
+        SaveServiceKeyLbl: Label 'Save as Shared Key', Comment = 'is-IS=Vista sem sameiginlegan lykil';
+        PersonalKeySavedLbl: Label 'Personal key saved. You can now chat.', Comment = 'is-IS=Persónulegur lykill vistaður. Nú getur þú spjallað.';
+        ServiceKeySavedLbl: Label 'Shared key saved for all users in this company.', Comment = 'is-IS=Sameiginlegur lykill vistaður fyrir alla notendur í þessu fyrirtæki.';
+        ServiceKeyExistsLbl: Label 'A shared key is configured. Enter a personal key to override it, or leave empty to use the shared key.', Comment = 'is-IS=Sameiginlegur lykill er stilltur. Sláðu inn persónulegan lykil til að hnekkja honum, eða skildu eftir autt til að nota sameiginlega lykilinn.';
+        ChatDisabledLbl: Label 'Chat via Bifrost is disabled. Assign a Language Model with a provider in your Bifrost User Setup to enable chat.', Comment = 'is-IS=Spjalla með Bifröst er óvirkt. Úthlutaðu mállíkani með veitanda í Bifröst notandauppsetningu til að virkja spjall.';
+        ApiKeyLabelLbl: Label 'API Key', Comment = 'is-IS=API-lykill';
+        ApiKeyInstructionLbl: Label 'Enter your key to enable chat.', Comment = 'is-IS=Sláðu inn lykilinn þinn til að virkja spjall.';
+    begin
+        Labels.Add('thinking', ThinkingLbl);
+        Labels.Add('waitingForResponse', WaitingLbl);
+        Labels.Add('inputPlaceholder', InputPlaceholderLbl);
+        Labels.Add('sendBtn', SendBtnLbl);
+        Labels.Add('readyToChat', ReadyToChatLbl);
+        Labels.Add('connected', ConnectedLbl);
+        Labels.Add('validatingConnection', ValidatingLbl);
+        Labels.Add('toolErrors', ToolErrorsLbl);
+        Labels.Add('failedToParseResponse', FailedParseLbl);
+        Labels.Add('invalidResponseFormat', InvalidFormatLbl);
+        Labels.Add('failedRestoreHistory', FailedHistoryLbl);
+        Labels.Add('savePersonalKey', SavePersonalKeyLbl);
+        Labels.Add('saveServiceKey', SaveServiceKeyLbl);
+        Labels.Add('apiKeySaved', PersonalKeySavedLbl);
+        Labels.Add('serviceKeySaved', ServiceKeySavedLbl);
+        Labels.Add('serviceKeyExists', ServiceKeyExistsLbl);
+        Labels.Add('chatDisabled', ChatDisabledLbl);
+        Labels.Add('apiKeyLabel', ApiKeyLabelLbl);
+        Labels.Add('apiKeyInstruction', ApiKeyInstructionLbl);
+
+        if ConfigObject.Contains('labels') then
+            ConfigObject.Replace('labels', Labels)
+        else
+            ConfigObject.Add('labels', Labels);
     end;
 }
