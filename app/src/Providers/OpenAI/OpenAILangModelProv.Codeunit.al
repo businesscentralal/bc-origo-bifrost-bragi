@@ -113,6 +113,8 @@ codeunit 10035413 "OpenAI LangModel Prov. ori" implements "Bifrost LangModel Pro
     var
         LangModelChatProxy: Codeunit "LangModel Chat Proxy ori";
     begin
+        if IsReasoningModel(ProviderBase.GetModel(Argument, '')) then
+            exit(LangModelChatProxy.SendChatMessageResponses(Argument, Argument.GetPayload(), AuthHeaderNameTok, BuildOpenAIResponsesExtraFields()));
         exit(LangModelChatProxy.SendChatMessage(Argument, Argument.GetPayload(), AuthHeaderNameTok));
     end;
 
@@ -184,7 +186,36 @@ codeunit 10035413 "OpenAI LangModel Prov. ori" implements "Bifrost LangModel Pro
     var
         LangModelChatProxy: Codeunit "LangModel Chat Proxy ori";
     begin
+        if IsReasoningModel(ProviderBase.GetModel(Argument, '')) then
+            exit(LangModelChatProxy.ContinueWithToolResultsResponses(Argument, Argument.GetConversationState(), Argument.GetToolResults(), AuthHeaderNameTok, BuildOpenAIResponsesExtraFields()));
         exit(LangModelChatProxy.ContinueWithToolResults(Argument, Argument.GetConversationState(), Argument.GetToolResults(), AuthHeaderNameTok));
+    end;
+
+    // /v1/responses accepts a nested reasoning config. 'low' balances speed and cost for tool-heavy BC workflows.
+    local procedure BuildOpenAIResponsesExtraFields() ExtraFields: JsonObject
+    var
+        ReasoningObj: JsonObject;
+    begin
+        ReasoningObj.Add('effort', 'low');
+        ExtraFields.Add('reasoning', ReasoningObj);
+    end;
+
+    local procedure IsReasoningModel(ModelName: Text): Boolean
+    var
+        LowerName: Text;
+    begin
+        LowerName := LowerCase(ModelName);
+        if LowerName = '' then
+            exit(false);
+        if LowerName.Contains('reasoning') then
+            exit(true);
+        exit(
+            LowerName.StartsWith('o1') or
+            LowerName.StartsWith('o3') or
+            LowerName.StartsWith('o4') or
+            LowerName.StartsWith('gpt-5') or
+            LowerName.StartsWith('gpt-6') or
+            LowerName.StartsWith('gpt-7'));
     end;
 
     local procedure DoGetAvailableModels(var Argument: Record "Bifrost Chat Argument ori" temporary): Boolean

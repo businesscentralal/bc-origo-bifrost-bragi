@@ -116,7 +116,7 @@ codeunit 10035419 "Gemini LangModel Prov. ori" implements "Bifrost LangModel Pro
         LangModelChatProxy: Codeunit "LangModel Chat Proxy ori";
     begin
         Argument."Base URL" := CopyStr(GetOpenAICompatBaseUrl(Argument), 1, MaxStrLen(Argument."Base URL"));
-        exit(LangModelChatProxy.SendChatMessage(Argument, Argument.GetPayload(), AuthHeaderNameTok));
+        exit(LangModelChatProxy.SendChatMessage(Argument, Argument.GetPayload(), AuthHeaderNameTok, BuildGeminiExtraFields()));
     end;
 
     local procedure DoContinueWithToolResults(var Argument: Record "Bifrost Chat Argument ori" temporary): Text
@@ -124,7 +124,23 @@ codeunit 10035419 "Gemini LangModel Prov. ori" implements "Bifrost LangModel Pro
         LangModelChatProxy: Codeunit "LangModel Chat Proxy ori";
     begin
         Argument."Base URL" := CopyStr(GetOpenAICompatBaseUrl(Argument), 1, MaxStrLen(Argument."Base URL"));
-        exit(LangModelChatProxy.ContinueWithToolResults(Argument, Argument.GetConversationState(), Argument.GetToolResults(), AuthHeaderNameTok));
+        exit(LangModelChatProxy.ContinueWithToolResults(Argument, Argument.GetConversationState(), Argument.GetToolResults(), AuthHeaderNameTok, BuildGeminiExtraFields()));
+    end;
+
+    // Force text-only responses so Gemini doesn't return audio/mpeg or other modalities the OpenAI-compat layer can't map.
+    // Google's OpenAI-compat layer reads Gemini-native config from extra_body.google.*.
+    local procedure BuildGeminiExtraFields() ExtraFields: JsonObject
+    var
+        GoogleObj: JsonObject;
+        GenerationConfig: JsonObject;
+        Modalities: JsonArray;
+        ExtraBody: JsonObject;
+    begin
+        Modalities.Add('TEXT');
+        GenerationConfig.Add('response_modalities', Modalities);
+        GoogleObj.Add('generation_config', GenerationConfig);
+        ExtraBody.Add('google', GoogleObj);
+        ExtraFields.Add('extra_body', ExtraBody);
     end;
 
     [NonDebuggable]
