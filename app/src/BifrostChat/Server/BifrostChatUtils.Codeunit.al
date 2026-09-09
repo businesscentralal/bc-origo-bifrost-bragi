@@ -25,19 +25,19 @@ codeunit 10035388 "Bifrost Chat Utils ori"
     /// <returns>JsonObject with the user, setup, role and company identity of the current user.</returns>
     procedure GetIdentityJson() IdentityJson: JsonObject
     var
-        Argument: Record "Message Argument ori";
+        TempArgument: Record "Message Argument ori" temporary;
         MessageTypeImpl: Interface "Msg Interface ori";
     begin
-        Argument.Init();
-        Argument.Version := Argument.Version::"1.0";
-        Argument.Type := Argument.Type::"Help.WhoAmI.Get";
-        Argument."Date & Time" := CurrentDateTime();
-        Argument.Insert();
+        TempArgument.Init();
+        TempArgument.Version := TempArgument.Version::"1.0";
+        TempArgument.Type := TempArgument.Type::"Help.WhoAmI.Get";
+        TempArgument."Date & Time" := CurrentDateTime();
+        TempArgument.Insert();
 
-        MessageTypeImpl := Argument.Type;
-        MessageTypeImpl.ExecuteBifrostTask(Argument);
+        MessageTypeImpl := TempArgument.Type;
+        MessageTypeImpl.ExecuteBifrostTask(TempArgument);
 
-        IdentityJson := Argument.GetResponseJson();
+        IdentityJson := TempArgument.GetResponseJson();
         IdentityJson.Remove(StatusKeyTok);
         IdentityJson.Remove(SystemPromptKeyTok);
     end;

@@ -19,29 +19,29 @@ codeunit 10035396 "LLM Prompt Compl Impl ori" implements "Msg Interface ori"
         NoProviderErr: Label 'No chat provider configured. Set up a Bifrost Language Model with a Chat Provider.', Comment = 'is-IS=Enginn spjallveitandi stilltur. Settu upp Bifröst mállíkan með spjallveitanda.';
         RoleNotFoundErr: Label 'Bifrost Language Model "%1" not found.', Comment = '%1 = role code, is-IS=Bifröst mállíkan "%1" fannst ekki.';
 
-    internal procedure IsEnabled(): Boolean
+    procedure IsEnabled(): Boolean
     begin
         exit(true);
     end;
 
-    internal procedure GetFilterTableNo(): Integer
+    procedure GetFilterTableNo(): Integer
     begin
         exit(0);
     end;
 
-    internal procedure GetDescription() Description: Text[250]
+    procedure GetDescription() Description: Text[250]
     var
         DescriptionLbl: Label 'One-shot LLM completion — send a prompt, get text back. No tools, no chat.', Comment = 'is-IS=Einskots LLM framkvæmd — senda kvaðningu, fá texta til baka. Engin tól, ekkert spjall.';
     begin
         exit(DescriptionLbl);
     end;
 
-    internal procedure GetMessageDirection(): Enum "Msg Direction ori"
+    procedure GetMessageDirection(): Enum "Msg Direction ori"
     begin
         exit(Enum::"Msg Direction ori"::Outbound);
     end;
 
-    internal procedure GetMessageHelpAsMarkdownDocument(var Argument: Record "Message Argument ori")
+    procedure GetMessageHelpAsMarkdownDocument(var Argument: Record "Message Argument ori")
     var
         HelpCodeunit: Codeunit "LLM Prompt Compl Help ori";
     begin
@@ -49,7 +49,7 @@ codeunit 10035396 "LLM Prompt Compl Impl ori" implements "Msg Interface ori"
     end;
 
     [NonDebuggable]
-    internal procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
+    procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
         BifrostLanguageModel: Record "Bifrost Language Model ori";
         TempChatArg: Record "Bifrost Chat Argument ori" temporary;
