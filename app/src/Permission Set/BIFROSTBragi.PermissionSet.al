@@ -1,0 +1,42 @@
+namespace Origo.Bifrost.Bragi;
+
+/// <summary>
+/// Full access to Bifrost Bragi: the Bifrost Chat, language models, the Copilot provider,
+/// the MCP tool server and the LLM.Prompt.Complete message type.
+/// Write access to the Chat Gate is deliberately excluded — assign "BIFROST Chat ori"
+/// on top of this set to let a user actually open a chat.
+/// </summary>
+permissionset 10035404 "BIFROST Bragi ori"
+{
+    Assignable = true;
+    Caption = 'Bifrost Bragi', MaxLength = 30, Comment = 'is-IS=Bifröst Bragi';
+
+    Permissions =
+        table "Bifrost Language Model ori" = X,
+        tabledata "Bifrost Language Model ori" = RIMD,
+        table "Chat Gate ori" = X,
+        tabledata "Chat Gate ori" = R,
+        table "Bifrost Chat Argument ori" = X,
+        tabledata "Bifrost Chat Argument ori" = RIMD,
+        page "Bifrost Chat FactBox ori" = X,
+        page "Bifrost Chat Model List ori" = X,
+        page "Bifrost LangModel Card ori" = X,
+        page "Bifrost LangModel List ori" = X,
+        page "Chat Focus ori" = X,
+        codeunit "Bifrost Chat Mgt ori" = X,
+        codeunit "Bifrost Chat Transfer ori" = X,
+        codeunit "Bifrost Chat Utils ori" = X,
+        codeunit "Bifrost LangModel None ori" = X,
+        codeunit "Bifrost LangModel Test Ctx ori" = X,
+        codeunit "Copilot AOAI Func Impl ori" = X,
+        codeunit "Copilot Chat Proxy ori" = X,
+        codeunit "Copilot Default Skill ori" = X,
+        codeunit "Copilot Install ori" = X,
+        codeunit "Copilot LangModel Prov. ori" = X,
+        codeunit "Copilot Req Log Masker ori" = X,
+        codeunit "Copilot Upgrade ori" = X,
+        codeunit "LLM Prompt Compl Help ori" = X,
+        codeunit "LLM Prompt Compl Impl ori" = X,
+        codeunit "MCP Tool Executor ori" = X,
+        codeunit "MCP Tool Server ori" = X;
+}

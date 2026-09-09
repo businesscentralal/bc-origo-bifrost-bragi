@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bifrost Language Model Card</title>
+    <style>
+        body { font-family: Segoe UI, Arial, sans-serif; max-width: 860px; margin: 0 auto; padding: 24px; color: #333; line-height: 1.6; }
+        h1 { border-bottom: 2px solid #0078d4; padding-bottom: 8px; }
+        h2 { color: #0078d4; margin-top: 32px; }
+        h3 { margin-top: 24px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 12px; }
+        th, td { border: 1px solid #ddd; padding: 8px 12px; text-align: left; }
+        th { background: #f4f4f4; }
+        a { color: #0078d4; }
+        nav a { text-decoration: none; font-weight: 600; }
+        code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-size: 0.95em; }
+    </style>
+</head>
+<body>
+
+<nav style="margin-bottom: 16px; display: flex; gap: 12px; align-items: center;">
+    <a href="index.html">Home</a>
+    |
+    <span>Language:</span>
+    <a href="../is-IS/BifrostLangModelCard.html">Íslenska</a>
+    |
+    <span>Related:</span>
+    <a href="BifrostLangModelList.html">Bifrost Language Models</a>
+    |
+    <a href="BifrostChat.html">Bifrost Chat and User Setup</a>
+</nav>
+
+<h1>Bifrost Language Model Card</h1>
+
+<p>
+    The <strong>Bifrost Language Model Card</strong> page lets you define and edit an AI language model.
+    Each role contains skill instructions (in Markdown format) that are injected into the AI conversation to customize its behavior and expertise.
+</p>
+
+<h2>Fields</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Field</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Code</strong></td>
+            <td>A unique identifier for the language model (e.g., <code>SALES</code>, <code>INVENTORY</code>).</td>
+        </tr>
+        <tr>
+            <td><strong>Description</strong></td>
+            <td>A short description of the language model's purpose and behavior.</td>
+        </tr>
+        <tr>
+            <td><strong>Model</strong></td>
+            <td>Optional AI model override (e.g., <code>claude-sonnet-4-6</code>). If empty, the default model is used.</td>
+        </tr>
+        <tr>
+            <td><strong>Skill</strong></td>
+            <td>Markdown instructions that define the AI's expertise and behavior when this language model is active. Edited in an embedded text editor.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Actions</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Action</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Import Defaults</strong></td>
+            <td>Downloads a default skill definition from the standard URL and populates the language model with predefined instructions.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>See Also</h2>
+<ul>
+    <li><a href="BifrostLangModelList.html">Bifrost Language Models</a> – List of all available language models</li>
+    <li><a href="BifrostChat.html">Bifrost Chat and User Setup</a> – Assign a language model to a user</li>
+</ul>
+
+</body>
+</html>

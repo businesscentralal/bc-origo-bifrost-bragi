@@ -1,0 +1,262 @@
+/* Bifrost Bifrost Chat — Control Add-in Styles */
+html, body, #controlAddIn {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.bifrost-chat {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    color: #333;
+    background: #fafbfc;
+    overflow: hidden;
+}
+
+.mcp-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mcp-msg {
+    max-width: min(90%, 700px);
+    display: flex;
+    flex-direction: column;
+}
+
+.mcp-msg-user {
+    align-self: flex-end;
+}
+
+.mcp-msg-assistant {
+    align-self: flex-start;
+}
+
+.mcp-bubble {
+    padding: 8px 12px;
+    border-radius: 12px;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+.mcp-msg-user .mcp-bubble {
+    background: #0078d4;
+    color: #fff;
+    border-bottom-right-radius: 4px;
+    white-space: pre-wrap;
+}
+
+.mcp-msg-assistant .mcp-bubble {
+    background: #e8eef5;
+    color: #1a1a1a;
+    border-bottom-left-radius: 4px;
+}
+
+.mcp-thinking {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: #e8eef5;
+    border-radius: 12px;
+    color: #666;
+    font-size: 12px;
+}
+
+.mcp-spinner {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid #ccc;
+    border-top-color: #0078d4;
+    border-radius: 50%;
+    animation: mcp-spin 0.7s linear infinite;
+}
+
+@keyframes mcp-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Tool trace display removed */
+
+.mcp-composer {
+    border-top: 1px solid #e1e4e8;
+    padding: 8px;
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    background: #fff;
+}
+
+.mcp-composer textarea {
+    flex: 1;
+    resize: none;
+    border: 1px solid #d1d5da;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-family: inherit;
+    font-size: 13px;
+    color: #333;
+    outline: none;
+    min-height: 36px;
+    max-height: 100px;
+}
+
+.mcp-composer textarea:focus {
+    border-color: #0078d4;
+    box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.15);
+}
+
+.mcp-composer textarea::placeholder {
+    color: #999;
+}
+
+.mcp-composer button {
+    background: #0078d4;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.mcp-composer button:hover {
+    background: #106ebe;
+}
+
+.mcp-composer button:active {
+    background: #005a9e;
+}
+
+/* System messages (device-code prompts, status) */
+.mcp-msg-system {
+    align-self: center;
+    max-width: 95%;
+}
+
+.mcp-msg-system .mcp-bubble {
+    background: #f0f4f8;
+    border: 1px solid #d1d5da;
+    text-align: center;
+}
+
+.mcp-msg-system .mcp-bubble a {
+    color: #0078d4;
+    text-decoration: none;
+}
+
+.mcp-msg-system .mcp-bubble a:hover {
+    text-decoration: underline;
+}
+
+.mcp-status-pulse {
+    color: #666;
+    animation: statusPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* --- Markdown rendered elements --- */
+
+.md-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 6px 0;
+    font-size: 12px;
+}
+
+.md-table th,
+.md-table td {
+    border: 1px solid #c8d1da;
+    padding: 4px 8px;
+    text-align: left;
+}
+
+.md-table th {
+    background: #dce4ed;
+    font-weight: 600;
+}
+
+.md-table tr:nth-child(even) td {
+    background: #f4f7fa;
+}
+
+.md-h {
+    margin: 8px 0 4px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+h1.md-h { font-size: 1.3em; }
+h2.md-h { font-size: 1.15em; }
+h3.md-h { font-size: 1.05em; }
+h4.md-h { font-size: 1em; }
+
+.md-hr {
+    border: none;
+    border-top: 1px solid #c8d1da;
+    margin: 8px 0;
+}
+
+.md-list {
+    margin: 4px 0;
+    padding-left: 20px;
+}
+
+.md-list li {
+    margin: 2px 0;
+}
+
+.md-code {
+    background: #dce4ed;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-family: 'Cascadia Code', 'Consolas', monospace;
+    font-size: 0.9em;
+}
+
+.md-code-block {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 8px 10px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-family: 'Cascadia Code', 'Consolas', monospace;
+    font-size: 12px;
+    margin: 6px 0;
+    white-space: pre;
+}
+
+.md-link {
+    color: #0078d4;
+    text-decoration: none;
+}
+
+.md-link:hover {
+    text-decoration: underline;
+}
+
+.md-p {
+    margin: 2px 0;
+}
+
+.md-break {
+    height: 6px;
+}
