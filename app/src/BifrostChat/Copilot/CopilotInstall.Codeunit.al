@@ -37,14 +37,14 @@ codeunit 10035390 "Copilot Install ori"
     /// secret store, so the administrator sees on Bifrost App Secrets which keys still need a value.
     /// Idempotent - called from install and from upgrade.
     /// </summary>
-    internal procedure RegisterSecrets()
+    procedure RegisterSecrets()
     var
         LangModelSecrets: Codeunit "LangModel Secrets ori";
     begin
         LangModelSecrets.RegisterAll();
     end;
 
-    internal procedure RegisterCapability()
+    procedure RegisterCapability()
     var
         CopilotCapability: Codeunit "Copilot Capability";
         LearnMoreUrlTok: Label 'https://www.origo.is/', Locked = true;
@@ -63,7 +63,7 @@ codeunit 10035390 "Copilot Install ori"
                 LearnMoreUrlTok);
     end;
 
-    internal procedure InitDefaultLanguageModel()
+    procedure InitDefaultLanguageModel()
     var
         LangModel: Record "Bifrost Language Model ori";
         DefaultSkill: Codeunit "Copilot Default Skill ori";

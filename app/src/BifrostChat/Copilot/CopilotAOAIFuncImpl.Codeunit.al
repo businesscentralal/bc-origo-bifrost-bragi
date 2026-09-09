@@ -16,7 +16,7 @@ codeunit 10035392 "Copilot AOAI Func Impl ori" implements "AOAI Function"
         ToolDescription: Text;
         ToolSchema: JsonObject;
 
-    internal procedure SetToolData(NewName: Text; NewDescription: Text; NewSchema: JsonObject)
+    procedure SetToolData(NewName: Text; NewDescription: Text; NewSchema: JsonObject)
     begin
         ToolName := NewName;
         ToolDescription := NewDescription;

@@ -21,7 +21,7 @@ codeunit 10035393 "Copilot Chat Proxy ori"
         MissingMessagesLbl: Label 'Payload must contain a messages array with at least one entry.', Comment = 'is-IS=Inntak verður að innihalda skilaboðalista með að minnsta kosti einu atriði.';
 
     [NonDebuggable]
-    internal procedure SendChatMessage(PayloadJson: Text): Text
+    procedure SendChatMessage(PayloadJson: Text): Text
     var
         AzureOpenAI: Codeunit "Azure OpenAI";
         AOAIDeployments: Codeunit "AOAI Deployments";

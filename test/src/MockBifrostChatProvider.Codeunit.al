@@ -140,7 +140,7 @@ codeunit 96001 "Mock Bifrost Chat Provider" implements "Bifrost LangModel Provid
     end;
 
     /// <summary>Resets all mock state — call from each test's Initialize.</summary>
-    internal procedure Reset()
+    procedure Reset()
     begin
         LastSendPayload := '';
         LastConversationState := '';
@@ -165,32 +165,32 @@ codeunit 96001 "Mock Bifrost Chat Provider" implements "Bifrost LangModel Provid
         ModelCount := 0;
     end;
 
-    internal procedure SetIsConfigured(Value: Boolean)
+    procedure SetIsConfigured(Value: Boolean)
     begin
         IsConfiguredValue := Value;
     end;
 
-    internal procedure SetConfigJson(Json: Text)
+    procedure SetConfigJson(Json: Text)
     begin
         ConfigJsonValue := Json;
     end;
 
-    internal procedure SetSendResponse(ResponseJson: Text)
+    procedure SetSendResponse(ResponseJson: Text)
     begin
         SendResponseValue := ResponseJson;
     end;
 
-    internal procedure SetContinueResponse(ResponseJson: Text)
+    procedure SetContinueResponse(ResponseJson: Text)
     begin
         ContinueResponseValue := ResponseJson;
     end;
 
-    internal procedure SetModelCount(Count: Integer)
+    procedure SetModelCount(Count: Integer)
     begin
         ModelCount := Count;
     end;
 
-    internal procedure GetLastSendPayload(): Text
+    procedure GetLastSendPayload(): Text
     begin
         exit(LastSendPayload);
     end;
@@ -208,78 +208,78 @@ codeunit 96001 "Mock Bifrost Chat Provider" implements "Bifrost LangModel Provid
         LastDebugMode := Argument."Debug Mode";
     end;
 
-    internal procedure GetLastBaseUrl(): Text
+    procedure GetLastBaseUrl(): Text
     begin
         exit(LastBaseUrl);
     end;
 
-    internal procedure GetLastModel(): Text
+    procedure GetLastModel(): Text
     begin
         exit(LastModel);
     end;
 
-    internal procedure GetLastChatPath(): Text
+    procedure GetLastChatPath(): Text
     begin
         exit(LastChatPath);
     end;
 
-    internal procedure GetLastModelsPath(): Text
+    procedure GetLastModelsPath(): Text
     begin
         exit(LastModelsPath);
     end;
 
     [NonDebuggable]
-    internal procedure GetLastApiKey(): Text
+    procedure GetLastApiKey(): Text
     begin
         exit(LastApiKey);
     end;
 
-    internal procedure GetLastTimeoutMs(): Integer
+    procedure GetLastTimeoutMs(): Integer
     begin
         exit(LastTimeoutMs);
     end;
 
-    internal procedure GetLastMaxTokens(): Integer
+    procedure GetLastMaxTokens(): Integer
     begin
         exit(LastMaxTokens);
     end;
 
-    internal procedure GetLastDebugMode(): Boolean
+    procedure GetLastDebugMode(): Boolean
     begin
         exit(LastDebugMode);
     end;
 
-    internal procedure WasIsConfiguredCalled(): Boolean
+    procedure WasIsConfiguredCalled(): Boolean
     begin
         exit(IsConfiguredCalled);
     end;
 
-    internal procedure WasBuildConfigCalled(): Boolean
+    procedure WasBuildConfigCalled(): Boolean
     begin
         exit(BuildConfigCalled);
     end;
 
-    internal procedure WasSendChatMessageCalled(): Boolean
+    procedure WasSendChatMessageCalled(): Boolean
     begin
         exit(SendChatMessageCalled);
     end;
 
-    internal procedure WasContinueWithToolResultsCalled(): Boolean
+    procedure WasContinueWithToolResultsCalled(): Boolean
     begin
         exit(ContinueWithToolResultsCalled);
     end;
 
-    internal procedure GetLastConversationState(): Text
+    procedure GetLastConversationState(): Text
     begin
         exit(LastConversationState);
     end;
 
-    internal procedure GetLastToolResultsJson(): Text
+    procedure GetLastToolResultsJson(): Text
     begin
         exit(LastToolResultsJson);
     end;
 
-    internal procedure WasGetAvailableModelsCalled(): Boolean
+    procedure WasGetAvailableModelsCalled(): Boolean
     begin
         exit(GetAvailableModelsCalled);
     end;

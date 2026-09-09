@@ -16,7 +16,7 @@ codeunit 10035410 "LangModel Prov. Base ori"
     /// <summary>
     /// Returns whether the current user may view, set or clear the shared (service) API key.
     /// </summary>
-    internal procedure HasServiceKeyPermission(): Boolean
+    procedure HasServiceKeyPermission(): Boolean
     var
         ChatSvcGate: Record "Chat Svc Gate ori";
     begin
@@ -26,7 +26,7 @@ codeunit 10035410 "LangModel Prov. Base ori"
     /// <summary>
     /// Returns the argument's Base URL, or the provider default when blank.
     /// </summary>
-    internal procedure GetBaseUrl(var Argument: Record "Bifrost Chat Argument ori" temporary; DefaultUrl: Text): Text
+    procedure GetBaseUrl(var Argument: Record "Bifrost Chat Argument ori" temporary; DefaultUrl: Text): Text
     begin
         if Argument."Base URL" <> '' then
             exit(Argument."Base URL");
@@ -36,7 +36,7 @@ codeunit 10035410 "LangModel Prov. Base ori"
     /// <summary>
     /// Returns the argument's Model, or the provider default when blank.
     /// </summary>
-    internal procedure GetModel(var Argument: Record "Bifrost Chat Argument ori" temporary; DefaultModel: Text): Text
+    procedure GetModel(var Argument: Record "Bifrost Chat Argument ori" temporary; DefaultModel: Text): Text
     begin
         if Argument.Model <> '' then
             exit(Argument.Model);
@@ -46,7 +46,7 @@ codeunit 10035410 "LangModel Prov. Base ori"
     /// <summary>
     /// Returns the argument's timeout in milliseconds, or the provider default when zero.
     /// </summary>
-    internal procedure GetTimeoutMs(var Argument: Record "Bifrost Chat Argument ori" temporary; DefaultMs: Integer): Integer
+    procedure GetTimeoutMs(var Argument: Record "Bifrost Chat Argument ori" temporary; DefaultMs: Integer): Integer
     begin
         if Argument."Timeout Ms" > 0 then
             exit(Argument."Timeout Ms");
@@ -56,7 +56,7 @@ codeunit 10035410 "LangModel Prov. Base ori"
     /// <summary>
     /// Returns the argument's max tokens, or the provider default when zero.
     /// </summary>
-    internal procedure GetMaxTokens(var Argument: Record "Bifrost Chat Argument ori" temporary; DefaultMaxTokens: Integer): Integer
+    procedure GetMaxTokens(var Argument: Record "Bifrost Chat Argument ori" temporary; DefaultMaxTokens: Integer): Integer
     begin
         if Argument."Max Tokens" > 0 then
             exit(Argument."Max Tokens");
@@ -67,7 +67,7 @@ codeunit 10035410 "LangModel Prov. Base ori"
     /// Returns whether the argument carries an API key and a resolvable Base URL.
     /// </summary>
     [NonDebuggable]
-    internal procedure IsConfigured(var Argument: Record "Bifrost Chat Argument ori" temporary; DefaultBaseUrl: Text): Boolean
+    procedure IsConfigured(var Argument: Record "Bifrost Chat Argument ori" temporary; DefaultBaseUrl: Text): Boolean
     begin
         if not Argument.HasApiKey() then
             exit(false);
@@ -77,7 +77,7 @@ codeunit 10035410 "LangModel Prov. Base ori"
     /// <summary>
     /// Parses OpenAI-format token usage from a response JSON string.
     /// </summary>
-    internal procedure ParseTokenUsage(ResponseJson: Text; var InputTokens: Integer; var OutputTokens: Integer)
+    procedure ParseTokenUsage(ResponseJson: Text; var InputTokens: Integer; var OutputTokens: Integer)
     var
         ResponseObject: JsonObject;
         UsageToken: JsonToken;
@@ -103,7 +103,7 @@ codeunit 10035410 "LangModel Prov. Base ori"
     /// <summary>
     /// Returns whether any Bifrost Language Model is configured with an external chat provider.
     /// </summary>
-    internal procedure HasServiceGate(): Boolean
+    procedure HasServiceGate(): Boolean
     var
         BifrostLanguageModel: Record "Bifrost Language Model ori";
     begin
@@ -115,7 +115,7 @@ codeunit 10035410 "LangModel Prov. Base ori"
     /// <summary>
     /// Asserts that a language model with a chat provider exists; responds with error if not.
     /// </summary>
-    internal procedure AssertServiceGate(var Argument: Record "Message Argument ori"): Boolean
+    procedure AssertServiceGate(var Argument: Record "Message Argument ori"): Boolean
     begin
         if HasServiceGate() then
             exit(true);
@@ -126,7 +126,7 @@ codeunit 10035410 "LangModel Prov. Base ori"
     /// <summary>
     /// Raises an error if HttpClient is not allowed in this environment.
     /// </summary>
-    internal procedure EnsureHttpClientAllowed()
+    procedure EnsureHttpClientAllowed()
     begin
         if not CanSendHttpRequests() then
             Error(HttpClientBlockedMsg);
@@ -152,7 +152,7 @@ codeunit 10035410 "LangModel Prov. Base ori"
     /// If the payload contains a files array, converts the last user message
     /// from plain text to a multi-modal content array (OpenAI format).
     /// </summary>
-    internal procedure AttachFilesToMessages(PayloadObject: JsonObject; var Messages: JsonArray)
+    procedure AttachFilesToMessages(PayloadObject: JsonObject; var Messages: JsonArray)
     var
         FilesToken: JsonToken;
         FilesArray: JsonArray;
